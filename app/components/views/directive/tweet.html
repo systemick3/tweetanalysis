@@ -1,0 +1,11 @@
+<div class="panel tweet" ng-repeat="item in data">
+  <div class="name">
+    <a href="https://twitter.com/{{ item.user.screen_name }}">
+      <span class="name">{{ item.user.name }}</span>
+      <span>@{{ item.user.screen_name }}</span>
+    </a>
+    {{ item.short_date }}
+  </div>
+  <div class="text" ng-bind-html="item.display_text"></div>
+  <div class="more"><a href="" ng-click="expand(item.id_str)">View data</a></div>
+</div>

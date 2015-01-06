@@ -1,0 +1,37 @@
+$magnolia: #f2f2f2;
+$white: #fff;
+
+$orange: #ff6600;
+$light-grey: #ddd;
+$dark-grey: #aaa;
+$green: #80bd01;
+
+$base-font-size:   24px; // The font size set on the root html element.
+$base-line-height: 34px; // This line-height determines the basic unit of vertical rhythm.
+
+$h1-font-size: 2    * $base-font-size;
+$h2-font-size: 1.5  * $base-font-size;
+$h3-font-size: 1.17 * $base-font-size;
+$h4-font-size: 1    * $base-font-size;
+$h5-font-size: 0.83 * $base-font-size;
+$h6-font-size: 0.67 * $base-font-size;
+
+// page width
+$page-width: 990px;
+
+$arvo:  Arvo, "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+$quattro: "Quattrocento Sans", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+
+$neuton:  Neuton, "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+$montserrat: Montserrat, Arial, Helvetica, "Nimbus Sans L", sans-serif;
+$raleway: Raleway, Arial, Helvetica, "Nimbus Sans L", sans-serif;
+$base-font-family: $raleway; // The font family set on the html element.
+
+$border: solid 1px $light-grey;
+
+@mixin panel-border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}

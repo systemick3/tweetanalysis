@@ -1,0 +1,95 @@
+<p></p>
+
+<div ng-hide="tweetapp.authorised">
+
+	<div id="page" class="login" ng-controller="loginCtrl">
+
+		<h2>Login</h2>
+	  <div class="error" ng-show="formSubmitError">{{ formSubmitError }}</div>
+		<div class="form" ng-hide="formSuccess">
+			<!--<form name="loginForm" method="post" novalidate class="form-inline" ng-submit="doLogin(loginDetails)">
+			  <div class="well">
+			    <div class="form-group">
+			      <label>Username</label>
+			      <input type="text" class="form-control" name="username" ng-model="loginDetails.username" required />
+			      <span class="error" ng-show="loginForm.username.$error.required && loginForm.username.$dirty">Please enter your username</span>
+			    </div>
+			    <div class="form-group">
+			      <label>Password</label>
+			      <input type="password" class="form-control" name="password" ng-model="loginDetails.password" required />
+			      <span class="error" ng-show="loginForm.password.$error.required && loginForm.password.$dirty">Please enter your password</span>
+			    </div>
+			    <div class="form-group">
+			      <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-primary">Login</button>
+			    </div>
+			  </div>
+			</form>-->
+			<form name="twitterLoginForm" method="post" action="http://localhost:3001/tweetapp/login/twitter">
+				<div class="well">
+			  	<input type="hidden" value="123456789" />
+			  	<div class="form-group">
+			  		<input type="submit" value="Log in using Twitter" />
+			  	</div>
+			  </div>
+			</form>
+		</div>
+
+	</div>
+
+</div>
+
+<div ng-show="tweetapp.authorised">
+
+	<div id="page" class="home" ng-hide="authorised">
+
+		<div class="column left">
+
+			<div class="panel">
+				<h3>Tweetapp</h3>
+				<p>Hello {{ user.screen_name }}</p>
+				<div class="profile_image">
+					<img src="{{ user.profile_image_url_https }}" />
+				</div>
+				<h4>Last 7 days</h4>
+				<div class="days-7">
+					{{ userAnalysis.analysis.seven }}
+				</div>
+				<h4>Last 30 days</h4>
+				<div class="days-30">
+					{{ userAnalysis.analysis.thirty }}
+				</div>
+				<h4>Last 90 days</h4>
+				<div class="days-90">
+					{{ userAnalysis.analysis.ninety }}
+				</div>
+			</div>
+
+		</div>
+
+		<div class="column centre">
+			<h3>Tweets for {{ tweets_for }}</h3>
+			<div data-tweet-list="usertweets" class="ng-Fade">
+				<p>Tweet content goes here. {{ usertweets[0].text }}</p>
+			</div>
+			<div class="more-tweets" ng-show="tweetsLoaded && !allTweetsLoaded"><a href="" ng-click="getMoreTweets()">View more tweets</a></div>
+		</div>
+
+		<div class="column right">
+			Right content goes here
+		</div>
+
+		<div class="clearfix"></div>
+
+		<!--<p><a href="#/test">Test</a></p>
+
+		<p>{{ message }}</p>
+
+		<p>{{ message2 }}</p>
+
+		<div ng-repeat="tweet in tweets">
+			{{ tweet.text }}
+		</div>-->
+
+	</div>
+
+</div>
