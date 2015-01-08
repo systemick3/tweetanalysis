@@ -157,7 +157,7 @@ angular.module("twitterapp")
         tweetsFactory.getRetweeters(tweetId)
           .success(function (data) {
             selectedTweet.retweeters = data.retweeters;
-            selectedTweet.range = data.range;
+            selectedTweet.reach = data.reach;
             selectedTweet.show_retweeters = true;
           })
           .error(function (err) {
