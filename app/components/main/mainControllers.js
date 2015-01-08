@@ -167,11 +167,47 @@ angular.module("twitterapp")
 
     };
 
+    $scope.showReplies = function(tweetId) {
+      var selectedTweet;
+
+      for (var i=0; i<$scope.usertweets.length; i++) {
+        if ($scope.usertweets[i].id_str == tweetId) {
+          selectedTweet = $scope.usertweets[i];
+          break;
+        }
+      }
+      if (selectedTweet.replies) {
+        selectedTweet.show_replies = true;
+      }
+      else {
+
+        tweetsFactory.getReplies(userId, tweetId)
+          .success(function (data) {
+            selectedTweet.replies = processTweets(data.replies);
+            selectedTweet.show_replies = true;
+          })
+          .error(function (err) {
+            console.log(err);
+          });
+      }
+
+    };
+
     // Hide the retweeters info
     $scope.hideRetweeters = function (tweetId) {
       for (var i=0; i<$scope.usertweets.length; i++) {
         if ($scope.usertweets[i].id_str == tweetId) {
           $scope.usertweets[i].show_retweeters = false;
+          break;
+        }
+      }
+    };
+
+    // Hide the replies
+    $scope.hideReplies = function (tweetId) {
+      for (var i=0; i<$scope.usertweets.length; i++) {
+        if ($scope.usertweets[i].id_str == tweetId) {
+          $scope.usertweets[i].show_replies = false;
           break;
         }
       }

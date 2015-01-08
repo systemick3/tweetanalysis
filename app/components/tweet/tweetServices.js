@@ -52,5 +52,10 @@ angular.module("twitterapp")
       return $http.get(mentionsUrl);
     };
 
+    factory.getReplies = function (userId, tweetId) {
+      var repliesUrl = apiData.server + apiData.replies.url + '/' + userId + '/' + tweetId;
+      return $http.get(repliesUrl);
+    };
+
     return factory;
   }]);
