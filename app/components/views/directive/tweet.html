@@ -15,16 +15,29 @@
       </a>
     </span>
     <span class="favourites" ng-if="item.favorite_count > 0">{{ item.favorite_count }} favourite{{ item.favorite_count > 1 ? 's' : '' }}</span>
-    <span class="view-replies" ng-show="item.has_replies"><a href="" ng-click="showReplies(item.id_str)">Show replies</a></span>
+    <span class="view-replies" ng-show="item.has_replies"><a href="" ng-click="showReplies(item.id_str)">Replies</a></span>
+    <span class="sentiment"><a href="" ng-click="showSentiment(item.id_str)">Sentiment</a></span>
   </div>
+
+  <div class="sentiment" ng-show="item.show_sentiment">
+    <h4>Sentiment</h4>
+    <div class="score">
+      Score: {{ item.sentiment.score}}, Comparative: {{ item.sentiment.comparative }}
+    </div>
+    <div class="positive">Positive: {{ (item.sentiment.positive.length > 0) ? item.sentiment.positive.join() : 'none' }} </div>
+    <div class="positive">Negative: {{ (item.sentiment.negative.length > 0) ? item.sentiment.negative.join() : 'none' }} </div>
+    <div class="hide-sentiment"><a href="" ng-click="hideSentiment(item.id_str)">Hide sentiment</a></div>
+  </div>
+
   <div class="retweeters" ng-show="item.show_retweeters">
     <h4>Retweeters</h4>
     <div class="retweeter" ng-repeat="retweeter in item.retweeters">
       <a href="https://twitter.com/{{ retweeter.screen_name }}" target="_blank">{{ retweeter.screen_name }}</a> retweeted to {{ retweeter.followers_count }} followers
     </div>
     <div class="range">This tweet potentially reached {{ item.reach + user.followers_count }} people</div>
-    <div class="hide-tweets"><a href="" ng-click="hideRetweeters(item.id_str)">Hide</a></div>
+    <div class="hide-tweets"><a href="" ng-click="hideRetweeters(item.id_str)">Hide Retweeters</a></div>
   </div>
+
   <div class="replies" ng-show="item.show_replies">
     <h4>Replies</h4>
     <div class="reply" ng-repeat="reply in item.replies">
@@ -38,7 +51,24 @@
         </div>
         <div class="text" ng-bind-html="reply.display_text"></div>
       </div>
+      <div class="more">
+        <span class="retweets" ng-if="reply.retweet_count > 0 && !reply.retweeted">
+          {{ reply.retweet_count  }} retweet{{ reply.retweet_count > 1 ? 's' : '' }}
+        </span>
+        <span class="favourites" ng-if="reply.favorite_count > 0">{{ reply.favorite_count }} favourite{{ reply.favorite_count > 1 ? 's' : '' }}</span>
+        <span class="sentiment"><a href="" ng-click="showSentiment(item.id_str, reply.id_str)">Sentiment</a></span>
+      </div>
+      <div class="hide-tweets"><a href="" ng-click="hideReplies(item.id_str)">Hide Replies</a></div>
+      <div class="sentiment" ng-show="reply.show_sentiment">
+        <h4>Sentiment for reply</h4>
+        <div class="score">
+          Score: {{ reply.sentiment.score}}, Comparative: {{ reply.sentiment.comparative }}
+        </div>
+        <div class="positive">Positive: {{ (reply.sentiment.positive.length > 0) ? reply.sentiment.positive.join() : 'none' }} </div>
+        <div class="positive">Negative: {{ (reply.sentiment.negative.length > 0) ? reply.sentiment.negative.join() : 'none' }} </div>
+        <div class="hide-sentiment"><a href="" ng-click="hideSentiment(item.id_str, reply.id_str)">Hide</a></div>
+      </div>
     </div>
-    <div class="hide-tweets"><a href="" ng-click="hideReplies(item.id_str)">Hide</a></div>
   </div>
+
 </div>

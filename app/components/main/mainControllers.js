@@ -137,7 +137,6 @@ angular.module("twitterapp")
     };
 
     // Show all the retweeters of a tweet
-    $scope.retweeters = {};
     $scope.showRetweeters = function (tweetId) {
       var selectedTweet;
       for (var i=0; i<$scope.usertweets.length; i++) {
@@ -183,6 +182,7 @@ angular.module("twitterapp")
 
         tweetsFactory.getReplies(userId, tweetId)
           .success(function (data) {
+            console.log(data);
             selectedTweet.replies = processTweets(data.replies);
             selectedTweet.show_replies = true;
           })
@@ -191,6 +191,47 @@ angular.module("twitterapp")
           });
       }
 
+    };
+
+    $scope.showSentiment = function (tweetId, replyId) {
+      var selectedTweet,
+        replies;
+
+      // Find the tweet that has been selected
+      for (var i=0; i<$scope.usertweets.length; i++) {
+        if ($scope.usertweets[i].id_str == tweetId) {
+          selectedTweet = $scope.usertweets[i];
+          break;
+        }
+      }
+
+      // If the tweet is a reply find it in the replies
+      // of the selected tweet
+      if (replyId) {
+        replies = selectedTweet.replies;
+        for (var j=0; j < replies.length; j++) {
+          if (replies[j].id_str == replyId) {
+            selectedTweet = replies[i];
+          }
+        }
+      }
+
+      // If sentiment has been fetched from server just show it
+      if (selectedTweet.sentiment) {
+        selectedTweet.show_sentiment = true;
+      }
+      else {
+        // Fetch from server
+        tweetsFactory.getSentiment(selectedTweet.id_str, replyId)
+          .success(function (data) {
+            selectedTweet.sentiment = data.sentiment;
+            selectedTweet.show_sentiment = true;
+          })
+          .error(function (err) {
+            console.log(err);
+          });
+
+      }
     };
 
     // Hide the retweeters info
@@ -211,6 +252,33 @@ angular.module("twitterapp")
           break;
         }
       }
+    };
+
+    // Hide the replies
+    $scope.hideSentiment = function (tweetId, replyId) {
+      var selectedTweet,
+        replies;
+
+      // Find the tweet that has been selected
+      for (var i=0; i<$scope.usertweets.length; i++) {
+        if ($scope.usertweets[i].id_str == tweetId) {
+          selectedTweet = $scope.usertweets[i];
+          break;
+        }
+      }
+
+      // If this is a reply then find it in the replies
+      // of the selected tweet
+      if (replyId) {
+        replies = selectedTweet.replies;
+        for (i=0; i<replies.length; i++) {
+          if (replies[i].id_str == replyId) {
+            selectedTweet = replies[i];
+          }
+        }
+      }
+
+      selectedTweet.show_sentiment = false;
     };
 
 

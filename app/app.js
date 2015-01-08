@@ -52,7 +52,8 @@ angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ngAnimate', 'ipCookie', 
       'userAnalysis':     { url: '/tweetapp/auth/analysis/user', params: ['userId'] },
       'retweeters':       { url: '/tweetapp/auth/tweet/retweeters', params: ['tweetId'] },
       'mentions':         { url: '/tweetapp/auth/tweet/mentions', params: ['userId'] },
-      'replies':          { url: '/tweetapp/auth/tweet/replies', params: ['userId', 'tweetId']}
+      'replies':          { url: '/tweetapp/auth/tweet/replies', params: ['userId', 'tweetId']},
+      'sentiment':        { url: '/tweetapp/auth/tweet/sentiment', params: ['tweetId', 'isReply']}
     },
     'sessionCookieName':  'TSESS',
     'numUserTweets': 10

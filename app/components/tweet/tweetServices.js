@@ -57,5 +57,15 @@ angular.module("twitterapp")
       return $http.get(repliesUrl);
     };
 
+    factory.getSentiment = function (tweetId, isReply) {
+      var sentimentUrl = apiData.server + apiData.sentiment.url + '/' + tweetId;
+
+      if (isReply) {
+        sentimentUrl += '/' + 'true';
+      }
+
+      return $http.get(sentimentUrl);
+    };
+
     return factory;
   }]);
