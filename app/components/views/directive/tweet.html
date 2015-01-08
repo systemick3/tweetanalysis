@@ -21,7 +21,7 @@
     <div class="retweeter" ng-repeat="retweeter in item.retweeters">
       <a href="https://twitter.com/{{ retweeter.screen_name }}" target="_blank">{{ retweeter.screen_name }}</a> ({{ retweeter.followers_count }} followers)
     </div>
-    <div class="range">This tweet was potentially seen by {{ item.reach }} people</div>
+    <div class="range">This tweet was potentially reached {{ item.reach }} people</div>
     <div class="hide-tweets"><a href="" ng-click="hideRetweeters(item.id_str)">Hide</a></div>
   </div>
 </div>
