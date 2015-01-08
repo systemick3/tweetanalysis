@@ -7,5 +7,21 @@
     {{ item.short_date }}
   </div>
   <div class="text" ng-bind-html="item.display_text"></div>
-  <div class="more"><a href="" ng-click="expand(item.id_str)">View data</a></div>
+  <!--<div class="more"><a href="" ng-click="expand(item.id_str)">View data</a></div>-->
+  <div class="more">
+    <span class="retweets" ng-if="item.retweet_count > 0 && !item.retweeted">
+      <a href="" ng-click="showRetweeters(item.id_str)">
+        {{ item.retweet_count  }} retweet{{ item.retweet_count > 1 ? 's' : '' }}
+      </a>
+    </span>
+    <span class="favourites" ng-if="item.favorite_count > 0">{{ item.favorite_count }} favourite{{ item.favorite_count > 1 ? 's' : '' }}</span>
+  </div>
+  <div class="retweeters" ng-show="item.show_retweeters">
+    <h4>Retweeters</h4>
+    <div class="retweeter" ng-repeat="retweeter in item.retweeters">
+      <a href="https://twitter.com/{{ retweeter }}" target="_blank">{{ retweeter }}</a>
+    </div>
+    <div class="range">This tweet was potentially seen by {{ item.range }} people</div>
+    <div class="hide-tweets"><a href="" ng-click="hideRetweeters(item.id_str)">Hide</a></div>
+  </div>
 </div>

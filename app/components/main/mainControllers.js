@@ -29,8 +29,11 @@ angular.module("twitterapp")
   // }])
 
   // home: used to display home page content
-  .controller('homeCtrl', ['$scope', '$window', '$location', '$rootScope', 'ipCookie', 'userFactory', 'tweetsFactory', 'tConfig', 'socket', function($scope, $window, $location, $rootScope, ipCookie, userFactory, tweetsFactory, tConfig, socket) {
-    console.log('homeCtrl');
+  .controller('homeCtrl', 
+    ['$scope', '$window', '$location', '$rootScope', 'ipCookie', 'userFactory', 'tweetsFactory', 'tConfig', 'socket', 
+    function($scope, $window, $location, $rootScope, ipCookie, userFactory, tweetsFactory, tConfig, socket) {
+
+    var userId;
 
     // If the user refreshes a page retrieve the token from sessionStorage
     if (angular.isDefined($window.sessionStorage.token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised == false)) {
@@ -53,25 +56,22 @@ angular.module("twitterapp")
 
       userFactory.userSessionData()
       .success(function(data) {
-        console.log('GETTING USER DATA');
-        console.log(data);
         $window.sessionStorage.user_id = data.user_id;
         $window.sessionStorage.screen_name = data.screen_name;
         $scope.user = data;
+        userId = data.user_id;
         $scope.tweets_for = 'user ' + $scope.user.screen_name;
 
         // Get the full user data from Twitter
         userFactory.userTwitterData(data.user_id)
           .success(function (data) {
-            //console.log('USER');
-            //console.log(data);
-
             var mongo_id = $scope.user._id;
             $scope.user = data;
             $scope.user._id = mongo_id;
             console.log($scope.user);
           });
 
+        // Get the first set of tweets
         $scope.usertweets = null;
         $scope.tweetsLoaded = false;
         $scope.allTweetsLoaded = false;
@@ -80,26 +80,36 @@ angular.module("twitterapp")
             $scope.tweetsLoaded = true;
             $scope.usertweets = processTweets(data);
             console.log($scope.usertweets);
-
-            // $scope.oneTweet = tweetsFactory.getTweet($scope.usertweets[2].id_str)
-            //   .success(function (data) {
-            //     console.log('ONE TWEET');
-            //     console.log(data);
-            //   });
           })
           .error(function (error) {
-            console.log('ERROR');
             $scope.status = 'Unable to load tweets for user: ' + error.message;
           });
 
-        tweetsFactory.getUserAnalysis($scope.user.user_id)
+        // Get the user analysis
+        tweetsFactory.getUserAnalysis(userId)
           .success(function (data) {
             console.log(data);
             $scope.userAnalysis = data;
+
+            // Ge the number of mentions
+            tweetsFactory.getUserMentions(userId)
+              .success(function (mentions) {
+                console.log('MENTIONS');
+                console.log(mentions);
+                console.log($scope.userAnalysis);
+                $scope.userAnalysis.analysis.seven.mentions = mentions.mentions.seven;
+                $scope.userAnalysis.analysis.thirty.mentions = mentions.mentions.thirty;
+                $scope.userAnalysis.analysis.ninety.mentions = mentions.mentions.ninety;
+              })
+              .error(function (err) {
+                console.log(err);
+              });
+
           })
           .error(function (err) {
             console.log(err);
           });
+
       })
       .error(function(error) {
       	// TODO: redirect to the error page and handle the error
@@ -108,29 +118,63 @@ angular.module("twitterapp")
 
     };
 
+    ////////////////// Functions used by the home page /////////////////////////
+
+    // Add more tweets to the end of the list
     $scope.getMoreTweets = function () {
-      //alert('getMore');
       $scope.tweetsLoaded = false;
       var maxId = $scope.usertweets[$scope.usertweets.length - 1].id_str;
       tweetsFactory.getUserTweets($scope.user, maxId)
         .success(function (data) {
-          console.log(data);
           var newTweets = processTweets(data.slice(1));
-          console.log(newTweets);
           $scope.usertweets = $scope.usertweets.concat(newTweets);
-          console.log($scope.usertweets);
           $scope.tweetsLoaded = true;
 
           if (newTweets.length < tConfig.numUserTweets) {
             $scope.allTweetsLoaded = true;
           }
-          
         });
-      //alert('getMore ' + maxId);
     };
 
-    $scope.expand = function(id) {
-      alert('Hello ' + id);
+    // Show all the retweeters of a tweet
+    $scope.retweeters = {};
+    $scope.showRetweeters = function (tweetId) {
+      var selectedTweet;
+      for (var i=0; i<$scope.usertweets.length; i++) {
+        if ($scope.usertweets[i].id_str == tweetId) {
+          selectedTweet = $scope.usertweets[i];
+          break;
+        }
+      }
+
+      // If already loaded just show
+      if (selectedTweet.retweeters) {
+        selectedTweet.show_retweeters = true;
+      }
+      // Fetch from server
+      else {
+
+        tweetsFactory.getRetweeters(tweetId)
+          .success(function (data) {
+            selectedTweet.retweeters = data.retweeters;
+            selectedTweet.range = data.range;
+            selectedTweet.show_retweeters = true;
+          })
+          .error(function (err) {
+            console.log(err);
+          });
+      }
+
+    };
+
+    // Hide the retweeters info
+    $scope.hideRetweeters = function (tweetId) {
+      for (var i=0; i<$scope.usertweets.length; i++) {
+        if ($scope.usertweets[i].id_str == tweetId) {
+          $scope.usertweets[i].show_retweeters = false;
+          break;
+        }
+      }
     };
 
 

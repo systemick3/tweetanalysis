@@ -48,8 +48,10 @@ angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ngAnimate', 'ipCookie', 
       'userSessionUrl':   '/tweetapp/auth/session',
       'userDataUrl':      '/tweetapp/auth/user',
       'userTweets':       { url: '/tweetapp/auth/tweet/user', params: ['screenName', 'tweetCount'] },
-      'oneTweet':         { url: '/tweetapp/auth/tweet/one', params: ['id']},
-      'userAnalysis':      { url: 'tweetapp/auth/analysis/user', params: ['userId']}
+      'oneTweet':         { url: '/tweetapp/auth/tweet/one', params: ['id'] },
+      'userAnalysis':     { url: '/tweetapp/auth/analysis/user', params: ['userId'] },
+      'retweeters':       { url: '/tweetapp/auth/tweet/retweeters', params: ['tweetId'] },
+      'mentions':         { url: '/tweetapp/auth/tweet/mentions', params: ['userId'] }
     },
     'sessionCookieName':  'TSESS',
     'numUserTweets': 10

@@ -38,8 +38,18 @@ angular.module("twitterapp")
     };
 
     factory.getUserAnalysis = function(userId) {
-      var userAnalysisUrl = apiData.server + '/' + apiData.userAnalysis.url + '/' + userId;
+      var userAnalysisUrl = apiData.server + apiData.userAnalysis.url + '/' + userId;
       return $http.get(userAnalysisUrl);
+    };
+
+    factory.getRetweeters = function(tweetId) {
+      var retweetersUrl = apiData.server + apiData.retweeters.url + '/' + tweetId;
+      return $http.get(retweetersUrl);
+    };
+
+    factory.getUserMentions = function (userId) {
+      var mentionsUrl = apiData.server + apiData.mentions.url + '/' + userId;
+      return $http.get(mentionsUrl);
     };
 
     return factory;
