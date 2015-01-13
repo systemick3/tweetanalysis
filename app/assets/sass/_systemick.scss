@@ -124,6 +124,27 @@ button.btn-primary {
           }
         }
       }
+
+      #chartContainer {
+        //background-color: #f00;
+
+        ul {
+          list-style-type: none;
+
+          li {
+            display: inline;
+            float: left;
+
+            span {
+              display: block;
+              float: left;
+              height: 1em;
+              width: 1em;
+            }
+          }
+        }
+
+      }
     }
   }
 

@@ -2,7 +2,7 @@ angular.module("twitterapp")
 
   .factory('socket', function ($rootScope) {
 
-    var socket = io.connect('http://localhost:3001', { query: "michael=javascript" });
+    var socket = io.connect('http://localhost:3002', { query: "michael=javascript" });
     return {
       on: function (eventName, callback) {
         console.log('SOCKET');
@@ -65,6 +65,16 @@ angular.module("twitterapp")
       }
 
       return $http.get(sentimentUrl);
+    };
+
+    factory.getTrends = function () {
+      var trendsUrl = apiData.server + apiData.trends.url;
+      return $http.get(trendsUrl);
+    };
+
+    factory.getUserAnalyses = function (userId) {
+      var userAnalysesUrl = apiData.server + apiData.userAnalyses.url + '/' + userId;
+      return $http.get(userAnalysesUrl);
     };
 
     return factory;

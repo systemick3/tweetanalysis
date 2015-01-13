@@ -44,8 +44,8 @@
 
 		<div class="column left">
 
+			<h3>Your stats</h3>
 			<div class="panel">
-				<h3>Tweetapp</h3>
 				<p>Hello {{ user.screen_name }}</p>
 				<p>You currently have {{ user.followers_count }} followers</p>
 				<div class="profile_image">
@@ -78,6 +78,10 @@
 
 		<div class="column centre">
 			<h3>Tweets for {{ tweets_for }}</h3>
+			<div id="chartContainer">
+				<canvas id="myChart" width="475" height="200"></canvas>
+			</div>
+			<div class="clearfix"></div>
 			<div data-tweet-list="usertweets" class="ng-Fade">
 				<p>Tweet content goes here. {{ usertweets[0].text }}</p>
 			</div>
@@ -85,7 +89,24 @@
 		</div>
 
 		<div class="column right">
-			Right content goes here
+			<h3>Trending in the UK</h3>
+			<div class="panel trends">
+				<div class="trend" ng-repeat="trend in trends | filter: selectTrends">
+					<a href="{{ trend.url }}">{{ trend.name }}</a>
+				</div>
+			</div>
+			<div class="stream" style="min-height: 500px" class="ngFade">
+				<div class="panel tweet" ng-repeat="tweet in streamtweets">
+					<div class="name">
+    				<a href="https://twitter.com/{{ tweet.user.screen_name }}">
+      				<span class="name">{{ tweet.user.name }}</span>
+      				<span>@{{ tweet.user.screen_name }}</span>
+    				</a>
+    				{{ tweet.short_date }}
+  				</div>
+  				<div class="text" ng-bind-html="tweet.display_text"><div>
+				</div>
+			</div>
 		</div>
 
 		<div class="clearfix"></div>

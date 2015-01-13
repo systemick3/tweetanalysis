@@ -8291,8 +8291,24 @@ button.btn-primary {
   #page .column .tweet span.name {
     font-weight: bold;
   }
+  /* line 131, ../sass/_systemick.scss */
+  #page .column #chartContainer ul {
+    list-style-type: none;
+  }
+  /* line 134, ../sass/_systemick.scss */
+  #page .column #chartContainer ul li {
+    display: inline;
+    float: left;
+  }
+  /* line 138, ../sass/_systemick.scss */
+  #page .column #chartContainer ul li span {
+    display: block;
+    float: left;
+    height: 1em;
+    width: 1em;
+  }
 
-  /* line 130, ../sass/_systemick.scss */
+  /* line 151, ../sass/_systemick.scss */
   footer {
     background-color: #dddddd;
     padding: 1%;

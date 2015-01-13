@@ -6,28 +6,6 @@ angular.module("twitterapp")
     $location.path('/home');
   }])
 
-  // test: used for testing purposes
-  // .controller('testCtrl', ['$scope', '$window', 'userFactory', function($scope, $window, userFactory) {
-
-  // 	$scope.message = '';
-  // 	userFactory.testData()
-  // 	.success(function(data) {
-  // 		$scope.message = data.message;
-  // 	})
-  // 	.error(function(error) {
-  // 		console.log('error');
-  // 	});
-
-  //   userFactory.userSessionData()
-  //   .success(function(data) {
-  //     console.log(data);
-  //   })
-  //   .error(function(error) {
-  //     console.log(error);
-  //   });
-
-  // }])
-
   // home: used to display home page content
   .controller('homeCtrl', 
     ['$scope', '$window', '$location', '$rootScope', 'ipCookie', 'userFactory', 'tweetsFactory', 'tConfig', 'socket', 
@@ -109,6 +87,81 @@ angular.module("twitterapp")
           .error(function (err) {
             console.log(err);
           });
+
+          tweetsFactory.getTrends()
+            .success(function (data) {
+              console.log('TRENDS');
+              $scope.trends = data.data[0].trends;
+              console.log($scope.trends);
+            })
+            .error(function (err) {
+              console.log(err);
+            });
+
+          tweetsFactory.getUserAnalyses(userId)
+            .success(function (data) {
+
+              var chartData = getChartData(data.data);
+
+              // Get the context of the canvas element we want to select
+              var ctx = document.getElementById("myChart").getContext("2d");
+              var options = {
+                ///Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines : true,
+
+                //String - Colour of the grid lines
+                scaleGridLineColor : "rgba(0,0,0,.05)",
+
+                //Number - Width of the grid lines
+                scaleGridLineWidth : 1,
+
+                //Boolean - Whether to show horizontal lines (except X axis)
+                scaleShowHorizontalLines: true,
+
+                //Boolean - Whether to show vertical lines (except Y axis)
+                scaleShowVerticalLines: true,
+
+                //Boolean - Whether the line is curved between points
+                bezierCurve : true,
+
+                //Number - Tension of the bezier curve between points
+                bezierCurveTension : 0.4,
+
+                //Boolean - Whether to show a dot for each point
+                pointDot : true,
+
+                //Number - Radius of each point dot in pixels
+                pointDotRadius : 4,
+
+                //Number - Pixel width of point dot stroke
+                pointDotStrokeWidth : 1,
+
+                //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+                pointHitDetectionRadius : 20,
+
+                //Boolean - Whether to show a stroke for datasets
+                datasetStroke : true,
+
+                //Number - Pixel width of dataset stroke
+                datasetStrokeWidth : 2,
+
+                //Boolean - Whether to fill the dataset with a colour
+                datasetFill : true,
+
+                //String - A legend template
+                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].pointColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+              };
+              var myLineChart = new Chart(ctx).Line(chartData, options);
+              var legend = myLineChart.generateLegend();
+              var container = document.getElementById("chartContainer");
+              angular.element(container).append(legend);
+
+              Chart.defaults.global.responsive = true;
+            })
+            .error(function (err) {
+              console.log('ANALYSES ERROR');
+              console.log(err);
+            });
 
       })
       .error(function(error) {
@@ -281,14 +334,24 @@ angular.module("twitterapp")
       selectedTweet.show_sentiment = false;
     };
 
+    $scope.selectTrends = function (trend) {
+      return trend.name.length <= 20;
+    };
 
-    // $scope.tweets = [];
- 
-    // socket.on('tweets', function (data) {
-    //   console.log(data);
-    //   $scope.tweets = data.concat($scope.tweets);
-    //   //$scope.tweets = $scope.tweets.concat(data);
-    // });
+
+    $scope.streamtweets = [];
+    socket.on('tweets', function (data) {
+      var oldTweets = [];
+
+      if ($scope.streamtweets.length >= 8) {
+        $scope.streamtweets.pop();
+        oldTweets = $scope.streamtweets;
+      }
+      else {
+        oldTweets = $scope.streamtweets;
+      }
+      $scope.streamtweets = processTweets(data.concat(oldTweets));
+    });
 
   }])
 
@@ -313,4 +376,80 @@ var processTweetLinks = function (text) {
   exp = /(^|\s)@(\w+)/g;
   text = text.replace(exp, "$1<a href='http://www.twitter.com/$2' target='_blank'>@$2</a>");
   return text;
+};
+
+var getChartData = function (data) {
+  console.log('ANALYSES');
+  console.log(data);
+
+  var labels = [],
+    datasets = [],
+    tweets = [],
+    favourites = [],
+    retweets = [],
+    mentions =[],
+    dataset = {};
+
+  angular.forEach(data, function(element, index){
+    labels.push(element.date);
+    tweets.push(element.seven.tweetCount);
+    retweets.push(element.seven.retweetCount);
+    favourites.push(element.seven.favouriteCount);
+    mentions.push(element.seven.mentionsCount);
+  });
+
+  return {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Tweets',
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        lineColor:  '#dcdcdc',
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: tweets,
+        multiTooltipTemplate: "<%= datasetLabel %> - <%= Tweets %>"
+      },
+
+      {
+        label: 'Retweets',
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        lineColor:  '#97bbcd',
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: retweets
+      },
+
+      {
+        label: 'Favourites',
+        fillColor: "rgba(121,167,185,0.2)",
+        strokeColor: "rgba(121,167,185,1)",
+        pointColor: "rgba(121,167,185,1)",
+        lineColor:  '#79a7b9',
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(121,167,185,1)",
+        data: favourites
+      },
+
+      {
+        label: 'Mentions',
+        fillColor: "rgba(101,147,165,0.2)",
+        strokeColor: "rgba(101,147,165,1)",
+        pointColor: "rgba(101,147,165,1)",
+        lineColor:  '#6593a5',
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(101,147,165,1)",
+        data: mentions
+      },
+    ]
+  };
+
 };

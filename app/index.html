@@ -19,7 +19,7 @@
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 
   <style type="text/css">
-    .ngFade.ng-enter { transition: 0.5s linear all; opacity: 0; }
+    .ngFade.ng-enter { transition: 0.8s linear all; opacity: 0; }
     .ngFade.ng-enter-active { opacity: 1; }
   </style>
 
@@ -59,6 +59,8 @@
 
     <div style="width:100%;" class="ngFade" ng-view></div>
 
+    <div class="clearfix"></div>
+
     <footer id="footer" class="region region-footer">
       <div class="inner">
 
@@ -92,6 +94,7 @@
   <script src="bower_components/angular-socket-io/socket.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/chartjs/Chart.js"></script>
   <!--<script src="components/config.js"></script>-->
   <script src="app.js"></script>
   <!--<script src="components/filters.js"></script>-->
@@ -104,5 +107,6 @@
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+
 </body>
 </html>
