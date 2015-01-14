@@ -76,12 +76,13 @@
 
 		</div>
 
+		<div id="chartContainer">
+			<canvas id="myChart" width="720" height="200"></canvas>
+		</div>
+		<!--<div class="clearfix"></div>-->
+
 		<div class="column centre">
 			<h3>Tweets for {{ tweets_for }}</h3>
-			<div id="chartContainer">
-				<canvas id="myChart" width="475" height="200"></canvas>
-			</div>
-			<div class="clearfix"></div>
 			<div data-tweet-list="usertweets" class="ng-Fade">
 				<p>Tweet content goes here. {{ usertweets[0].text }}</p>
 			</div>

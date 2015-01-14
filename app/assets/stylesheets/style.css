@@ -8291,24 +8291,24 @@ button.btn-primary {
   #page .column .tweet span.name {
     font-weight: bold;
   }
-  /* line 131, ../sass/_systemick.scss */
-  #page .column #chartContainer ul {
+  /* line 133, ../sass/_systemick.scss */
+  #page #chartContainer ul {
     list-style-type: none;
   }
-  /* line 134, ../sass/_systemick.scss */
-  #page .column #chartContainer ul li {
+  /* line 136, ../sass/_systemick.scss */
+  #page #chartContainer ul li {
     display: inline;
     float: left;
   }
-  /* line 138, ../sass/_systemick.scss */
-  #page .column #chartContainer ul li span {
+  /* line 140, ../sass/_systemick.scss */
+  #page #chartContainer ul li span {
     display: block;
     float: left;
     height: 1em;
     width: 1em;
   }
 
-  /* line 151, ../sass/_systemick.scss */
+  /* line 154, ../sass/_systemick.scss */
   footer {
     background-color: #dddddd;
     padding: 1%;
