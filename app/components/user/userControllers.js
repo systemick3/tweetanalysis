@@ -4,8 +4,6 @@ angular.module("twitterapp")
   // send login data to API
   // set the session token that will be used in a ll further requests 
   .controller('loginCtrl', ['$scope', '$window', '$location', '$rootScope', 'ipCookie', 'userFactory', 'tConfig', function($scope, $window, $location, $rootScope, ipCookie, userFactory, tConfig) {
-  	console.log('loginCtrl');
-
   	$scope.formSuccess = false;
     $scope.formSubmitError = false;
     $scope.twitterLoginUrl = tConfig.apiData.server + tConfig.apiData.twitterLoginUrl;

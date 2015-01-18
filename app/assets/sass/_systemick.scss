@@ -56,6 +56,15 @@ button.btn-primary {
   font-weight: bold;
 }
 
+.ngFade.ng-enter { 
+  transition: 2s linear all; 
+  opacity: 0; 
+}
+
+.ngFade.ng-enter-active { 
+  opacity: 1; 
+}
+
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
 

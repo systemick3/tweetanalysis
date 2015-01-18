@@ -93,38 +93,18 @@
 			<div class="more-tweets" ng-show="tweetsLoaded && !allTweetsLoaded"><a href="" ng-click="getMoreTweets()">View more tweets</a></div>
 		</div>
 
-		<div class="column right">
+		<div class="column right" ng-controller="streamCtrl">
 			<h3>Trending in the UK</h3>
 			<div class="panel trends">
 				<div class="trend" ng-repeat="trend in trends | filter: selectTrends">
 					<a href="{{ trend.url }}">{{ trend.name }}</a>
 				</div>
 			</div>
-			<div class="stream" style="min-height: 500px" class="ngFade">
-				<div class="panel tweet" ng-repeat="tweet in streamtweets">
-					<div class="name">
-    				<a href="https://twitter.com/{{ tweet.user.screen_name }}">
-      				<span class="name">{{ tweet.user.name }}</span>
-      				<span>@{{ tweet.user.screen_name }}</span>
-    				</a>
-    				{{ tweet.short_date }}
-  				</div>
-  				<div class="text" ng-bind-html="tweet.display_text"><div>
-				</div>
-			</div>
+			<!-- streamTweets directive -->
+			<div class="stream" style="min-height: 500px" data-stream-tweet-list="streamTweets" class="ngFade"></div>
 		</div>
 
 		<div class="clearfix"></div>
-
-		<!--<p><a href="#/test">Test</a></p>
-
-		<p>{{ message }}</p>
-
-		<p>{{ message2 }}</p>
-
-		<div ng-repeat="tweet in tweets">
-			{{ tweet.text }}
-		</div>-->
 
 	</div>
 

@@ -1,6 +1,6 @@
 var app = angular.module("twitterapp");
 
-append('Some text').factory("homeFactory", ['$http', 'tConfig', function ($http, tConfig) {
+app.factory("homeFactory", ['$http', 'tConfig', function ($http, tConfig) {
   var TWEETS_PER_REQUEST = 5,
     apiData = tConfig.apiData;
 
