@@ -58,5 +58,5 @@ angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ngAnimate', 'ipCookie', 
       'trends':           { url: '/tweetapp/auth/tweet/trends', params: []}
     },
     'sessionCookieName':  'TSESS',
-    'numUserTweets': 10
+    'numUserTweets': 20
   });

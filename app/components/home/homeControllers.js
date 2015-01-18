@@ -28,3 +28,33 @@ app.controller('streamCtrl', ['$scope', 'socket', 'homeFactory', function ($scop
   };
 
 }]);
+
+app.controller('userAnalysisCtrl', ['$scope', 'userFactory', 'homeFactory', function ($scope, userFactory, homeFactory) {
+  var userId;
+
+  userFactory.userSessionData().then(function (data) {
+    userId = $scope.user.user_id;
+
+    // Get the user analysis
+    homeFactory.getUserAnalysis(userId)
+      .success(function (data) {
+        console.log(data);
+        $scope.userAnalysis = data;
+
+        // Get the number of mentions
+        homeFactory.getUserMentions(userId)
+          .success(function (mentions) {
+            $scope.userAnalysis.analysis.seven.mentions = mentions.mentions.seven;
+            $scope.userAnalysis.analysis.thirty.mentions = mentions.mentions.thirty;
+            $scope.userAnalysis.analysis.ninety.mentions = mentions.mentions.ninety;
+          })
+          .error(function (err) {
+            console.log(err);
+          });
+
+      })
+      .error(function (err) {
+        console.log(err);
+      });
+  });
+}]);
