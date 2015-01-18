@@ -36,10 +36,68 @@ app.directive('tweetList', function () {
 
 });
 
+app.directive('analysisPanel', ['userFactory', 'homeFactory', function (userFactory, homeFactory) {
+  return {
+    restrict: 'E',
+    link: function (scope, element, attrs) {
+      var analysisData,
+        tweetsText,
+        tweetsDiv,
+        favouritesDiv,
+        retweetsDiv,
+        mentionsDiv,
+        errorDiv = angular.element('<div>').text('Unable to load user data');
+
+      // Ensure user session data is loaded so we have the userId
+      userFactory.userSessionData().then(function (data) {
+
+        // Ensure we have userAnalysis data
+        homeFactory.getUserAnalysis(scope.user.user_id).then(function (data) {
+
+          // Ensure we have the user mentions data
+          homeFactory.getUserMentions(scope.user.user_id).then(function (data) {
+
+            analysisData = scope.userAnalysis.analysis[attrs.analysisLength];
+            tweetsText = analysisData.tweetCount + ' tweets';
+
+            if (analysisData.tweetsRetweetedCount > 0) {
+              tweetsText += ' (' + analysisData.tweetsRetweetedCount + ' retweets)';
+            }
+
+            // Create the divs that will be the content of the panel
+            tweetsDiv = angular.element('<div>').text(tweetsText);
+            favouritesDiv = angular.element('<div>').text(analysisData.favouriteCount + ' favourites');
+            retweetsDiv = angular.element('<div>').text(analysisData.retweetCount + ' retweets');
+            mentionsDiv = angular.element('<div>').text(analysisData.mentionCount + ' mentions');
+
+            // Clear the loading gif then append the data
+            element.html('');
+            element.append(tweetsDiv);
+            element.append(favouritesDiv);
+            element.append(retweetsDiv);
+            element.append(mentionsDiv);
+
+          }, function (err) {
+            element.html('');
+            element.append(errorDiv);
+          });
+
+        }, function (err) {
+          element.html('');
+          element.append(errorDiv);
+        });
+
+      }, function (err) {
+        element.html('');
+        element.append(errorDiv);
+      });
+    }
+  };
+}]);
+
 app.directive('streamTweetList', ['socket', function (socket) {
   return {
     link: function (scope, element, attrs) {
-      var originalPadding;
       scope.$watch('streamtweets', function () {
         if (scope['streamtweets'].length > 0) {
           var newTweet = scope.streamtweets[0],
@@ -88,7 +146,7 @@ app.directive('tweetChart', ['homeFactory', 'userFactory', function (homeFactory
             Chart.defaults.global.responsive = true;
 
             var ctx = document.getElementById("myChart").getContext("2d"),
-              chartData = getChartData(data.data),
+              chartData = getChartData(data.data);
               options = getChartOptions(),
               myLineChart = new Chart(ctx).Line(chartData, options),
               legend = myLineChart.generateLegend(),

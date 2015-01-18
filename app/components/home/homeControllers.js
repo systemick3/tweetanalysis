@@ -35,26 +35,16 @@ app.controller('userAnalysisCtrl', ['$scope', 'userFactory', 'homeFactory', func
   userFactory.userSessionData().then(function (data) {
     userId = $scope.user.user_id;
 
-    // Get the user analysis
-    homeFactory.getUserAnalysis(userId)
-      .success(function (data) {
-        console.log(data);
-        $scope.userAnalysis = data;
+    homeFactory.getUserAnalysis(userId).then(function (data) {
+      var test;
+      $scope.userAnalysis = data.data;
 
-        // Get the number of mentions
-        homeFactory.getUserMentions(userId)
-          .success(function (mentions) {
-            $scope.userAnalysis.analysis.seven.mentions = mentions.mentions.seven;
-            $scope.userAnalysis.analysis.thirty.mentions = mentions.mentions.thirty;
-            $scope.userAnalysis.analysis.ninety.mentions = mentions.mentions.ninety;
-          })
-          .error(function (err) {
-            console.log(err);
-          });
-
-      })
-      .error(function (err) {
-        console.log(err);
+      homeFactory.getUserMentions(userId).then(function (mentionsData) {
+        $scope.userAnalysis.analysis.seven.mentionCount = mentionsData.data.mentions.seven;
+        $scope.userAnalysis.analysis.thirty.mentionCount = mentionsData.data.mentions.thirty;
+        $scope.userAnalysis.analysis.ninety.mentionCount = mentionsData.data.mentions.ninety;
+        console.log($scope.userAnalysis.analysis);
       });
+    });
   });
 }]);

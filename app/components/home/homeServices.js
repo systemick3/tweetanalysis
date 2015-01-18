@@ -2,6 +2,8 @@ var app = angular.module("twitterapp");
 
 app.factory("homeFactory", ['$http', 'tConfig', function ($http, tConfig) {
   var TWEETS_PER_REQUEST = 5,
+    userAnalysisPromise,
+    userMentionsPromise,
     apiData = tConfig.apiData;
 
   return {
@@ -23,7 +25,13 @@ app.factory("homeFactory", ['$http', 'tConfig', function ($http, tConfig) {
 
     getUserAnalysis: function(userId) {
       var userAnalysisUrl = apiData.server + apiData.userAnalysis.url + '/' + userId;
-      return $http.get(userAnalysisUrl);
+
+      if (!userAnalysisPromise) {
+        userAnalysisPromise = $http.get(userAnalysisUrl).then(function (response) {
+          return response;
+        });
+      }
+      return userAnalysisPromise;
     },
 
     getRetweeters: function(tweetId) {
@@ -33,7 +41,13 @@ app.factory("homeFactory", ['$http', 'tConfig', function ($http, tConfig) {
 
     getUserMentions: function (userId) {
       var mentionsUrl = apiData.server + apiData.mentions.url + '/' + userId;
-      return $http.get(mentionsUrl);
+
+      if (!userMentionsPromise) {
+        userMentionsPromise = $http.get(mentionsUrl).then(function (response) {
+          return response;
+        });
+      }
+      return userMentionsPromise;
     },
 
     getReplies: function (userId, tweetId) {
