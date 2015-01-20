@@ -74,10 +74,10 @@
 			</tweet-chart>
 		</div>
 
-		<div class="column centre">
+		<div class="column centre" ng-controller="userTweetsCtrl">
 			<h3>Tweets for {{ tweets_for }}</h3>
 			<div data-tweet-list="usertweets" class="ng-Fade">
-				<p>Tweet content goes here. {{ usertweets[0].text }}</p>
+				<p><img src="/assets/images/loading.gif" /></p>
 			</div>
 			<div class="more-tweets" ng-show="tweetsLoaded && !allTweetsLoaded"><a href="" ng-click="getMoreTweets()">View more tweets</a></div>
 		</div>
