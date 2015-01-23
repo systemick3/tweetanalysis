@@ -7,7 +7,6 @@
     {{ item.short_date }}
   </div>
   <div class="text" ng-bind-html="item.display_text"></div>
-  <!--<div class="more"><a href="" ng-click="expand(item.id_str)">View data</a></div>-->
   <div class="more">
     <span class="retweets" ng-if="item.retweet_count > 0 && !item.retweeted">
       <a href="" ng-click="showRetweeters(item.id_str)">
@@ -16,17 +15,17 @@
     </span>
     <span class="favourites" ng-if="item.favorite_count > 0">{{ item.favorite_count }} favourite{{ item.favorite_count > 1 ? 's' : '' }}</span>
     <span class="view-replies" ng-show="item.has_replies"><a href="" ng-click="showReplies(item.id_str)">Replies</a></span>
-    <span class="sentiment"><a href="" ng-click="showSentiment(item.id_str)">Sentiment</a></span>
+    <show-sentiment-link tweet-id="{{ item.id_str }}"></sentiment>
   </div>
 
-  <div class="sentiment" ng-show="item.show_sentiment">
+  <div class="sentiment" style="display:none;">
+    <i class="fa fa-times"></i>
     <h4>Sentiment</h4>
     <div class="score">
       Score: {{ item.sentiment.score}}, Comparative: {{ item.sentiment.comparative }}
     </div>
     <div class="positive">Positive: {{ (item.sentiment.positive.length > 0) ? item.sentiment.positive.join() : 'none' }} </div>
     <div class="positive">Negative: {{ (item.sentiment.negative.length > 0) ? item.sentiment.negative.join() : 'none' }} </div>
-    <div class="hide-sentiment"><a href="" ng-click="hideSentiment(item.id_str)">Hide sentiment</a></div>
   </div>
 
   <div class="retweeters" ng-show="item.show_retweeters">
@@ -56,17 +55,16 @@
           {{ reply.retweet_count  }} retweet{{ reply.retweet_count > 1 ? 's' : '' }}
         </span>
         <span class="favourites" ng-if="reply.favorite_count > 0">{{ reply.favorite_count }} favourite{{ reply.favorite_count > 1 ? 's' : '' }}</span>
-        <span class="sentiment"><a href="" ng-click="showSentiment(item.id_str, reply.id_str)">Sentiment</a></span>
+        <show-sentiment-link tweet-id="{{ item.id_str }}" reply-id="{{ reply.id_str }}"></sentiment>
       </div>
-      <div class="hide-tweets"><a href="" ng-click="hideReplies(item.id_str)">Hide Replies</a></div>
-      <div class="sentiment" ng-show="reply.show_sentiment">
+      <div class="sentiment" style="display:none;">
+        <i class="fa fa-times"></i>
         <h4>Sentiment for reply</h4>
         <div class="score">
           Score: {{ reply.sentiment.score}}, Comparative: {{ reply.sentiment.comparative }}
         </div>
         <div class="positive">Positive: {{ (reply.sentiment.positive.length > 0) ? reply.sentiment.positive.join() : 'none' }} </div>
         <div class="positive">Negative: {{ (reply.sentiment.negative.length > 0) ? reply.sentiment.negative.join() : 'none' }} </div>
-        <div class="hide-sentiment"><a href="" ng-click="hideSentiment(item.id_str, reply.id_str)">Hide</a></div>
       </div>
     </div>
   </div>

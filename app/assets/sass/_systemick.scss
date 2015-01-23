@@ -65,6 +65,13 @@ button.btn-primary {
   opacity: 1; 
 }
 
+.sentiment {
+
+  .fa-times {
+    float: right;
+  }
+}
+
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
 

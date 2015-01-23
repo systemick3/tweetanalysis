@@ -3,38 +3,74 @@ var app = angular.module("twitterapp");
 app.directive('tweetList', function () {
   return {
     link: function (scope, element, attrs) {
-      //console.log('tweetList');
-      //console.log(attrs['tweetList']);
-      //console.log(scope);
-      // for (var property in scope) {
-      //   if (scope.hasOwnProperty(property)) {
-      //       //console.log(scope[property]);
-      //   }
-      // }
-      //console.log('end of tweetList');
       scope.$watch('usertweets', function (nv) {
         if (scope.usertweets !== null) {
           var data = scope.usertweets;
-          //console.log(data);
-
-          // for (var i=0; i<data.length; i++) {
-          //   data[i].display_text = processTweetLinks(data[i].text);
-          //   //console.log(processTweetLinks(scope.data.text));
-          // }
-
           scope.data = data;
-          //console.log(scope.data);
         }
-        //console.log('WATCH');
-        //console.log(scope.usertweets);
       });
     },
-    //template: '<div class="panel tweet" ng-repeat="item in data" ng-bind-html="item.display_text"></div>',
-    //scope: {}
     templateUrl: "components/views/directive/tweet.html"
   };
 
 });
+
+app.directive('showSentimentLink', ['homeFactory', function (homeFactory) {
+  return {
+    restrict: 'E',
+    template: '<span class="sentiment"><a href="">Sentiment</a></span>',
+    link: function (scope, element, attrs) {
+       var parentElement = element.parent(), 
+          sentimentElement = parentElement.next(),
+          tweetId = attrs['tweetId'],
+          replyId,
+          selectedTweet,
+          close;
+
+      element.on('click', function() {
+        // Find the tweet that has been selected
+        for (var i=0; i<scope.usertweets.length; i++) {
+          if (scope.usertweets[i].id_str == tweetId) {
+            selectedTweet = scope.usertweets[i];
+            break;
+          }
+        }
+
+        // If the tweet is a reply find it in the replies
+        // of the selected tweet
+        if (attrs['replyId']) {
+          replyId = attrs['replyId'];
+          replies = selectedTweet.replies;
+          for (var j=0; j < replies.length; j++) {
+            if (replies[j].id_str == replyId) {
+              selectedTweet = replies[j];
+            }
+          }
+        }
+
+        if (!selectedTweet.show_sentiment) {
+          homeFactory.getSentiment(selectedTweet.id_str, replyId)
+            .success(function (data) {
+              selectedTweet.sentiment = data.sentiment;
+              sentimentElement.slideToggle('slow');
+            })
+            .error(function (err) {
+              console.log(err);
+            });
+        }
+        else {
+          sentimentElement.slideToggle('slow');
+        }
+
+      });
+
+      close = sentimentElement.find('.fa-times');
+      close.on('click', function () {
+        sentimentElement.slideUp();
+      });
+    }
+  };
+}]);
 
 app.directive('analysisPanel', ['userFactory', 'homeFactory', function (userFactory, homeFactory) {
   return {

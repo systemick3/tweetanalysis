@@ -8233,58 +8233,63 @@ button.btn-primary {
   opacity: 1;
 }
 
+/* line 70, ../sass/_systemick.scss */
+.sentiment .fa-times {
+  float: right;
+}
+
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
-  /* line 71, ../sass/_systemick.scss */
+  /* line 78, ../sass/_systemick.scss */
   body {
     width: 100%;
   }
 
-  /* line 75, ../sass/_systemick.scss */
+  /* line 82, ../sass/_systemick.scss */
   header {
     background-color: #dddddd;
     margin-top: 2%;
     padding: 5% 1% 1% 1%;
     width: 100%;
   }
-  /* line 81, ../sass/_systemick.scss */
+  /* line 88, ../sass/_systemick.scss */
   header .header-block {
     float: right;
     margin-left: 5%;
   }
 
-  /* line 87, ../sass/_systemick.scss */
+  /* line 94, ../sass/_systemick.scss */
   #page {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
     width: 990px;
   }
-  /* line 93, ../sass/_systemick.scss */
+  /* line 100, ../sass/_systemick.scss */
   #page .column {
     float: left;
     min-height: 500px;
   }
-  /* line 99, ../sass/_systemick.scss */
+  /* line 106, ../sass/_systemick.scss */
   #page .column.left, #page .column.right {
     width: 25%;
   }
-  /* line 103, ../sass/_systemick.scss */
+  /* line 110, ../sass/_systemick.scss */
   #page .column.left {
     border-right: solid 1px #dddddd;
     padding-right: 1%;
   }
-  /* line 108, ../sass/_systemick.scss */
+  /* line 115, ../sass/_systemick.scss */
   #page .column.centre {
     padding: 0 1%;
     width: 50%;
   }
-  /* line 113, ../sass/_systemick.scss */
+  /* line 120, ../sass/_systemick.scss */
   #page .column.right {
     border-left: solid 1px #dddddd;
     padding-left: 1%;
   }
-  /* line 118, ../sass/_systemick.scss */
+  /* line 125, ../sass/_systemick.scss */
   #page .column .panel {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -8294,24 +8299,24 @@ button.btn-primary {
     border: solid 1px #aaaaaa;
     padding: 1%;
   }
-  /* line 128, ../sass/_systemick.scss */
+  /* line 135, ../sass/_systemick.scss */
   #page .column .tweet span {
     margin-right: 1%;
   }
-  /* line 131, ../sass/_systemick.scss */
+  /* line 138, ../sass/_systemick.scss */
   #page .column .tweet span.name {
     font-weight: bold;
   }
-  /* line 142, ../sass/_systemick.scss */
+  /* line 149, ../sass/_systemick.scss */
   #page #chartContainer ul {
     list-style-type: none;
   }
-  /* line 145, ../sass/_systemick.scss */
+  /* line 152, ../sass/_systemick.scss */
   #page #chartContainer ul li {
     display: inline;
     float: left;
   }
-  /* line 149, ../sass/_systemick.scss */
+  /* line 156, ../sass/_systemick.scss */
   #page #chartContainer ul li span {
     display: block;
     float: left;
@@ -8319,7 +8324,7 @@ button.btn-primary {
     width: 1em;
   }
 
-  /* line 163, ../sass/_systemick.scss */
+  /* line 170, ../sass/_systemick.scss */
   footer {
     background-color: #dddddd;
     padding: 1%;
