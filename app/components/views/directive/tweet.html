@@ -8,14 +8,10 @@
   </div>
   <div class="text" ng-bind-html="item.display_text"></div>
   <div class="more">
-    <span class="retweets" ng-if="item.retweet_count > 0 && !item.retweeted">
-      <a href="" ng-click="showRetweeters(item.id_str)">
-        {{ item.retweet_count  }} retweet{{ item.retweet_count > 1 ? 's' : '' }}
-      </a>
-    </span>
+    <show-retweeters-link ng-if="item.retweet_count > 0 && !item.retweeted" tweet-id="{{ item.id_str }}"></show-retweeters-link>
     <span class="favourites" ng-if="item.favorite_count > 0">{{ item.favorite_count }} favourite{{ item.favorite_count > 1 ? 's' : '' }}</span>
-    <span class="view-replies" ng-show="item.has_replies"><a href="" ng-click="showReplies(item.id_str)">Replies</a></span>
-    <show-sentiment-link tweet-id="{{ item.id_str }}"></sentiment>
+    <show-replies-link ng-show="item.has_replies" tweet-id="{{ item.id_str }}"></show-replies-link>
+    <show-sentiment-link tweet-id="{{ item.id_str }}"></show-sentiment-link>
   </div>
 
   <div class="sentiment" style="display:none;">
@@ -28,16 +24,17 @@
     <div class="positive">Negative: {{ (item.sentiment.negative.length > 0) ? item.sentiment.negative.join() : 'none' }} </div>
   </div>
 
-  <div class="retweeters" ng-show="item.show_retweeters">
+  <div class="retweeters" style="display:none;">
+    <i class="fa fa-times"></i>
     <h4>Retweeters</h4>
     <div class="retweeter" ng-repeat="retweeter in item.retweeters">
       <a href="https://twitter.com/{{ retweeter.screen_name }}" target="_blank">{{ retweeter.screen_name }}</a> retweeted to {{ retweeter.followers_count }} followers
     </div>
     <div class="range">This tweet potentially reached {{ item.reach + user.followers_count }} people</div>
-    <div class="hide-tweets"><a href="" ng-click="hideRetweeters(item.id_str)">Hide Retweeters</a></div>
   </div>
 
-  <div class="replies" ng-show="item.show_replies">
+  <div class="replies" style="display:none;">
+    <i class="fa fa-times"></i>
     <h4>Replies</h4>
     <div class="reply" ng-repeat="reply in item.replies">
       <div class="tweet">

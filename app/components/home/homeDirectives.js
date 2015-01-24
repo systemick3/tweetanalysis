@@ -15,6 +15,110 @@ app.directive('tweetList', function () {
 
 });
 
+app.directive('showRetweetersLink', ['homeFactory', function (homeFactory) {
+  return {
+    restrict: 'E',
+    template: '<span class="retweeters"><a href="">retweets</a></span>',
+    link: function (scope, element, attrs) {
+      var linkElement,
+        parentElement = element.parent(),
+        retweetersElement = parentElement.siblings('.retweeters'),
+        replace,
+        i,
+        close,
+        tweetId = attrs['tweetId'];
+
+      linkElement = element.find('a');
+
+      for (i=0; i<scope.usertweets.length; i++) {
+        if (scope.usertweets[i].id_str == tweetId) {
+          selectedTweet = scope.usertweets[i];
+          break;
+        }
+      }
+
+      replace = (selectedTweet.retweet_count == 1) ? 'retweet' : 'retweets';
+      linkElement.text(selectedTweet.retweet_count + ' ' + replace);
+
+      element.on('click', function () {
+        for (i=0; i<scope.usertweets.length; i++) {
+          if (scope.usertweets[i].id_str == tweetId) {
+            selectedTweet = scope.usertweets[i];
+            break;
+          }
+        }
+
+        if (!selectedTweet.retweeters) {
+          homeFactory.getRetweeters(selectedTweet.id_str)
+            .success(function (data) {
+              selectedTweet.retweeters = data.retweeters;
+              selectedTweet.reach = data.reach;
+              retweetersElement.slideToggle('slow');
+            })
+            .error(function (err) {
+              console.log(err);
+            });
+        }
+        else {
+          retweetersElement.slideToggle('slow');
+        }
+
+        close = retweetersElement.find('.fa-times');
+        close.on('click', function () {
+          retweetersElement.slideUp('slow');
+        });
+
+      });
+    }
+  };
+}]);
+
+app.directive('showRepliesLink', ['homeFactory', function (homeFactory) {
+  return {
+    restrict: 'E',
+    template: '<span class="replies"><a href="">Replies</a></span>',
+    link: function (scope, element, attrs) {
+      var parentElement = element.parent(),
+          repliesElement = parentElement.siblings('.replies'),
+          tweetId = attrs['tweetId'],
+          replyId,
+          selectedTweet,
+          close,
+          i;
+
+        element.on('click', function () {
+          for (i=0; i<scope.usertweets.length; i++) {
+            if (scope.usertweets[i].id_str == tweetId) {
+              selectedTweet = scope.usertweets[i];
+              break;
+            }
+          }
+
+          if (!selectedTweet.replies) {
+            homeFactory.getReplies(scope.user.id_str, selectedTweet.id_str)
+              .success(function (data) {
+                selectedTweet.replies = homeFactory.processTweets(data.replies);
+                console.log(selectedTweet);
+                repliesElement.slideToggle('slow');
+              })
+              .error(function (err) {
+                console.log(err);
+              });
+          }
+          else {
+            repliesElement.slideToggle('slow');
+          }
+
+        });
+
+        close = repliesElement.find('.fa-times');
+        close.on('click', function () {
+          repliesElement.slideUp();
+        });
+    }
+  };
+}]);
+
 app.directive('showSentimentLink', ['homeFactory', function (homeFactory) {
   return {
     restrict: 'E',
@@ -48,7 +152,7 @@ app.directive('showSentimentLink', ['homeFactory', function (homeFactory) {
           }
         }
 
-        if (!selectedTweet.show_sentiment) {
+        if (!selectedTweet.sentiment) {
           homeFactory.getSentiment(selectedTweet.id_str, replyId)
             .success(function (data) {
               selectedTweet.sentiment = data.sentiment;
@@ -152,7 +256,7 @@ app.directive('streamTweetList', ['socket', function (socket) {
           panelDiv.hide();
           panelDiv.css('opacity', 0);
           element.prepend(panelDiv);
-          panelDiv.slideDown('slow');
+          panelDiv.slideDown('fast');
 
           if (scope.streamtweets.length > 10) {
             element.find('.tweet:last-child').fadeOut().remove();
@@ -160,7 +264,7 @@ app.directive('streamTweetList', ['socket', function (socket) {
 
           panelDiv.animate({
             opacity: 1,
-          }, 1000);
+          }, 600);
         }
       });
     }

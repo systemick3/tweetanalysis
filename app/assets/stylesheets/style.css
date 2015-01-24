@@ -8234,7 +8234,7 @@ button.btn-primary {
 }
 
 /* line 70, ../sass/_systemick.scss */
-.sentiment .fa-times {
+.sentiment .fa-times, .replies .fa-times, .retweeters .fa-times {
   float: right;
 }
 
