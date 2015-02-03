@@ -31,11 +31,10 @@ angular.module("twitterapp")
   // set the session token that will be used in a ll further requests
   // redirect to error page if twitter login unsuccessful
   .controller('loginCallbackCtrl', ['$scope', '$location', '$window', '$rootScope', '$routeParams', 'ipCookie', 'tConfig', function($scope, $location, $window, $rootScope, $routeParams, ipCookie, tConfig) {
-    console.log('loginCallbackCtrl')
     if (!angular.isDefined($routeParams['id'])) {
       $rootScope.tweetapp = {};
       $rootScope.tweetapp.authorised = false;
-      //$location.path('/error');
+      $location.path('/error');
     }
     else {
       $window.sessionStorage.token = $routeParams['id'];

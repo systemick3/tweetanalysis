@@ -74,12 +74,12 @@
 			</tweet-chart>
 		</div>
 
-		<div class="column centre" ng-controller="userTweetsCtrl">
+		<div class="column centre" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="3">
 			<h3>Tweets for {{ tweets_for }}</h3>
 			<div data-tweet-list="usertweets" class="ng-Fade">
 				<p><img src="/assets/images/loading.gif" /></p>
 			</div>
-			<div class="more-tweets" ng-show="tweetsLoaded && !allTweetsLoaded"><a href="" ng-click="getMoreTweets()">View more tweets</a></div>
+			<!--<div class="more-tweets" ng-show="tweetsLoaded && !allTweetsLoaded"><a href="" ng-click="getMoreTweets()">View more tweets</a></div>-->
 		</div>
 
 		<div class="column right" ng-controller="streamCtrl">
