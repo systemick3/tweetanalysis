@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ngAnimate', 'ipCookie', 'btford.socket-io', 'infinite-scroll'])
+angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ipCookie', 'btford.socket-io', 'infinite-scroll'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider.when('/home', {
       templateUrl: 'components/views/home.html',
