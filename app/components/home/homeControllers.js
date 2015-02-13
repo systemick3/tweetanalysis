@@ -40,8 +40,13 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
           $scope.user = data;
           $scope.user._id = mongo_id;
           console.log($scope.user);
+        })
+        .error(function (err) {
+          $scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
         });
 
+    }, function (err) {
+      $scope.loginError = 'Unable to log in. There is possibly a problem with Twitter. Please try again later.';
     });
 
   };
@@ -53,14 +58,21 @@ app.controller('streamCtrl', ['$scope', 'socket', 'homeFactory', function ($scop
   $scope.streamtweets = [];
 
   socket.on('tweets', function (data) {
+    // Display a maximum of 12 tweets
     if ($scope.streamtweets.length >= 12) {
+      // If we already have 12 tweets lose the oldest
       $scope.streamtweets.pop();
       oldTweets = $scope.streamtweets;
     }
     else {
       oldTweets = $scope.streamtweets;
     }
+    // Make the new tweet the 1st item in the array
     $scope.streamtweets = homeFactory.processTweets(data.concat(oldTweets));
+  });
+
+  $scope.$on('socket:error', function (ev, data) {
+    $scope.streamError = 'Unable to stream latest tweets from Twitter. Please try again later.'
   });
 
   homeFactory.getTrends()
@@ -68,7 +80,7 @@ app.controller('streamCtrl', ['$scope', 'socket', 'homeFactory', function ($scop
       $scope.trends = data.data[0].trends;
     })
     .error(function (err) {
-      console.log(err);
+      $scope.trendsError = 'Unable to get latest trends from Twitter. Please try again later.';
     });
 
   $scope.selectTrends = function (trend) {
@@ -94,6 +106,8 @@ app.controller('userAnalysisCtrl', ['$scope', 'userFactory', 'homeFactory', func
         console.log($scope.userAnalysis.analysis);
       });
     });
+  }, function (err) {
+    $scope.analysisError = 'Unable to download analysis data. Please try again later';
   });
 }]);
 
@@ -127,6 +141,9 @@ app.controller('userTweetsCtrl', ['$scope', 'userFactory', 'homeFactory', 'tConf
           if (newTweets.length < tConfig.numUserTweets) {
             $scope.allTweetsLoaded = true;
           }
+        })
+        .error(function (err) {
+          $scope.moreTweetsError = 'Unable to download more tweets. Please try again later.';
         });
     };
 

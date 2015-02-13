@@ -1,5 +1,6 @@
 angular.module("twitterapp")
 
+  /* Not currently used - login is via Twitter only */
   // login: handle the submission of the site login form
   // send login data to API
   // set the session token that will be used in a ll further requests 
@@ -28,7 +29,7 @@ angular.module("twitterapp")
   }])
 
   // loginCallback: handle the twitter callback
-  // set the session token that will be used in a all further requests
+  // set the session token that will be used in all further requests
   // redirect to error page if twitter login unsuccessful
   .controller('loginCallbackCtrl', ['$scope', '$location', '$window', '$rootScope', '$routeParams', 'ipCookie', 'tConfig', function($scope, $location, $window, $rootScope, $routeParams, ipCookie, tConfig) {
     if (!angular.isDefined($routeParams['id'])) {

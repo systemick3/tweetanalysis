@@ -56,7 +56,8 @@ app.directive('showRetweetersLink', ['homeFactory', function (homeFactory) {
               retweetersElement.slideToggle('slow');
             })
             .error(function (err) {
-              console.log(err);
+              selectedTweet.retweeters = 'Unable to load retweeters';
+              retweetersElement.slideToggle('slow');
             });
         }
         else {
@@ -98,11 +99,11 @@ app.directive('showRepliesLink', ['homeFactory', function (homeFactory) {
             homeFactory.getReplies(scope.user.id_str, selectedTweet.id_str)
               .success(function (data) {
                 selectedTweet.replies = homeFactory.processTweets(data.replies);
-                console.log(selectedTweet);
                 repliesElement.slideToggle('slow');
               })
               .error(function (err) {
-                console.log(err);
+                selectedTweet.replies = 'Unable to load replies';
+                repliesElement.slideToggle('slow');
               });
           }
           else {
@@ -159,7 +160,8 @@ app.directive('showSentimentLink', ['homeFactory', function (homeFactory) {
               sentimentElement.slideToggle('slow');
             })
             .error(function (err) {
-              console.log(err);
+              selectedTweet.sentiment = 'Unable to load sentiment';
+              sentimentElement.slideToggle('slow');
             });
         }
         else {
@@ -286,7 +288,7 @@ app.directive('tweetChart', ['homeFactory', 'userFactory', function (homeFactory
             Chart.defaults.global.responsive = true;
 
             var ctx = document.getElementById("myChart").getContext("2d"),
-              chartData = getChartData(data.data);
+              chartData = getChartData(data.data),
               options = getChartOptions(),
               myLineChart = new Chart(ctx).Line(chartData, options),
               legend = myLineChart.generateLegend(),
@@ -295,8 +297,10 @@ app.directive('tweetChart', ['homeFactory', 'userFactory', function (homeFactory
             angular.element(container).append(legend);
           })
           .error(function (err) {
-            console.log(err);
+            scope.chartError = 'Unable to load chart data. Please try again later.';
           });
+      }, function (err) {
+        scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
       });
 
     },

@@ -6,6 +6,7 @@
 
 		<h2>Login</h2>
 	  <div class="error" ng-show="formSubmitError">{{ formSubmitError }}</div>
+	  <div class="error" ng-show="loginError">{{ loginError }}</div>
 		<div class="form" ng-hide="formSuccess">
 			<!--<form name="loginForm" method="post" novalidate class="form-inline" ng-submit="doLogin(loginDetails)">
 			  <div class="well">
@@ -42,10 +43,13 @@
 
 	<div id="page" class="home" ng-hide="authorised">
 
+		<div class="error" ng-show="twitterDataError">{{ twitterDataError }}</div>
+
 		<div class="column left" ng-controller="userAnalysisCtrl">
 
 			<h3>Your stats</h3>
-			<div class="panel">
+			<div class="error" ng-show="analysisError">{{ analysisError }}</div>
+			<div class="panel" ng-hide="analysisError">
 				<p>Hello {{ user.screen_name }}</p>
 				<p>You currently have {{ user.followers_count }} followers</p>
 				<div class="profile_image">
@@ -79,16 +83,18 @@
 			<div data-tweet-list="usertweets" class="ng-Fade">
 				<p><img src="/assets/images/loading.gif" /></p>
 			</div>
-			<!--<div class="more-tweets" ng-show="tweetsLoaded && !allTweetsLoaded"><a href="" ng-click="getMoreTweets()">View more tweets</a></div>-->
+			<div class="error" ng-show="moreTweetsError">{{ moreTweetsError }}</div>
 		</div>
 
 		<div class="column right" ng-controller="streamCtrl">
 			<h3>Trending in the UK</h3>
 			<div class="panel trends">
+				<div class="error" ng-show="trendsError">{{ trendsError }}</div>
 				<div class="trend" ng-repeat="trend in trends | filter: selectTrends">
 					<a href="{{ trend.url }}">{{ trend.name }}</a>
 				</div>
 			</div>
+			<div class="error" ng-show="streamError">{{ streamError }}</div>
 			<!-- streamTweets directive -->
 			<div class="stream" style="min-height: 500px" data-stream-tweet-list="streamTweets" class="ngFade"></div>
 		</div>
