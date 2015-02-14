@@ -1,6 +1,6 @@
 var app = angular.module('twitterapp');
 
-app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'userFactory', 'tConfig', function ($scope, $window, $rootScope, ipCookie, userFactory, tConfig) {
+app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'userFactory', 'homeFactory', 'tConfig', function ($scope, $window, $rootScope, ipCookie, userFactory, homeFactory, tConfig) {
 
   var userId;
 
@@ -40,6 +40,18 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
           $scope.user = data;
           $scope.user._id = mongo_id;
           console.log($scope.user);
+
+          $scope.showModal = false;
+
+          $scope.toggleModal = function() {
+            $scope.showModal = !$scope.showModal;
+          };
+
+          // Preload the chart data
+          homeFactory.getUserAnalyses($scope.user.user_id)
+            .success(function (data) {
+              // Do nothing for now
+            });
         })
         .error(function (err) {
           $scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
@@ -104,6 +116,8 @@ app.controller('userAnalysisCtrl', ['$scope', 'userFactory', 'homeFactory', func
         $scope.userAnalysis.analysis.thirty.mentionCount = mentionsData.data.mentions.thirty;
         $scope.userAnalysis.analysis.ninety.mentionCount = mentionsData.data.mentions.ninety;
         console.log($scope.userAnalysis.analysis);
+      }, function (err) {
+        $scope.analysisError = 'Unable to download analysis data. Please try again later';
       });
     });
   }, function (err) {

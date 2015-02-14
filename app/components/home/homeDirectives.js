@@ -274,27 +274,43 @@ app.directive('streamTweetList', ['socket', function (socket) {
 
 }]);
 
-app.directive('tweetChart', ['homeFactory', 'userFactory', function (homeFactory, userFactory) {
+// Modal dialog to display chart data
+app.directive('chartModal', ['homeFactory', 'userFactory', function (homeFactory, userFactory) {
   return {
     restrict: 'E',
-    template: '<canvas id="myChart" width="720" height="200">',
     replace: true,
+    templateUrl: "components/views/directive/chart.html",
     link: function (scope, element, attrs) {
+      var i,
+        close;
 
       userFactory.userSessionData().then(function (data) {
 
         homeFactory.getUserAnalyses(scope.user.user_id)
           .success(function (data) {
-            Chart.defaults.global.responsive = true;
-
             var ctx = document.getElementById("myChart").getContext("2d"),
               chartData = getChartData(data.data),
               options = getChartOptions(),
-              myLineChart = new Chart(ctx).Line(chartData, options),
-              legend = myLineChart.generateLegend(),
-              container = document.getElementById("chartContainer");
+              myLineChart,
+              legend,
+              container = angular.element(document.getElementById("chartContainer")),
+              dialog = angular.element(container.parent()),
+              close = angular.element(dialog.find('.close'));
 
-            angular.element(container).append(legend);
+            dimensions = getChartDimensions();
+            ctx.canvas.width = dimensions.width;
+            ctx.canvas.height = dimensions.height;
+            chartData.labels = chartData.labels.splice(dimensions.splice * -1, dimensions.splice);
+
+            for (i=0; i<chartData.datasets.length; i++) {
+              dataset = chartData.datasets[i];
+              var temp = dataset.data.splice(dimensions.splice * -1, dimensions.splice);
+              dataset.data = temp;
+            }
+
+            myLineChart = new Chart(ctx).Line(chartData, options);
+            legend = myLineChart.generateLegend();
+            container.prepend(legend);
           })
           .error(function (err) {
             scope.chartError = 'Unable to load chart data. Please try again later.';
@@ -302,13 +318,22 @@ app.directive('tweetChart', ['homeFactory', 'userFactory', function (homeFactory
       }, function (err) {
         scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
       });
+    }
+  };
+}]);
 
-    },
-
+// Replace the html with the canvas element for the chart
+app.directive('tweetChart', ['homeFactory', 'userFactory', function (homeFactory, userFactory) {
+  return {
+    restrict: 'E',
+    template: '<canvas id="myChart" width="0" height="0">',
+    replace: true,
   };
 
 }]);
 
+// Utilty function to format analysis data 
+// in a format required by the chart
 var getChartData = function (data) {
   var labels = [],
     tweets = [],
@@ -380,6 +405,7 @@ var getChartData = function (data) {
 
 };
 
+// Return an object containing options for the chart
 var getChartOptions = function() {
   return {
     ///Boolean - Whether grid lines are shown across the chart
@@ -427,5 +453,42 @@ var getChartOptions = function() {
     //String - A legend template
     legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].pointColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
   };
-};  
+};
 
+var getChartDimensions = function() {
+  if (screen.width >= 1368) {
+    return {
+      width: 1000,
+      height: 500,
+      splice: 30
+    };
+  }
+  else if (screen.width >= 1024) {
+    return {
+      width: 900,
+      height: 500,
+      splice: 25
+    };
+  }
+  else if (screen.width >= 768) {
+    return {
+      width: 600,
+      height: 500,
+      splice: 15
+    };
+  }
+  else if (screen.width >= 667) {
+    return {
+      width: 580,
+      height: 500,
+      splice: 12
+    };
+  }
+  else {
+    return {
+      width: 320,
+      height: 500,
+      splice: 8
+    };
+  }
+};

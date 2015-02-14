@@ -69,16 +69,14 @@
 				</analysis-panel>
 			</div>
 
-		</div>
+			<button ng-click='toggleModal()'>Open Modal Dialog</button>
 
-		<div id="chartContainer" style="width: 70%; float:left;">
-			<tweet-chart>
-				Chart data
-				<img src="/assets/images/loading.gif" />
-			</tweet-chart>
 		</div>
 
 		<div class="column centre" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="3">
+
+			<chart-modal></chart-modal>
+
 			<h3>Tweets for {{ tweets_for }}</h3>
 			<div data-tweet-list="usertweets" class="ng-Fade">
 				<p><img src="/assets/images/loading.gif" /></p>
