@@ -196,33 +196,25 @@ app.directive('analysisPanel', ['userFactory', 'homeFactory', function (userFact
         // Ensure we have userAnalysis data
         homeFactory.getUserAnalysis(scope.user.user_id).then(function (data) {
 
-          // Ensure we have the user mentions data
-          homeFactory.getUserMentions(scope.user.user_id).then(function (data) {
+          analysisData = scope.userAnalysis.analysis[attrs.analysisLength];
+          tweetsText = analysisData.tweetCount + ' tweets';
 
-            analysisData = scope.userAnalysis.analysis[attrs.analysisLength];
-            tweetsText = analysisData.tweetCount + ' tweets';
+          if (analysisData.tweetsRetweetedCount > 0) {
+            tweetsText += ' (' + analysisData.tweetsRetweetedCount + ' retweets)';
+          }
 
-            if (analysisData.tweetsRetweetedCount > 0) {
-              tweetsText += ' (' + analysisData.tweetsRetweetedCount + ' retweets)';
-            }
+          // Create the divs that will be the content of the panel
+          tweetsDiv = angular.element('<div>').text(tweetsText);
+          favouritesDiv = angular.element('<div>').text(analysisData.favouriteCount + ' favourites');
+          retweetsDiv = angular.element('<div>').text(analysisData.retweetCount + ' retweets');
+          mentionsDiv = angular.element('<div>').text(analysisData.mentionCount + ' mentions');
 
-            // Create the divs that will be the content of the panel
-            tweetsDiv = angular.element('<div>').text(tweetsText);
-            favouritesDiv = angular.element('<div>').text(analysisData.favouriteCount + ' favourites');
-            retweetsDiv = angular.element('<div>').text(analysisData.retweetCount + ' retweets');
-            mentionsDiv = angular.element('<div>').text(analysisData.mentionCount + ' mentions');
-
-            // Clear the loading gif then append the data
-            element.html('');
-            element.append(tweetsDiv);
-            element.append(favouritesDiv);
-            element.append(retweetsDiv);
-            element.append(mentionsDiv);
-
-          }, function (err) {
-            element.html('');
-            element.append(errorDiv);
-          });
+          // Clear the loading gif then append the data
+          element.html('');
+          element.append(tweetsDiv);
+          element.append(favouritesDiv);
+          element.append(retweetsDiv);
+          element.append(mentionsDiv);
 
         }, function (err) {
           element.html('');

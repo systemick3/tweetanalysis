@@ -110,15 +110,6 @@ app.controller('userAnalysisCtrl', ['$scope', 'userFactory', 'homeFactory', func
     homeFactory.getUserAnalysis(userId).then(function (data) {
       var test;
       $scope.userAnalysis = data.data;
-
-      homeFactory.getUserMentions(userId).then(function (mentionsData) {
-        $scope.userAnalysis.analysis.seven.mentionCount = mentionsData.data.mentions.seven;
-        $scope.userAnalysis.analysis.thirty.mentionCount = mentionsData.data.mentions.thirty;
-        $scope.userAnalysis.analysis.ninety.mentionCount = mentionsData.data.mentions.ninety;
-        console.log($scope.userAnalysis.analysis);
-      }, function (err) {
-        $scope.analysisError = 'Unable to download analysis data. Please try again later';
-      });
     });
   }, function (err) {
     $scope.analysisError = 'Unable to download analysis data. Please try again later';
