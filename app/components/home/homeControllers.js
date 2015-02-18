@@ -31,13 +31,14 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
       $scope.tweetapp.user = data.data;
       userId = data.data.user_id;
       $rootScope.user = $scope.user;
-      $scope.tweets_for = 'user ' + $scope.user.screen_name;
+      $scope.tweets_for = $scope.user.screen_name;
 
       // Get the full user data from Twitter
       userFactory.userTwitterData(data.data.user_id)
         .success(function (data) {
           var mongo_id = $scope.user._id;
           $scope.user = data;
+          $rootScope.user = $scope.user;
           $scope.user._id = mongo_id;
           console.log($scope.user);
 
@@ -156,8 +157,12 @@ app.controller('userTweetsCtrl', ['$scope', 'userFactory', 'homeFactory', 'tConf
 
 }]);
 
+app.controller('headerCtrl', ['$scope', '$window', '$location', function($scope, $window, $location) {
+
+}]);
+
 app.controller('errorCtrl', ['$scope', '$window', '$location', function($scope, $window, $location) {
-    
+
 }]);
 
 // default - handle any requests not for an authorised URL

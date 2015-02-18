@@ -1,4 +1,4 @@
-ng<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
@@ -12,9 +12,11 @@ ng<!DOCTYPE html>
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="shortcut icon" href="http://www.systemick-web-development.co.uk/assets/images/favicon.ico" type="image/vnd.microsoft.icon" />
-  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton" media="all" />
-  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat" media="all" />
+  <!--<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton" media="all" />
+  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat" media="all" />-->
   <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway" media="all" />
+  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nunito" media="all" />
+  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora" media="all" />
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/stylesheets/style.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
@@ -34,20 +36,38 @@ ng<!DOCTYPE html>
 
   <div id="container">
 
-    <header>
+    <header ng-controller="headerCtrl">
 
       <div class="inner">
-        
-        <div class="header-block">
-          <a href="#/logout">Logout</a>
+
+        <div class="column left">
+          <div class="logo">
+            <img src="/assets/images/logo.png" />
+          </div>
+          <div class="profile-image">
+            <img src="{{ user.profile_image_url_https }}" />
+          </div>
         </div>
-        <div class="header-block">
-          Search form goes here
+
+        <div class="column right">
+          <div class="user-info last">
+            <div class="top">{{ user.location }}</div>
+            <div class="bottom">Followers: {{ user.followers_count }}</div>
+          </div>
+          <div class="user-info">
+            <div class="top">{{ user.name }}</div>
+            <div class="bottom">{{ user.screen_name }}</div>
+          </div>
         </div>
-      <div class="clearfix"></div>
 
       </div>
-      
+
+      <div class="logout">
+        <a href="#/logout">Logout</a>
+      </div>
+
+      <div class="clearfix"></div>
+
     </header>
 
     <div class="clearfix"></div>

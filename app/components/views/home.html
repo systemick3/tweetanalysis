@@ -1,5 +1,3 @@
-<p></p>
-
 <div ng-hide="tweetapp.authorised">
 
 	<div id="page" class="login" ng-controller="loginCtrl">
@@ -45,16 +43,24 @@
 
 		<div class="error" ng-show="twitterDataError">{{ twitterDataError }}</div>
 
-		<div class="column left" ng-controller="userAnalysisCtrl">
+		<div class="column left" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="3">
+
+			<chart-modal></chart-modal>
+
+			<h3>Tweets for {{ tweets_for }}</h3>
+			<div data-tweet-list="usertweets" class="ng-Fade">
+				<p><img src="/assets/images/loading.gif" /></p>
+			</div>
+			<div class="error" ng-show="moreTweetsError">{{ moreTweetsError }}</div>
+
+		</div>
+
+		<!-- <div class="column right" ng-controller="userAnalysisCtrl"> -->
+		<div class="column right" >
 
 			<h3>Your stats</h3>
 			<div class="error" ng-show="analysisError">{{ analysisError }}</div>
 			<div class="panel" ng-hide="analysisError">
-				<p>Hello {{ user.screen_name }}</p>
-				<p>You currently have {{ user.followers_count }} followers</p>
-				<div class="profile_image">
-					<img src="{{ user.profile_image_url_https }}" />
-				</div>
 				<h4>Last 7 days</h4>
 				<analysis-panel data-analysis-length="seven">
 					<img src="/assets/images/loading.gif" />
@@ -71,30 +77,6 @@
 
 			<button ng-click='toggleModal()'>Open Modal Dialog</button>
 
-		</div>
-
-		<div class="column centre" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="3">
-
-			<chart-modal></chart-modal>
-
-			<h3>Tweets for {{ tweets_for }}</h3>
-			<div data-tweet-list="usertweets" class="ng-Fade">
-				<p><img src="/assets/images/loading.gif" /></p>
-			</div>
-			<div class="error" ng-show="moreTweetsError">{{ moreTweetsError }}</div>
-		</div>
-
-		<div class="column right" ng-controller="streamCtrl">
-			<h3>Trending in the UK</h3>
-			<div class="panel trends">
-				<div class="error" ng-show="trendsError">{{ trendsError }}</div>
-				<div class="trend" ng-repeat="trend in trends | filter: selectTrends">
-					<a href="{{ trend.url }}">{{ trend.name }}</a>
-				</div>
-			</div>
-			<div class="error" ng-show="streamError">{{ streamError }}</div>
-			<!-- streamTweets directive -->
-			<div class="stream" style="min-height: 500px" data-stream-tweet-list="streamTweets" class="ngFade"></div>
 		</div>
 
 		<div class="clearfix"></div>

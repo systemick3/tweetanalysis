@@ -1,6 +1,7 @@
 @import 'init';
 
 html, body {
+  background-color: $white;
   color: $dark-grey;
   font-family: $base-font-family; /* 1 */
   font-size: 100% * ($base-font-size / 24px); /* 3 */
@@ -9,8 +10,8 @@ html, body {
 }
 
 body {
-  position: absolute;
-  top: -5%;
+  //position: absolute;
+  //top: -7%;
   width: 100%
 }
 
@@ -20,8 +21,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: $orange;
-  font-family: $montserrat;
+  color: $navy-blue;
+  font-family: $heading-font-family;
 }
 
 p {
@@ -29,13 +30,13 @@ p {
 }
 
 a {
-  color: $green;
+  color: $dark-blue;
   font-weight: bold;
 }
 
 a:hover,
 a:visited {
-  color:$green;
+  color:$dark-blue;
   font-weight: bold;
   text-decoration: none;
 }
@@ -50,10 +51,110 @@ iframe {
 }
 
 button.btn-primary {
-  background-color: $green;
-  border-color: $green;
+  background-color: $blue;
+  border-color: $blue;
   font-size: 100%;
   font-weight: bold;
+}
+
+header {
+  @include header-background();
+
+  background-color: $blue;
+  border-bottom: 3px solid $navy-blue;
+  color: white;
+  font-size: 80%;
+  font-weight: bold;
+
+  a, a:hover, a:visited {
+    color: white;
+  }
+
+  .logo {
+    float: left;
+  }
+
+  .profile-image {
+    float: right;
+    padding-top: 1%;
+  }
+
+  .user-info {
+    float: right;
+    line-height: 2em;
+
+    &.last {
+      margin-left: 15%;
+    }
+
+    .bottom {
+      padding-top: 8.5%;
+    }
+  }
+
+  .logout {
+    float: right;
+    padding: 3.4% 1% 00;
+  }
+
+}
+
+.column {
+
+  float: left;
+  //min-height: 500px;
+
+  &.left {
+    //border-right: $border;
+    //padding: 0 1% 0.1% 1% 0.1%;
+    width: 75%;
+  }
+
+  &.right {
+    //border-left: $border;
+    padding-left: 1%;
+    width: 25%;
+  }
+
+  .tweet {
+
+    span {
+      margin-right: 1%;
+
+      &.name {
+        font-weight: bold;
+      }
+    }
+  }
+
+}
+
+#page {
+  margin-top: 2%;
+
+  .column {
+
+    h3 {
+      margin-top: 0;
+    }
+
+    &.left {
+      border-right: solid 2px $light-grey;
+      padding-right: 2%;
+    }
+
+    &.right {
+      padding-left: 2%;
+    }
+  }
+}
+
+.panel {
+  @include panel-border-radius(5px);
+
+  background-color: $white;
+  border: solid 1px $light-grey;
+  padding: 1%;
 }
 
 .ngFade.ng-enter { 
@@ -128,73 +229,58 @@ button.btn-primary {
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
 
-  body {
-    width: 100%
-  }
-
   header {
-    background-color: $light-grey;
-    margin-top: 2%;
-    padding: 5% 1% 1% 1%;
+    //margin-top: 2%;
+    //padding: 5% 1% 1% 1%;
     width: 100%;
 
-    .header-block {
-      float: right;
-      margin-left: 5%;
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: $page-width
     }
+
+    // .header-block {
+    //   float: right;
+    //   margin-left: 5%;
+    // }
   }
 
   #page {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width: $page-width;
+    max-width: $page-width;
 
-    .column {
+    // .column {
 
-      float: left;
-      min-height: 500px;
+    //   float: left;
+    //   min-height: 500px;
 
-      &.left,
-      &.right {
-        width: 25%;
-      }
+    //   &.left {
+    //     border-right: $border;
+    //     padding: 0 1% 0.1% 1% 0.1%;
+    //     width: 70%;
+    //   }
 
-      &.left {
-        border-right: $border;
-        padding-right: 1%;
-      }
+    //   &.right {
+    //     border-left: $border;
+    //     padding-left: 1%;
+    //     width: 30%;
+    //   }
 
-      &.centre {
-        padding: 0 1%;
-        width: 50%;
-      }
+    //   .tweet {
 
-      &.right {
-        border-left: $border;
-        padding-left: 1%;
-      }
+    //     span {
+    //       margin-right: 1%;
 
-      .panel {
-        @include panel-border-radius(10px);
+    //       &.name {
+    //         font-weight: bold;
+    //       }
+    //     }
+    //   }
 
-        background-color: $light-grey;
-        border: solid 1px $dark-grey;
-        padding: 1%;
-      }
-
-      .tweet {
-
-        span {
-          margin-right: 1%;
-
-          &.name {
-            font-weight: bold;
-          }
-        }
-      }
-
-    }
+    // }
 
   }
 
