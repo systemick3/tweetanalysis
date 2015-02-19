@@ -17,6 +17,7 @@
   <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway" media="all" />
   <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nunito" media="all" />
   <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora" media="all" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/stylesheets/style.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
@@ -51,12 +52,12 @@
 
         <div class="column right">
           <div class="user-info last">
-            <div class="top">{{ user.location }}</div>
+            <div class="top">{{ user.screen_name }}</div>
             <div class="bottom">Followers: {{ user.followers_count }}</div>
           </div>
           <div class="user-info">
             <div class="top">{{ user.name }}</div>
-            <div class="bottom">{{ user.screen_name }}</div>
+            <div class="bottom">{{ user.location }}</div>
           </div>
         </div>
 

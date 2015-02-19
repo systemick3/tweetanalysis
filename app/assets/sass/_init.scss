@@ -1,7 +1,7 @@
 $magnolia: #ECF0F1;
 $white: #fff;
 
-$orange: #ff6600;
+$orange: #E74C3C;
 $dark-orange: #C13B00;
 $light-grey: #ddd;
 $dark-grey: #5E6D70;
@@ -13,6 +13,7 @@ $dark-blue: #2980B9;
 $lightblue: #A2B3E7;
 $offwhite: #D2E1F6;
 $slate: #2C3E50;
+$purple: #BB3399;
 
 $black: #1B1D1E;
 
@@ -36,11 +37,12 @@ $arvo:  Arvo, "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
 $quattro: "Quattrocento Sans", Arial, Helvetica, "Nimbus Sans L", sans-serif;
 
 $neuton:  Neuton, "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+$droid:  "Droid Serif", "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
 $montserrat: Montserrat, Arial, Helvetica, "Nimbus Sans L", sans-serif;
 $raleway: Raleway, Arial, Helvetica, "Nimbus Sans L", sans-serif;
 
 $base-font-family: $raleway; // The font family set on the html element.
-$heading-font-family: $nunito;
+$heading-font-family: $droid;
 
 $border: solid 1px $light-grey;
 

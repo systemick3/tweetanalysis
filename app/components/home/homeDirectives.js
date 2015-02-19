@@ -18,7 +18,7 @@ app.directive('tweetList', function () {
 app.directive('showRetweetersLink', ['homeFactory', function (homeFactory) {
   return {
     restrict: 'E',
-    template: '<span class="retweeters"><a href="">retweets</a></span>',
+    template: '<span class="retweeters"><a href="" class="show-link">Retweets</a></span>',
     link: function (scope, element, attrs) {
       var linkElement,
         parentElement = element.parent(),
@@ -77,7 +77,7 @@ app.directive('showRetweetersLink', ['homeFactory', function (homeFactory) {
 app.directive('showRepliesLink', ['homeFactory', function (homeFactory) {
   return {
     restrict: 'E',
-    template: '<span class="replies"><a href="">Replies</a></span>',
+    template: '<span class="replies"><a href="" class="show-link">Replies</a></span>',
     link: function (scope, element, attrs) {
       var parentElement = element.parent(),
           repliesElement = parentElement.siblings('.replies'),
@@ -123,7 +123,7 @@ app.directive('showRepliesLink', ['homeFactory', function (homeFactory) {
 app.directive('showSentimentLink', ['homeFactory', function (homeFactory) {
   return {
     restrict: 'E',
-    template: '<span class="sentiment"><a href="">Sentiment</a></span>',
+    template: '<span class="sentiment"><a href="" class="show-link">Sentiment</a></span>',
     link: function (scope, element, attrs) {
        var parentElement = element.parent(), 
           sentimentElement = parentElement.next(),

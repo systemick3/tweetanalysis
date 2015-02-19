@@ -10,8 +10,6 @@ html, body {
 }
 
 body {
-  //position: absolute;
-  //top: -7%;
   width: 100%
 }
 
@@ -23,6 +21,12 @@ h5,
 h6 {
   color: $navy-blue;
   font-family: $heading-font-family;
+  font-weight:bold;
+}
+
+h4.show-panel {
+  font-family: $base-font-family;
+  font-size: 1em;
 }
 
 p {
@@ -39,6 +43,10 @@ a:visited {
   color:$dark-blue;
   font-weight: bold;
   text-decoration: none;
+}
+
+a.show-link {
+  color: $purple;
 }
 
 input.form-control,
@@ -102,16 +110,12 @@ header {
 .column {
 
   float: left;
-  //min-height: 500px;
 
   &.left {
-    //border-right: $border;
-    //padding: 0 1% 0.1% 1% 0.1%;
     width: 75%;
   }
 
   &.right {
-    //border-left: $border;
     padding-left: 1%;
     width: 25%;
   }
@@ -155,6 +159,14 @@ header {
   background-color: $white;
   border: solid 1px $light-grey;
   padding: 1%;
+
+  &.analysis {
+    padding-left: 3%;
+  }
+}
+
+.chart-link {
+  margin: 5% 0;
 }
 
 .ngFade.ng-enter { 
@@ -230,8 +242,6 @@ header {
 @media all and (min-width: 480px) {
 
   header {
-    //margin-top: 2%;
-    //padding: 5% 1% 1% 1%;
     width: 100%;
 
     .inner {
@@ -239,11 +249,6 @@ header {
       margin-right: auto;
       width: $page-width
     }
-
-    // .header-block {
-    //   float: right;
-    //   margin-left: 5%;
-    // }
   }
 
   #page {
@@ -251,37 +256,6 @@ header {
     margin-right: auto;
     padding: 0;
     max-width: $page-width;
-
-    // .column {
-
-    //   float: left;
-    //   min-height: 500px;
-
-    //   &.left {
-    //     border-right: $border;
-    //     padding: 0 1% 0.1% 1% 0.1%;
-    //     width: 70%;
-    //   }
-
-    //   &.right {
-    //     border-left: $border;
-    //     padding-left: 1%;
-    //     width: 30%;
-    //   }
-
-    //   .tweet {
-
-    //     span {
-    //       margin-right: 1%;
-
-    //       &.name {
-    //         font-weight: bold;
-    //       }
-    //     }
-    //   }
-
-    // }
-
   }
 
   .modal-chart {
