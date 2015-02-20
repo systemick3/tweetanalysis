@@ -48,11 +48,6 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
             $scope.showModal = !$scope.showModal;
           };
 
-          // Preload the chart data
-          homeFactory.getUserAnalyses($scope.user.user_id)
-            .success(function (data) {
-              // Do nothing for now
-            });
         })
         .error(function (err) {
           $scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
