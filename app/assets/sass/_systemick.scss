@@ -1,7 +1,7 @@
 @import 'init';
 
 html, body {
-  background-color: $white;
+  background-color: white;
   color: $dark-grey;
   font-family: $base-font-family; /* 1 */
   font-size: 100% * ($base-font-size / 24px); /* 3 */
@@ -25,7 +25,6 @@ h6 {
 }
 
 h4.show-panel {
-  font-family: $base-font-family;
   font-size: 1em;
 }
 
@@ -156,7 +155,7 @@ header {
 .panel {
   @include panel-border-radius(5px);
 
-  background-color: $white;
+  background-color: white;
   border: solid 1px $light-grey;
   padding: 1%;
 
