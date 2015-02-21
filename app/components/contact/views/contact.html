@@ -1,0 +1,42 @@
+<div class="modal-contact" ng-show="showContact" ng-controller="contactCtrl">
+  <div class="dialog">
+    <div class="close" ng-click="toggleContact()">
+      <i class="fa fa-times"></i>
+    </div>
+    <div class="contact">
+			<h3>Contact</h3>
+		  <div class="success" ng-show="formSuccess">You have successfully submitted your details and we will reply to your request shortly</div>
+		  <div class="error" ng-show="formSubmitError">Unable to send email. Please try again later.</div>
+			<div class="form" ng-hide="formSuccess">
+				<form name="contactForm" method="post" novalidate ng-submit="sendContactEmail(contactDetails)">
+				  <div class="well">
+				    <div class="form-group">
+				      <label>Your name</label>
+				      <input type="text" class="form-control" name="name" ng-model="contactDetails.name" required />
+				      <span class="error" ng-show="contactForm.name.$error.required && contactForm.name.$dirty">Please enter your name</span>
+				    </div>
+				    <div class="form-group">
+				      <label>Your email address</label>
+				      <input type="email" class="form-control" name="email" ng-model="contactDetails.email" required />
+				      <span class="error" ng-show="contactForm.email.$invalid && contactForm.email.$dirty">Please enter your email address</span>
+				    </div>
+				    <div class="form-group">
+				      <label>Subject</label>
+				      <input type="text" class="form-control" name="subject" ng-model="contactDetails.subject" required />
+				      <span class="error" ng-show="contactForm.subject.$error.required && contactForm.subject.$dirty">Please enter a subject</span>
+				    </div>
+				    <div class="form-group">
+				      <label>Message</label>
+				      <textarea class="form-control" name="message" ng-model="contactDetails.message" required /></textarea>
+				      <span class="error" ng-show="contactForm.message.$error.required && contactForm.message.$dirty">Please enter a message</span>
+				    </div>
+				    <div class="form-group">
+				    	<input type="hidden" name="origin" value="{{ origin }}" ng-model="contactDetails.origin">
+				      <button type="submit" ng-disabled="contactForm.$invalid" class="btn btn-primary">Send message</button>
+				    </div>
+				  </div>
+				</form>
+			</div>
+		</div>
+  </div>
+<div>

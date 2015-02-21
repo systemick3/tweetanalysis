@@ -42,10 +42,11 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
           $scope.user._id = mongo_id;
           console.log($scope.user);
 
-          $scope.showModal = false;
+          $scope.showChart = false;
 
-          $scope.toggleModal = function() {
-            $scope.showModal = !$scope.showModal;
+          $scope.toggleChart = function() {
+            $scope.showChart = !$scope.showChart;
+            $window.scrollTo(0, 0);
           };
 
         })

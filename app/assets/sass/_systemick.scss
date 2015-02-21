@@ -184,7 +184,7 @@ header {
   }
 }
 
-.modal-chart {
+.modal-chart, .modal-contact {
   position:absolute;
   z-index:9999;
   top:0;
@@ -234,6 +234,10 @@ header {
 
     }
   }
+}
+
+.modal-contact {
+  opacity: 1.0;
 }
 
 

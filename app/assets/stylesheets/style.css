@@ -8357,7 +8357,7 @@ header .logout {
 }
 
 /* line 187, ../sass/_systemick.scss */
-.modal-chart {
+.modal-chart, .modal-contact {
   position: absolute;
   z-index: 9999;
   top: 0;
@@ -8368,7 +8368,7 @@ header .logout {
   opacity: 0.9;
 }
 /* line 197, ../sass/_systemick.scss */
-.modal-chart .dialog {
+.modal-chart .dialog, .modal-contact .dialog {
   z-index: 10000;
   position: absolute;
   width: 90%;
@@ -8383,36 +8383,41 @@ header .logout {
   padding: 2% 1%;
 }
 /* line 213, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul {
+.modal-chart .dialog #chartContainer ul, .modal-contact .dialog #chartContainer ul {
   list-style-type: none;
 }
 /* line 216, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul li {
+.modal-chart .dialog #chartContainer ul li, .modal-contact .dialog #chartContainer ul li {
   display: inline;
   float: left;
 }
 /* line 220, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul li span {
+.modal-chart .dialog #chartContainer ul li span, .modal-contact .dialog #chartContainer ul li span {
   display: block;
   float: left;
   height: 1em;
   width: 1em;
 }
 
+/* line 239, ../sass/_systemick.scss */
+.modal-contact {
+  opacity: 1.0;
+}
+
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
-  /* line 243, ../sass/_systemick.scss */
+  /* line 247, ../sass/_systemick.scss */
   header {
     width: 100%;
   }
-  /* line 246, ../sass/_systemick.scss */
+  /* line 250, ../sass/_systemick.scss */
   header .inner {
     margin-left: auto;
     margin-right: auto;
     width: 900px;
   }
 
-  /* line 253, ../sass/_systemick.scss */
+  /* line 257, ../sass/_systemick.scss */
   #page {
     margin-left: auto;
     margin-right: auto;
@@ -8420,12 +8425,12 @@ header .logout {
     max-width: 900px;
   }
 
-  /* line 262, ../sass/_systemick.scss */
+  /* line 266, ../sass/_systemick.scss */
   .modal-chart .dialog {
     padding: 1% 1%;
   }
 
-  /* line 267, ../sass/_systemick.scss */
+  /* line 271, ../sass/_systemick.scss */
   footer {
     background-color: #dddddd;
     padding: 1%;

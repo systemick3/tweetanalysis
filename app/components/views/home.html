@@ -41,9 +41,11 @@
 
 	<div id="page" class="home" ng-hide="authorised">
 
+		<contact-modal></contact-modal>
+
 		<div class="error" ng-show="twitterDataError">{{ twitterDataError }}</div>
 
-		<div class="column left" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="3">
+		<div class="column left" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="1">
 
 			<chart-modal></chart-modal>
 
@@ -72,7 +74,11 @@
 				<analysis-panel data-analysis-length="ninety">
 					<img src="/assets/images/loading.gif" />
 				</analysis-panel>
-				<div class="chart-link"><button ng-click='toggleModal()'>View Chart</button></div>
+				<div class="chart-link"><button ng-click='toggleChart()'>View Chart</button></div>
+			</div>
+
+			<div class="panel">
+				<a href="" ng-click="toggleContact()">Contact</a>
 			</div>
 
 
