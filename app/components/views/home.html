@@ -43,6 +43,8 @@
 
 		<contact-modal></contact-modal>
 
+		<about-modal></about-modal>
+
 		<div class="error" ng-show="twitterDataError">{{ twitterDataError }}</div>
 
 		<div class="column left" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="1">
@@ -77,8 +79,10 @@
 				<div class="chart-link"><button ng-click='toggleChart()'>View Chart</button></div>
 			</div>
 
-			<div class="panel">
-				<a href="" ng-click="toggleContact()">Contact</a>
+			<div class="panel site-info">
+				<span><a href="http://js.systemick-web-development.co.uk" targe="_blank">&copy; Systemick {{ currentYear }}</a></span>
+				<span><a href="" ng-click="toggleContact()">Contact</a></span>
+				<span><a href="" ng-click="toggleAbout()">About</a></span>
 			</div>
 
 

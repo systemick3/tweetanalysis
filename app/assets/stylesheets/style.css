@@ -8334,30 +8334,43 @@ header .logout {
 .panel.analysis {
   padding-left: 3%;
 }
+/* line 165, ../sass/_systemick.scss */
+.panel.analysis h4 {
+  margin-bottom: 1%;
+}
 
-/* line 167, ../sass/_systemick.scss */
+/* line 171, ../sass/_systemick.scss */
 .chart-link {
   margin: 5% 0;
 }
 
-/* line 171, ../sass/_systemick.scss */
+/* line 175, ../sass/_systemick.scss */
+.site-info {
+  font-size: 70%;
+}
+/* line 178, ../sass/_systemick.scss */
+.site-info span {
+  margin-right: 0.5em;
+}
+
+/* line 183, ../sass/_systemick.scss */
 .ngFade.ng-enter {
   transition: 2s linear all;
   opacity: 0;
 }
 
-/* line 176, ../sass/_systemick.scss */
+/* line 188, ../sass/_systemick.scss */
 .ngFade.ng-enter-active {
   opacity: 1;
 }
 
-/* line 182, ../sass/_systemick.scss */
+/* line 194, ../sass/_systemick.scss */
 .sentiment .fa-times, .replies .fa-times, .retweeters .fa-times {
   float: right;
 }
 
-/* line 187, ../sass/_systemick.scss */
-.modal-chart, .modal-contact {
+/* line 199, ../sass/_systemick.scss */
+.modal-chart, .modal-contact, .modal-about {
   position: absolute;
   z-index: 9999;
   top: 0;
@@ -8367,8 +8380,8 @@ header .logout {
   background-color: #000000;
   opacity: 0.9;
 }
-/* line 197, ../sass/_systemick.scss */
-.modal-chart .dialog, .modal-contact .dialog {
+/* line 209, ../sass/_systemick.scss */
+.modal-chart .dialog, .modal-contact .dialog, .modal-about .dialog {
   z-index: 10000;
   position: absolute;
   width: 90%;
@@ -8382,42 +8395,47 @@ header .logout {
   box-shadow: 4px 4px 80px #000;
   padding: 2% 1%;
 }
-/* line 213, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul, .modal-contact .dialog #chartContainer ul {
+/* line 225, ../sass/_systemick.scss */
+.modal-chart .dialog #chartContainer ul, .modal-contact .dialog #chartContainer ul, .modal-about .dialog #chartContainer ul {
   list-style-type: none;
 }
-/* line 216, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul li, .modal-contact .dialog #chartContainer ul li {
+/* line 228, ../sass/_systemick.scss */
+.modal-chart .dialog #chartContainer ul li, .modal-contact .dialog #chartContainer ul li, .modal-about .dialog #chartContainer ul li {
   display: inline;
   float: left;
 }
-/* line 220, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul li span, .modal-contact .dialog #chartContainer ul li span {
+/* line 232, ../sass/_systemick.scss */
+.modal-chart .dialog #chartContainer ul li span, .modal-contact .dialog #chartContainer ul li span, .modal-about .dialog #chartContainer ul li span {
   display: block;
   float: left;
   height: 1em;
   width: 1em;
 }
 
-/* line 239, ../sass/_systemick.scss */
+/* line 248, ../sass/_systemick.scss */
 .modal-contact {
   opacity: 1.0;
 }
 
+/* line 254, ../sass/_systemick.scss */
+.modal-about .dialog {
+  width: 60%;
+}
+
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
-  /* line 247, ../sass/_systemick.scss */
+  /* line 263, ../sass/_systemick.scss */
   header {
     width: 100%;
   }
-  /* line 250, ../sass/_systemick.scss */
+  /* line 266, ../sass/_systemick.scss */
   header .inner {
     margin-left: auto;
     margin-right: auto;
     width: 900px;
   }
 
-  /* line 257, ../sass/_systemick.scss */
+  /* line 273, ../sass/_systemick.scss */
   #page {
     margin-left: auto;
     margin-right: auto;
@@ -8425,12 +8443,12 @@ header .logout {
     max-width: 900px;
   }
 
-  /* line 266, ../sass/_systemick.scss */
+  /* line 282, ../sass/_systemick.scss */
   .modal-chart .dialog {
     padding: 1% 1%;
   }
 
-  /* line 271, ../sass/_systemick.scss */
+  /* line 287, ../sass/_systemick.scss */
   footer {
     background-color: #dddddd;
     padding: 1%;

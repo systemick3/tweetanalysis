@@ -161,11 +161,23 @@ header {
 
   &.analysis {
     padding-left: 3%;
+
+    h4 {
+      margin-bottom: 1%;
+    }
   }
 }
 
 .chart-link {
   margin: 5% 0;
+}
+
+.site-info {
+  font-size: 70%;
+
+  span {
+    margin-right: 0.5em;
+  }
 }
 
 .ngFade.ng-enter { 
@@ -184,7 +196,7 @@ header {
   }
 }
 
-.modal-chart, .modal-contact {
+.modal-chart, .modal-contact, .modal-about {
   position:absolute;
   z-index:9999;
   top:0;
@@ -230,14 +242,18 @@ header {
 
     }
 
-    #myChart {
-
-    }
   }
 }
 
 .modal-contact {
   opacity: 1.0;
+}
+
+.modal-about {
+
+  .dialog {
+    width: 60%;
+  }
 }
 
 

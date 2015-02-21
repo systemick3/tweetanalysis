@@ -4,6 +4,8 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
 
   var userId;
 
+  $scope.currentYear = new Date().getFullYear();
+
   // If the user refreshes a page retrieve the token from sessionStorage
   if (angular.isDefined($window.sessionStorage.token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised == false)) {
     $rootScope.tweetapp = {};
