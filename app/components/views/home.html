@@ -2,7 +2,16 @@
 
 	<div id="page" class="login" ng-controller="loginCtrl">
 
-		<h2>Login</h2>
+		<div class="about">
+    	<h2>This is Tweet Analysis.</h3> 
+
+    	<p>Here you can view your tweets, mentions, replies, the number of times your tweets have been favourited and see sentiment analysis to determine how favourably people viewed your tweets.</p>
+
+    	<p>Login with Twitter to view your data</p>
+
+    	<p>Tweet Analysis was created by <a href="js.systemick-web-development.co.uk" target="_blank">Systemick</a> using javascript.</p>
+  	</div>
+		<h3>Login</h2>
 	  <div class="error" ng-show="formSubmitError">{{ formSubmitError }}</div>
 	  <div class="error" ng-show="loginError">{{ loginError }}</div>
 		<div class="form" ng-hide="formSuccess">
@@ -80,7 +89,7 @@
 			</div>
 
 			<div class="panel site-info">
-				<span><a href="http://js.systemick-web-development.co.uk" targe="_blank">&copy; Systemick {{ currentYear }}</a></span>
+				<span><a href="http://js.systemick-web-development.co.uk" target="_blank">&copy; Systemick {{ currentYear }}</a></span>
 				<span><a href="" ng-click="toggleContact()">Contact</a></span>
 				<span><a href="" ng-click="toggleAbout()">About</a></span>
 			</div>

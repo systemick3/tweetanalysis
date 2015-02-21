@@ -8210,7 +8210,7 @@ a:visited {
 
 /* line 47, ../sass/_systemick.scss */
 a.show-link {
-  color: #bb3399;
+  color: #86935b;
 }
 
 /* line 52, ../sass/_systemick.scss */
@@ -8422,20 +8422,42 @@ header .logout {
   width: 60%;
 }
 
+/* line 259, ../sass/_systemick.scss */
+footer {
+  display: none;
+}
+
+/* line 265, ../sass/_systemick.scss */
+.login footer {
+  background-color: whitesmoke;
+  border-top: solid 2px #aaaaaa;
+  bottom: 2px;
+  display: block;
+  padding: 1%;
+  position: fixed;
+  width: 100%;
+}
+/* line 274, ../sass/_systemick.scss */
+.login footer .inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 900px;
+}
+
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
-  /* line 263, ../sass/_systemick.scss */
+  /* line 286, ../sass/_systemick.scss */
   header {
     width: 100%;
   }
-  /* line 266, ../sass/_systemick.scss */
+  /* line 289, ../sass/_systemick.scss */
   header .inner {
     margin-left: auto;
     margin-right: auto;
     width: 900px;
   }
 
-  /* line 273, ../sass/_systemick.scss */
+  /* line 296, ../sass/_systemick.scss */
   #page {
     margin-left: auto;
     margin-right: auto;
@@ -8443,14 +8465,8 @@ header .logout {
     max-width: 900px;
   }
 
-  /* line 282, ../sass/_systemick.scss */
+  /* line 305, ../sass/_systemick.scss */
   .modal-chart .dialog {
     padding: 1% 1%;
-  }
-
-  /* line 287, ../sass/_systemick.scss */
-  footer {
-    background-color: #dddddd;
-    padding: 1%;
   }
 }

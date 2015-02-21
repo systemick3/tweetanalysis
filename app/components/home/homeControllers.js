@@ -6,6 +6,8 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
 
   $scope.currentYear = new Date().getFullYear();
 
+  $rootScope.bodyClass = 'login';
+
   // If the user refreshes a page retrieve the token from sessionStorage
   if (angular.isDefined($window.sessionStorage.token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised == false)) {
     $rootScope.tweetapp = {};
@@ -34,6 +36,7 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
       userId = data.data.user_id;
       $rootScope.user = $scope.user;
       $scope.tweets_for = $scope.user.screen_name;
+      $rootScope.bodyClass = 'home';
 
       // Get the full user data from Twitter
       userFactory.userTwitterData(data.data.user_id)
