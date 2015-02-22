@@ -3,35 +3,31 @@
 angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ipCookie', 'btford.socket-io', 'infinite-scroll'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider.when('/home', {
-      templateUrl: 'components/views/home.html',
+      templateUrl: 'components/home/views/home.html',
       controller: 'homeCtrl'
     });
     $routeProvider.when('/login', {
-      templateUrl: 'components/views/login.html',
+      templateUrl: 'components/user/views/login.html',
       controller: 'loginCtrl'
     });
     $routeProvider.when('/login/callback', {
-      templateUrl: 'components/views/loginCallback.html',
+      templateUrl: 'components/user/views/loginCallback.html',
       controller: 'loginCallbackCtrl'
     });
     $routeProvider.when('/login/callback/:id', {
-      templateUrl: 'components/views/loginCallback.html',
+      templateUrl: 'components/user/views/loginCallback.html',
       controller: 'loginCallbackCtrl'
     });
-    $routeProvider.when('/test', {
-      templateUrl: 'components/views/test.html',
-      controller: 'testCtrl'
-    });
     $routeProvider.when('/logout', {
-      templateUrl: 'components/views/logout.html',
+      templateUrl: 'components/user/views/logout.html',
       controller: 'logoutCtrl'
     });
     $routeProvider.when('/error', {
-      templateUrl: 'components/views/error.html',
+      templateUrl: 'components/home/views/error.html',
       controller: 'errorCtrl'
     });
     $routeProvider.otherwise({
-      templateUrl: 'components/views/default.html',
+      templateUrl: 'components/home/views/default.html',
       controller: 'defaultCtrl'
     });
 
