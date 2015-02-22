@@ -1,3 +1,4 @@
+<h3>Tweets for {{ user.screen_name }}</h3>
 <div class="panel tweet" ng-repeat="item in data">
   <div class="name">
     <a href="https://twitter.com/{{ item.user.screen_name }}">
@@ -65,5 +66,5 @@
       </div>
     </div>
   </div>
-
 </div>
+<div class="error" ng-show="moreTweetsError">{{ moreTweetsError }}</div>

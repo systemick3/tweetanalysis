@@ -56,11 +56,10 @@
 
 		<div class="error" ng-show="twitterDataError">{{ twitterDataError }}</div>
 
-		<div class="column left" ng-controller="userTweetsCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="1">
+		<div class="column left" ng-controller="tweetCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="1">
 
 			<chart-modal></chart-modal>
 
-			<h3>Tweets for {{ tweets_for }}</h3>
 			<div data-tweet-list="usertweets" class="ng-Fade">
 				<p><img src="/assets/images/loading.gif" /></p>
 			</div>
