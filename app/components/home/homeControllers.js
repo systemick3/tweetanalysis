@@ -45,15 +45,6 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
           $scope.user = data;
           $rootScope.user = $scope.user;
           $scope.user._id = mongo_id;
-          console.log($scope.user);
-
-          $scope.showChart = false;
-
-          $scope.toggleChart = function() {
-            $scope.showChart = !$scope.showChart;
-            $window.scrollTo(0, 0);
-          };
-
         })
         .error(function (err) {
           $scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';

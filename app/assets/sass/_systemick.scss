@@ -207,18 +207,19 @@ header {
   opacity: 0.9;
 
   .dialog {
-    z-index:10000;
-    position: absolute;
-    width: 90%;
+    background-color: #eee;
+    box-shadow: 4px 4px 80px #000;
     height: 90%;
-    top: 1%;
     left: 50%;
+    opacity: 1.0;
+    padding: 2% 1%;
+    position: absolute;
+    top: 1%;
     transform: translate(-50%, 0);
     -webkit-transform: translate(-50%, 0);
     -moz-transform: translate(-50%, 0);
-    background-color: #eee;
-    box-shadow: 4px 4px 80px #000;
-    padding: 2% 1%;
+    width: 90%;
+    z-index:10000;
 
     #chartContainer {
 
@@ -245,9 +246,9 @@ header {
   }
 }
 
-.modal-contact {
-  opacity: 1.0;
-}
+// .modal-contact {
+//   opacity: 1.0;
+// }
 
 .modal-about {
 
