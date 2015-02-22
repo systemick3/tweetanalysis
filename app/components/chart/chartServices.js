@@ -74,50 +74,50 @@ app.factory('chartFactory', ['$http', 'tConfig', function ($http, tConfig) {
         datasets: [
           {
             label: 'Tweets',
-            fillColor: "rgba(220,220,220,0.2)",
-            strokeColor: "rgba(220,220,220,1)",
-            pointColor: "rgba(220,220,220,1)",
-            lineColor:  '#dcdcdc',
+            fillColor: "rgba(41,128,285,0.2)",
+            strokeColor: "rgba(41,128,285,1)",
+            pointColor: "rgba(41,128,285,1)",
+            lineColor:  '#2980B9',
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(220,220,220,1)",
+            pointHighlightStroke: "rgba(41,128,285,1)",
             data: tweets,
             multiTooltipTemplate: "<%= datasetLabel %> - <%= Tweets %>"
           },
 
           {
             label: 'Retweets',
-            fillColor: "rgba(151,187,205,0.2)",
-            strokeColor: "rgba(151,187,205,1)",
-            pointColor: "rgba(151,187,205,1)",
-            lineColor:  '#97bbcd',
+            fillColor: "rgba(228,203,203,0.2)",
+            strokeColor: "rgba(228,203,203,1)",
+            pointColor: "rgba(228,203,203,1)",
+            lineColor:  '#E4CBCB',
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(151,187,205,1)",
+            pointHighlightStroke: "rgba(228,203,203,1)",
             data: retweets
           },
 
           {
             label: 'Favourites',
-            fillColor: "rgba(121,167,185,0.2)",
-            strokeColor: "rgba(121,167,185,1)",
-            pointColor: "rgba(121,167,185,1)",
-            lineColor:  '#79a7b9',
+            fillColor: "rgba(113,180,111,0.2)",
+            strokeColor: "rgba(113,180,111,1)",
+            pointColor: "rgba(113,180,111,1)",
+            lineColor:  '#71B46F',
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(121,167,185,1)",
+            pointHighlightStroke: "rgba(113,180,111,1)",
             data: favourites
           },
 
           {
             label: 'Mentions',
-            fillColor: "rgba(101,147,165,0.2)",
-            strokeColor: "rgba(101,147,165,1)",
-            pointColor: "rgba(101,147,165,1)",
-            lineColor:  '#6593a5',
+            fillColor: "rgba(242,132,137,0.2)",
+            strokeColor: "rgba(242,132,137,1)",
+            pointColor: "rgba(242,132,137,1)",
+            lineColor:  '#F28489',
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(101,147,165,1)",
+            pointHighlightStroke: "rgba(242,132,137,1)",
             data: mentions
           },
         ]

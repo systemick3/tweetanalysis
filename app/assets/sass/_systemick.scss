@@ -229,11 +229,14 @@ header {
         li {
           display: inline;
           float: left;
+          margin-right: 2%;
 
           span {
             display: block;
             float: left;
             height: 1em;
+            margin-right: 0.3em;
+            margin-top: 0.2em;
             width: 1em;
           }
 

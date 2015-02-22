@@ -8404,26 +8404,29 @@ header .logout {
 .modal-chart .dialog #chartContainer ul li, .modal-contact .dialog #chartContainer ul li, .modal-about .dialog #chartContainer ul li {
   display: inline;
   float: left;
+  margin-right: 2%;
 }
-/* line 233, ../sass/_systemick.scss */
+/* line 234, ../sass/_systemick.scss */
 .modal-chart .dialog #chartContainer ul li span, .modal-contact .dialog #chartContainer ul li span, .modal-about .dialog #chartContainer ul li span {
   display: block;
   float: left;
   height: 1em;
+  margin-right: 0.3em;
+  margin-top: 0.2em;
   width: 1em;
 }
 
-/* line 255, ../sass/_systemick.scss */
+/* line 258, ../sass/_systemick.scss */
 .modal-about .dialog {
   width: 60%;
 }
 
-/* line 260, ../sass/_systemick.scss */
+/* line 263, ../sass/_systemick.scss */
 footer {
   display: none;
 }
 
-/* line 266, ../sass/_systemick.scss */
+/* line 269, ../sass/_systemick.scss */
 .login footer {
   background-color: whitesmoke;
   border-top: solid 2px #aaaaaa;
@@ -8433,7 +8436,7 @@ footer {
   position: fixed;
   width: 100%;
 }
-/* line 275, ../sass/_systemick.scss */
+/* line 278, ../sass/_systemick.scss */
 .login footer .inner {
   margin-left: auto;
   margin-right: auto;
@@ -8442,18 +8445,18 @@ footer {
 
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
-  /* line 287, ../sass/_systemick.scss */
+  /* line 290, ../sass/_systemick.scss */
   header {
     width: 100%;
   }
-  /* line 290, ../sass/_systemick.scss */
+  /* line 293, ../sass/_systemick.scss */
   header .inner {
     margin-left: auto;
     margin-right: auto;
     width: 900px;
   }
 
-  /* line 297, ../sass/_systemick.scss */
+  /* line 300, ../sass/_systemick.scss */
   #page {
     margin-left: auto;
     margin-right: auto;
@@ -8461,7 +8464,7 @@ footer {
     max-width: 900px;
   }
 
-  /* line 306, ../sass/_systemick.scss */
+  /* line 309, ../sass/_systemick.scss */
   .modal-chart .dialog {
     padding: 1% 1%;
   }
