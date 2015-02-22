@@ -70,23 +70,7 @@
 
 		<div class="column right" ng-controller="userAnalysisCtrl"> 
 
-			<h3>Activity</h3>
-			<div class="error" ng-show="analysisError">{{ analysisError }}</div>
-			<div class="panel analysis" ng-hide="analysisError">
-				<h4>Last 7 days</h4>
-				<analysis-panel data-analysis-length="seven">
-					<img src="/assets/images/loading.gif" />
-				</analysis-panel>
-				<h4>Last 30 days</h4>
-				<analysis-panel data-analysis-length="thirty">
-					<img src="/assets/images/loading.gif" />
-				</analysis-panel>
-				<h4>Last 90 days</h4>
-				<analysis-panel data-analysis-length="ninety">
-					<img src="/assets/images/loading.gif" />
-				</analysis-panel>
-				<div class="chart-link" ng-controller="chartCtrl"><button ng-click='toggleChart()'>View Chart</button></div>
-			</div>
+			<analysis-panel></analysis-panel>
 
 			<div class="panel site-info">
 				<span><a href="http://js.systemick-web-development.co.uk" target="_blank">&copy; Systemick {{ currentYear }}</a></span>

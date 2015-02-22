@@ -23,17 +23,6 @@ app.factory("homeFactory", ['$http', 'tConfig', function ($http, tConfig) {
       return $http.get(oneTweetUrl);
     },
 
-    getUserAnalysis: function(userId) {
-      var userAnalysisUrl = apiData.server + apiData.userAnalysis.url + '/' + userId;
-
-      if (!userAnalysisPromise) {
-        userAnalysisPromise = $http.get(userAnalysisUrl).then(function (response) {
-          return response;
-        });
-      }
-      return userAnalysisPromise;
-    },
-
     getRetweeters: function(tweetId) {
       var retweetersUrl = apiData.server + apiData.retweeters.url + '/' + tweetId;
       return $http.get(retweetersUrl);

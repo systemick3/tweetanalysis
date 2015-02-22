@@ -94,21 +94,6 @@ app.controller('streamCtrl', ['$scope', 'socket', 'homeFactory', function ($scop
 
 }]);
 
-app.controller('userAnalysisCtrl', ['$scope', 'userFactory', 'homeFactory', function ($scope, userFactory, homeFactory) {
-  var userId;
-
-  userFactory.userSessionData().then(function (data) {
-    userId = $scope.user.user_id;
-
-    homeFactory.getUserAnalysis(userId).then(function (data) {
-      var test;
-      $scope.userAnalysis = data.data;
-    });
-  }, function (err) {
-    $scope.analysisError = 'Unable to download analysis data. Please try again later';
-  });
-}]);
-
 app.controller('userTweetsCtrl', ['$scope', 'userFactory', 'homeFactory', 'tConfig', function ($scope, userFactory, homeFactory, tConfig) {
   var userId;
   userFactory.userSessionData().then(function (data) {
