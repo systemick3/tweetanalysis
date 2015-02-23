@@ -16,7 +16,7 @@
   </div>
 
   <div class="sentiment" style="display:none;">
-    <i class="fa fa-times"></i>
+    <i class="fa fa-times" style="display:none;"></i>
     <h4 class="show-panel">Sentiment</h4>
     <div class="score">
       Score: {{ item.sentiment.score}}, Comparative: {{ item.sentiment.comparative }}
@@ -26,7 +26,7 @@
   </div>
 
   <div class="retweeters" style="display:none;">
-    <i class="fa fa-times"></i>
+    <i class="fa fa-times" style="display:none;"></i>
     <h4 class="show-panel">Retweeters</h4>
     <div class="retweeter" ng-repeat="retweeter in item.retweeters">
       <a href="https://twitter.com/{{ retweeter.screen_name }}" target="_blank">{{ retweeter.screen_name }}</a> retweeted to {{ retweeter.followers_count }} followers
@@ -35,7 +35,7 @@
   </div>
 
   <div class="replies" style="display:none;">
-    <i class="fa fa-times"></i>
+    <i class="fa fa-times" style="display:none;"></i>
     <h4 class="show-panel">Replies</h4>
     <div class="reply" ng-repeat="reply in item.replies">
       <div class="tweet">

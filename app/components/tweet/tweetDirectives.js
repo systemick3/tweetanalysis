@@ -23,9 +23,9 @@ app.directive('showRetweetersLink', ['tweetFactory', function (tweetFactory) {
       var linkElement,
         parentElement = element.parent(),
         retweetersElement = parentElement.siblings('.retweeters'),
+        icon = retweetersElement.find('i'),
         replace,
         i,
-        close,
         tweetId = attrs['tweetId'];
 
       linkElement = element.find('a');
@@ -53,19 +53,28 @@ app.directive('showRetweetersLink', ['tweetFactory', function (tweetFactory) {
             .success(function (data) {
               selectedTweet.retweeters = data.retweeters;
               selectedTweet.reach = data.reach;
-              retweetersElement.slideToggle('slow');
+              retweetersElement.slideToggle('slow', function () {
+                icon.toggle();
+              });
             })
             .error(function (err) {
               selectedTweet.retweeters = 'Unable to load retweeters';
-              retweetersElement.slideToggle('slow');
+              retweetersElement.slideToggle('slow', function () {
+                icon.toggle();
+              });
             });
         }
         else {
-          retweetersElement.slideToggle('slow');
+          icon.hide();
+          retweetersElement.slideToggle('slow', function () {
+            if (!icon.is(':visible')) {
+              icon.show();
+            }
+          });
         }
 
-        close = retweetersElement.find('.fa-times');
-        close.on('click', function () {
+        icon.on('click', function () {
+          $(this).hide();
           retweetersElement.slideUp('slow');
         });
 
@@ -80,42 +89,51 @@ app.directive('showRepliesLink', ['tweetFactory', function (tweetFactory) {
     template: '<span class="replies"><a href="" class="show-link">Replies</a></span>',
     link: function (scope, element, attrs) {
       var parentElement = element.parent(),
-          repliesElement = parentElement.siblings('.replies'),
-          tweetId = attrs['tweetId'],
-          replyId,
-          selectedTweet,
-          close,
-          i;
+        repliesElement = parentElement.siblings('.replies'),
+        tweetId = attrs['tweetId'],
+        replyId,
+        selectedTweet,
+        icon = repliesElement.find('i'),
+        i;
 
-        element.on('click', function () {
-          for (i=0; i<scope.usertweets.length; i++) {
-            if (scope.usertweets[i].id_str == tweetId) {
-              selectedTweet = scope.usertweets[i];
-              break;
-            }
+      element.on('click', function () {
+        for (i=0; i<scope.usertweets.length; i++) {
+          if (scope.usertweets[i].id_str == tweetId) {
+            selectedTweet = scope.usertweets[i];
+            break;
           }
+        }
 
-          if (!selectedTweet.replies) {
-            tweetFactory.getReplies(scope.user.id_str, selectedTweet.id_str)
-              .success(function (data) {
-                selectedTweet.replies = tweetFactory.processTweets(data.replies);
-                repliesElement.slideToggle('slow');
-              })
-              .error(function (err) {
-                selectedTweet.replies = 'Unable to load replies';
-                repliesElement.slideToggle('slow');
+        if (!selectedTweet.replies) {
+          tweetFactory.getReplies(scope.user.id_str, selectedTweet.id_str)
+            .success(function (data) {
+              selectedTweet.replies = tweetFactory.processTweets(data.replies);
+              repliesElement.slideToggle('slow', function () {
+                icon.toggle();
               });
-          }
-          else {
-            repliesElement.slideToggle('slow');
-          }
+            })
+            .error(function (err) {
+              selectedTweet.replies = 'Unable to load replies';
+              repliesElement.slideToggle('slow', function () {
+                icon.toggle();
+              });
+            });
+        }
+        else {
+          icon.hide();
+          repliesElement.slideToggle('slow', function () {
+            if (!icon.is(':visible')) {
+              icon.show();
+            }
+          });
+        }
 
-        });
+      });
 
-        close = repliesElement.find('.fa-times');
-        close.on('click', function () {
-          repliesElement.slideUp();
-        });
+      icon.on('click', function () {
+        $(this).hide();
+        repliesElement.slideUp();
+      });
     }
   };
 }]);
@@ -125,12 +143,12 @@ app.directive('showSentimentLink', ['tweetFactory', function (tweetFactory) {
     restrict: 'E',
     template: '<span class="sentiment"><a href="" class="show-link">Sentiment</a></span>',
     link: function (scope, element, attrs) {
-       var parentElement = element.parent(), 
-          sentimentElement = parentElement.next(),
-          tweetId = attrs['tweetId'],
-          replyId,
-          selectedTweet,
-          close;
+      var parentElement = element.parent(), 
+        sentimentElement = parentElement.next(),
+        icon = sentimentElement.find('i'),
+        tweetId = attrs['tweetId'],
+        replyId,
+        selectedTweet;
 
       element.on('click', function() {
         // Find the tweet that has been selected
@@ -157,21 +175,30 @@ app.directive('showSentimentLink', ['tweetFactory', function (tweetFactory) {
           tweetFactory.getSentiment(selectedTweet.id_str, replyId)
             .success(function (data) {
               selectedTweet.sentiment = data.sentiment;
-              sentimentElement.slideToggle('slow');
+              sentimentElement.slideToggle('slow', function () {
+                icon.toggle();
+              });
             })
             .error(function (err) {
               selectedTweet.sentiment = 'Unable to load sentiment';
-              sentimentElement.slideToggle('slow');
+              sentimentElement.slideToggle('slow', function () {
+                icon.toggle();
+              });
             });
         }
         else {
-          sentimentElement.slideToggle('slow');
+          icon.hide();
+          sentimentElement.slideToggle('slow', function () {
+            if (!icon.is(':visible')) {
+              icon.show();
+            }
+          });
         }
 
       });
 
-      close = sentimentElement.find('.fa-times');
-      close.on('click', function () {
+      icon.on('click', function () {
+        $(this).hide();
         sentimentElement.slideUp();
       });
     }
