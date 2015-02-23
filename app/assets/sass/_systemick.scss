@@ -44,8 +44,9 @@ a:visited {
   text-decoration: none;
 }
 
-a.show-link {
+a.show-link, a.show-link:hover, a.show-link:visited {
   color: $green;
+  text-decoration:none;
 }
 
 input.form-control,
@@ -174,6 +175,7 @@ header {
 
 .site-info {
   font-size: 70%;
+  line-height: 170%;
 
   span {
     margin-right: 0.5em;

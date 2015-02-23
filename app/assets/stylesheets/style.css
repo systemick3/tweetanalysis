@@ -8209,22 +8209,23 @@ a:visited {
 }
 
 /* line 47, ../sass/_systemick.scss */
-a.show-link {
+a.show-link, a.show-link:hover, a.show-link:visited {
   color: #86935b;
+  text-decoration: none;
 }
 
-/* line 52, ../sass/_systemick.scss */
+/* line 53, ../sass/_systemick.scss */
 input.form-control,
 textarea.form-control {
   font-size: 80%;
 }
 
-/* line 56, ../sass/_systemick.scss */
+/* line 57, ../sass/_systemick.scss */
 iframe {
   border: none;
 }
 
-/* line 60, ../sass/_systemick.scss */
+/* line 61, ../sass/_systemick.scss */
 button.btn-primary {
   background-color: #3498bb;
   border-color: #3498bb;
@@ -8232,7 +8233,7 @@ button.btn-primary {
   font-weight: bold;
 }
 
-/* line 67, ../sass/_systemick.scss */
+/* line 68, ../sass/_systemick.scss */
 header {
   background: -webkit-linear-gradient(#3498bb, #2980b9);
   /* For Safari 5.1 to 6.0 */
@@ -8248,79 +8249,79 @@ header {
   font-size: 80%;
   font-weight: bold;
 }
-/* line 76, ../sass/_systemick.scss */
+/* line 77, ../sass/_systemick.scss */
 header a, header a:hover, header a:visited {
   color: white;
 }
-/* line 80, ../sass/_systemick.scss */
+/* line 81, ../sass/_systemick.scss */
 header .logo {
   float: left;
 }
-/* line 84, ../sass/_systemick.scss */
+/* line 85, ../sass/_systemick.scss */
 header .profile-image {
   float: right;
   padding-top: 1%;
 }
-/* line 89, ../sass/_systemick.scss */
+/* line 90, ../sass/_systemick.scss */
 header .user-info {
   float: right;
   line-height: 2em;
 }
-/* line 93, ../sass/_systemick.scss */
+/* line 94, ../sass/_systemick.scss */
 header .user-info.last {
   margin-left: 15%;
 }
-/* line 97, ../sass/_systemick.scss */
+/* line 98, ../sass/_systemick.scss */
 header .user-info .bottom {
   padding-top: 8.5%;
 }
-/* line 102, ../sass/_systemick.scss */
+/* line 103, ../sass/_systemick.scss */
 header .logout {
   float: right;
   padding: 3.4% 1% 00;
 }
 
-/* line 109, ../sass/_systemick.scss */
+/* line 110, ../sass/_systemick.scss */
 .column {
   float: left;
 }
-/* line 113, ../sass/_systemick.scss */
+/* line 114, ../sass/_systemick.scss */
 .column.left {
   width: 75%;
 }
-/* line 117, ../sass/_systemick.scss */
+/* line 118, ../sass/_systemick.scss */
 .column.right {
   padding-left: 1%;
   width: 25%;
 }
-/* line 124, ../sass/_systemick.scss */
+/* line 125, ../sass/_systemick.scss */
 .column .tweet span {
   margin-right: 1%;
 }
-/* line 127, ../sass/_systemick.scss */
+/* line 128, ../sass/_systemick.scss */
 .column .tweet span.name {
   font-weight: bold;
 }
 
-/* line 135, ../sass/_systemick.scss */
+/* line 136, ../sass/_systemick.scss */
 #page {
   margin-top: 2%;
 }
-/* line 140, ../sass/_systemick.scss */
+/* line 141, ../sass/_systemick.scss */
 #page .column h3 {
   margin-top: 0;
 }
-/* line 144, ../sass/_systemick.scss */
+/* line 145, ../sass/_systemick.scss */
 #page .column.left {
   border-right: solid 2px #dddddd;
   padding-right: 2%;
 }
-/* line 149, ../sass/_systemick.scss */
+/* line 150, ../sass/_systemick.scss */
 #page .column.right {
   padding-left: 2%;
 }
 
-/* line 155, ../sass/_systemick.scss */
+/* line 156, ../sass/_systemick.scss */
 .panel {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -8330,46 +8331,47 @@ header .logout {
   border: solid 1px #dddddd;
   padding: 1%;
 }
-/* line 162, ../sass/_systemick.scss */
+/* line 163, ../sass/_systemick.scss */
 .panel.analysis {
   padding-left: 3%;
 }
-/* line 165, ../sass/_systemick.scss */
+/* line 166, ../sass/_systemick.scss */
 .panel.analysis h4 {
   margin-bottom: 1%;
 }
 
-/* line 171, ../sass/_systemick.scss */
+/* line 172, ../sass/_systemick.scss */
 .chart-link {
   margin: 5% 0;
 }
 
-/* line 175, ../sass/_systemick.scss */
+/* line 176, ../sass/_systemick.scss */
 .site-info {
   font-size: 70%;
+  line-height: 170%;
 }
-/* line 178, ../sass/_systemick.scss */
+/* line 180, ../sass/_systemick.scss */
 .site-info span {
   margin-right: 0.5em;
 }
 
-/* line 183, ../sass/_systemick.scss */
+/* line 185, ../sass/_systemick.scss */
 .ngFade.ng-enter {
   transition: 2s linear all;
   opacity: 0;
 }
 
-/* line 188, ../sass/_systemick.scss */
+/* line 190, ../sass/_systemick.scss */
 .ngFade.ng-enter-active {
   opacity: 1;
 }
 
-/* line 194, ../sass/_systemick.scss */
+/* line 196, ../sass/_systemick.scss */
 .sentiment .fa-times, .replies .fa-times, .retweeters .fa-times {
   float: right;
 }
 
-/* line 199, ../sass/_systemick.scss */
+/* line 201, ../sass/_systemick.scss */
 .modal-chart, .modal-contact, .modal-about {
   position: absolute;
   z-index: 9999;
@@ -8380,7 +8382,7 @@ header .logout {
   background-color: #000000;
   opacity: 0.9;
 }
-/* line 209, ../sass/_systemick.scss */
+/* line 211, ../sass/_systemick.scss */
 .modal-chart .dialog, .modal-contact .dialog, .modal-about .dialog {
   background-color: #eee;
   box-shadow: 4px 4px 80px #000;
@@ -8396,17 +8398,17 @@ header .logout {
   width: 90%;
   z-index: 10000;
 }
-/* line 226, ../sass/_systemick.scss */
+/* line 228, ../sass/_systemick.scss */
 .modal-chart .dialog #chartContainer ul, .modal-contact .dialog #chartContainer ul, .modal-about .dialog #chartContainer ul {
   list-style-type: none;
 }
-/* line 229, ../sass/_systemick.scss */
+/* line 231, ../sass/_systemick.scss */
 .modal-chart .dialog #chartContainer ul li, .modal-contact .dialog #chartContainer ul li, .modal-about .dialog #chartContainer ul li {
   display: inline;
   float: left;
   margin-right: 2%;
 }
-/* line 234, ../sass/_systemick.scss */
+/* line 236, ../sass/_systemick.scss */
 .modal-chart .dialog #chartContainer ul li span, .modal-contact .dialog #chartContainer ul li span, .modal-about .dialog #chartContainer ul li span {
   display: block;
   float: left;
@@ -8416,17 +8418,17 @@ header .logout {
   width: 1em;
 }
 
-/* line 258, ../sass/_systemick.scss */
+/* line 260, ../sass/_systemick.scss */
 .modal-about .dialog {
   width: 60%;
 }
 
-/* line 263, ../sass/_systemick.scss */
+/* line 265, ../sass/_systemick.scss */
 footer {
   display: none;
 }
 
-/* line 269, ../sass/_systemick.scss */
+/* line 271, ../sass/_systemick.scss */
 .login footer {
   background-color: whitesmoke;
   border-top: solid 2px #aaaaaa;
@@ -8436,7 +8438,7 @@ footer {
   position: fixed;
   width: 100%;
 }
-/* line 278, ../sass/_systemick.scss */
+/* line 280, ../sass/_systemick.scss */
 .login footer .inner {
   margin-left: auto;
   margin-right: auto;
@@ -8445,18 +8447,18 @@ footer {
 
 /* Everything wider than mobile */
 @media all and (min-width: 480px) {
-  /* line 290, ../sass/_systemick.scss */
+  /* line 292, ../sass/_systemick.scss */
   header {
     width: 100%;
   }
-  /* line 293, ../sass/_systemick.scss */
+  /* line 295, ../sass/_systemick.scss */
   header .inner {
     margin-left: auto;
     margin-right: auto;
     width: 900px;
   }
 
-  /* line 300, ../sass/_systemick.scss */
+  /* line 302, ../sass/_systemick.scss */
   #page {
     margin-left: auto;
     margin-right: auto;
@@ -8464,7 +8466,7 @@ footer {
     max-width: 900px;
   }
 
-  /* line 309, ../sass/_systemick.scss */
+  /* line 311, ../sass/_systemick.scss */
   .modal-chart .dialog {
     padding: 1% 1%;
   }
