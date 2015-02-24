@@ -1,11 +1,62 @@
-describe("homeFactory", function () {
+describe('analysisFactory', function () {
+  var factory,
+    baseUrl,
+    user = {user_id: "165697756", screen_name: "systemick", _id: "54d743f9ae838cbd6266cd38"},
+    userAnalysis = {"msg":"success","secs":1494,"analysis":{"seven":{"tweetCount":14,"favouriteCount":7,"retweetCount":29,"tweetsRetweetedCount":5},"thirty":{"tweetCount":42,"favouriteCount":28,"retweetCount":864,"tweetsRetweetedCount":14},"ninety":{"tweetCount":100,"favouriteCount":76,"retweetCount":2277,"tweetsRetweetedCount":32},"user_id":"165697756","created_at":1423412954688,"date":"2015-02-08"}};
+
+  beforeEach(module("twitterapp"));
+
+  beforeEach(inject(function (analysisFactory, $httpBackend, tConfig) {
+    factory = analysisFactory;
+    httpBackend = $httpBackend;
+    config = tConfig;
+    baseUrl = tConfig.apiData.server;
+  }));
+
+  it('should fetch a user analysis object', function () {
+    var url = baseUrl + '/tweetapp/auth/analysis/user/165697756';
+    httpBackend.whenGET('165697756').respond(userAnalysis);
+    factory.getUserAnalysis(user).then(function(response) {
+      expect(response).toBeDefined();
+      expect(response.data).toEqual(userAnalysis);
+    });
+  });
+});
+
+describe('chartFactory', function () {
+  var factory,
+    httpBackend,
+    config,
+    user = {user_id: "165697756", screen_name: "systemick", _id: "54d743f9ae838cbd6266cd38"},
+    testData = {"_id":"54b39e7fb4834fb37c3c2a71","created_at":1419329663081,"date":"2014-12-23","ninety":{"tweetCount":74,"favouriteCount":74,"retweetCount":4622,"tweetsRetweetedCount":20},"seven":{"favouriteCount":2,"mentionsCount":6,"retweetCount":19,"tweetCount":7,"tweetsRetweetedCount":2},"thirty":{"tweetCount":31,"favouriteCount":32,"retweetCount":173,"tweetsRetweetedCount":12},"user_id":"165697756"};
+
+  beforeEach(module("twitterapp"));
+
+  beforeEach(inject(function (chartFactory, $httpBackend, tConfig) {
+    factory = chartFactory;
+    httpBackend = $httpBackend;
+    config = tConfig;
+    baseUrl = tConfig.apiData.server;
+  }));
+
+  it('should fetch a list of user analyses objects for the chart', function () {
+    var url = baseUrl + '/tweetapp/auth/analysis/chart/165697756';
+    //var testData = {"_id":"54b39e7fb4834fb37c3c2a71","created_at":1419329663081,"date":"2014-12-23","ninety":{"tweetCount":74,"favouriteCount":74,"retweetCount":4622,"tweetsRetweetedCount":20},"seven":{"favouriteCount":2,"mentionsCount":6,"retweetCount":19,"tweetCount":7,"tweetsRetweetedCount":2},"thirty":{"tweetCount":31,"favouriteCount":32,"retweetCount":173,"tweetsRetweetedCount":12},"user_id":"165697756"};
+    httpBackend.whenGET('165697756').respond(testData);
+    factory.getUserAnalyses(user).then(function(response) {
+      expect(response).toBeDefined();
+      expect(response.data[0]).toEqual(testData);
+    });
+  });
+});
+
+describe("tweetFactory", function () {
   var factory, httpBackend, baseUrl = 'http://localhost:3001', user = {user_id: "165697756", screen_name: "systemick", _id: "54d743f9ae838cbd6266cd38"};
 
   beforeEach(module("twitterapp"));
 
-  //beforeEach(inject(function ($rootScope, $rootElement, $location, _homeFactory_) {
-  beforeEach(inject(function (homeFactory, $httpBackend) {
-    factory = homeFactory;
+  beforeEach(inject(function (tweetFactory, $httpBackend) {
+    factory = tweetFactory;
     httpBackend = $httpBackend;
   }));
 
@@ -19,7 +70,6 @@ describe("homeFactory", function () {
       expect(response).toBeDefined();
       expect(response.data).toEqual(returnData);
     });
-    //httpBackend.flush();
   });
 
   it('should fetch a single tweet', function () {
@@ -28,15 +78,6 @@ describe("homeFactory", function () {
     factory.getTweet('563990204969914369').then(function(response) {
       expect(response).toBeDefined();
       expect(response.data).toEqual(returnData);
-    });
-  });
-
-  it('should fetch a user analysis object', function () {
-    var url = baseUrl + '/tweetapp/auth/analysis/user/165697756';
-    httpBackend.whenGET('165697756').respond(userAnalysis);
-    factory.getUserAnalysis(user).then(function(response) {
-      expect(response).toBeDefined();
-      expect(response.data).toEqual(userAnalysis);
     });
   });
 
@@ -69,16 +110,6 @@ describe("homeFactory", function () {
     });
   });
 
-  it('should fetch a list of user analyses objects for the chart', function () {
-    var url = baseUrl + '/tweetapp/auth/analysis/chart/165697756';
-    var testData = {"_id":"54b39e7fb4834fb37c3c2a71","created_at":1419329663081,"date":"2014-12-23","ninety":{"tweetCount":74,"favouriteCount":74,"retweetCount":4622,"tweetsRetweetedCount":20},"seven":{"favouriteCount":2,"mentionsCount":6,"retweetCount":19,"tweetCount":7,"tweetsRetweetedCount":2},"thirty":{"tweetCount":31,"favouriteCount":32,"retweetCount":173,"tweetsRetweetedCount":12},"user_id":"165697756"};
-    httpBackend.whenGET('165697756').respond(testData);
-    factory.getUserAnalyses(user).then(function(response) {
-      expect(response).toBeDefined();
-      expect(response.data[0]).toEqual(testData);
-    });
-  });
-
   it('should fetch a sentiment object for a tweets', function () {
     var url = baseUrl + '/tweetapp/auth/tweet/sentiment/563714348057890816';
     var testData = {"msg":"success","id":"563714348057890816","sentiment":{"score":-1,"comparative":-0.25,"tokens":["theglittervixen","better","or","worse"],"words":["worse","better"],"positive":["better"],"negative":["worse"]}};
@@ -89,15 +120,15 @@ describe("homeFactory", function () {
     });
   });
 
-  it('should fetch a list of trending hashtags', function () {
-    var url = baseUrl + '/tweetapp/auth/tweet/trends';
-    var testData = {"msg":"success","data":[{"trends":[{"name":"#lessinterestingfilms","query":"%23lessinterestingfilms","url":"http://twitter.com/search?q=%23lessinterestingfilms","promoted_content":null},{"name":"#WHUMUN","query":"%23WHUMUN","url":"http://twitter.com/search?q=%23WHUMUN","promoted_content":null},{"name":"Raith","query":"Raith","url":"http://twitter.com/search?q=Raith","promoted_content":null},{"name":"'Parklife'","query":"%27Parklife%27","url":"http://twitter.com/search?q=%27Parklife%27","promoted_content":null},{"name":"Simonsen","query":"Simonsen","url":"http://twitter.com/search?q=Simonsen","promoted_content":null},{"name":"Vuckic","query":"Vuckic","url":"http://twitter.com/search?q=Vuckic","promoted_content":null},{"name":"#Moonraker","query":"%23Moonraker","url":"http://twitter.com/search?q=%23Moonraker","promoted_content":null},{"name":"McCulloch","query":"McCulloch","url":"http://twitter.com/search?q=McCulloch","promoted_content":null},{"name":"Obertan","query":"Obertan","url":"http://twitter.com/search?q=Obertan","promoted_content":null},{"name":"Nade","query":"Nade","url":"http://twitter.com/search?q=Nade","promoted_content":null}],"as_of":"2015-02-08T16:47:32Z","created_at":"2015-02-08T16:43:16Z","locations":[{"name":"United Kingdom","woeid":23424975}]}]};
-    httpBackend.whenGET().respond(testData);
-    factory.getTrends(user).then(function(response) {
-      expect(response).toBeDefined();
-      expect(response).toEqual(testData);
-    });
-  });
+  // it('should fetch a list of trending hashtags', function () {
+  //   var url = baseUrl + '/tweetapp/auth/tweet/trends';
+  //   var testData = {"msg":"success","data":[{"trends":[{"name":"#lessinterestingfilms","query":"%23lessinterestingfilms","url":"http://twitter.com/search?q=%23lessinterestingfilms","promoted_content":null},{"name":"#WHUMUN","query":"%23WHUMUN","url":"http://twitter.com/search?q=%23WHUMUN","promoted_content":null},{"name":"Raith","query":"Raith","url":"http://twitter.com/search?q=Raith","promoted_content":null},{"name":"'Parklife'","query":"%27Parklife%27","url":"http://twitter.com/search?q=%27Parklife%27","promoted_content":null},{"name":"Simonsen","query":"Simonsen","url":"http://twitter.com/search?q=Simonsen","promoted_content":null},{"name":"Vuckic","query":"Vuckic","url":"http://twitter.com/search?q=Vuckic","promoted_content":null},{"name":"#Moonraker","query":"%23Moonraker","url":"http://twitter.com/search?q=%23Moonraker","promoted_content":null},{"name":"McCulloch","query":"McCulloch","url":"http://twitter.com/search?q=McCulloch","promoted_content":null},{"name":"Obertan","query":"Obertan","url":"http://twitter.com/search?q=Obertan","promoted_content":null},{"name":"Nade","query":"Nade","url":"http://twitter.com/search?q=Nade","promoted_content":null}],"as_of":"2015-02-08T16:47:32Z","created_at":"2015-02-08T16:43:16Z","locations":[{"name":"United Kingdom","woeid":23424975}]}]};
+  //   httpBackend.whenGET().respond(testData);
+  //   factory.getTrends(user).then(function(response) {
+  //     expect(response).toBeDefined();
+  //     expect(response).toEqual(testData);
+  //   });
+  // });
 
   it('should format a list of tweets with hashtags and URLs', function () {
     var url = baseUrl + '/tweetapp/auth/analysis/user/165697756';
@@ -116,7 +147,6 @@ describe("userFactory", function () {
 
   beforeEach(module("twitterapp"));
 
-  //beforeEach(inject(function ($rootScope, $rootElement, $location, _homeFactory_) {
   beforeEach(inject(function (userFactory, $httpBackend) {
     factory = userFactory;
     httpBackend = $httpBackend;
