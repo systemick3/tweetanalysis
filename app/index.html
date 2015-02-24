@@ -38,23 +38,36 @@
       <div class="inner">
 
         <div class="column left">
+          <div class="user-info last hidden-xs" ng-show="tweetapp.authorised">
+            <div class="top">{{ user.screen_name }}</div>
+            <div class="bottom">Followers: {{ user.followers_count }}</div>
+          </div>
+          <div class="user-info hidden-xs" ng-show="tweetapp.authorised">
+            <div class="top">{{ user.name }}</div>
+            <div class="bottom">{{ user.location }}</div>
+          </div>
           <div class="logo">
             <img src="/assets/images/logo.png" />
           </div>
-          <div class="profile-image" ng-show="tweetapp.authorised">
+          <div class="profile-image hidden-xs" ng-show="tweetapp.authorised">
             <img src="{{ user.profile_image_url_https }}" />
+          </div>
+          <div class="hamburger visible-xs-block" ng-show="tweetapp.authorised">
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
         </div>
 
         <div class="column right" ng-show="tweetapp.authorised">
-          <div class="user-info last">
+          <!-- <div class="user-info last">
             <div class="top">{{ user.screen_name }}</div>
             <div class="bottom">Followers: {{ user.followers_count }}</div>
           </div>
           <div class="user-info">
             <div class="top">{{ user.name }}</div>
             <div class="bottom">{{ user.location }}</div>
-          </div>
+          </div> -->
         </div>
 
       </div>

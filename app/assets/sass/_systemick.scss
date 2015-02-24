@@ -80,6 +80,28 @@ header {
 
   .logo {
     float: left;
+    padding-left: 1%;
+  }
+
+  .hamburger {
+    background-color: $light-blue;
+    border: solid 2px $dark-blue;
+    border-radius: 2px;
+    float: right;
+    height: 3.5em;
+    margin-left: 3%;
+    margin-top: 1%;
+    width: 3em;
+
+    div {
+      background-color: white;
+      border-radius: 4px;
+      height: 6px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5px;
+      width: 80%;
+    }
   }
 
   .profile-image {
@@ -90,9 +112,10 @@ header {
   .user-info {
     float: right;
     line-height: 2em;
+    margin-left: 3%;
 
     &.last {
-      margin-left: 15%;
+      margin-left: 3%;
     }
 
     .bottom {
@@ -100,37 +123,17 @@ header {
     }
   }
 
-  .logout {
-    float: right;
-    padding: 3.4% 1% 00;
+  .left {
+    padding-right: 2%;
   }
 
 }
 
 .column {
 
-  float: left;
-
-  &.left {
-    width: 75%;
+  .left {
+    width: 100%;
   }
-
-  &.right {
-    padding-left: 1%;
-    width: 25%;
-  }
-
-  .tweet {
-
-    span {
-      margin-right: 1%;
-
-      &.name {
-        font-weight: bold;
-      }
-    }
-  }
-
 }
 
 #page {
@@ -143,13 +146,9 @@ header {
     }
 
     &.left {
-      border-right: solid 2px $light-grey;
-      padding-right: 2%;
+      padding: 0 2%;
     }
 
-    &.right {
-      padding-left: 2%;
-    }
   }
 }
 
@@ -251,10 +250,6 @@ header {
   }
 }
 
-// .modal-contact {
-//   opacity: 1.0;
-// }
-
 .modal-about {
 
   .dialog {
@@ -286,7 +281,6 @@ footer {
 }
 
 
-/* Everything wider than mobile */
 @media all and (min-width: 480px) {
 
   header {
@@ -295,7 +289,7 @@ footer {
     .inner {
       margin-left: auto;
       margin-right: auto;
-      width: $page-width
+      width: 100%;
     }
   }
 
@@ -310,6 +304,59 @@ footer {
 
     .dialog {
       padding: 1% 1%;
+    }
+  }
+
+}
+
+@media all and (min-width: 767px) {
+
+  header {
+
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: $page-width;
+
+      .left {
+        padding-right: 0;
+      }
+    }
+
+    .logo {
+      padding-left: 0;
+    }
+  }
+
+  #page {
+
+    .column {
+
+      float: left;
+
+      &.left {
+        border-right: solid 2px $light-grey;
+        padding-left: 0;
+        padding-right: 2%;
+        width: 75%;
+      }
+
+      &.right {
+        padding-left: 2%;
+        width: 25%;
+      }
+
+      .tweet {
+
+        span {
+          margin-right: 1%;
+
+          &.name {
+            font-weight: bold;
+          }
+        }
+      }
+
     }
   }
 
