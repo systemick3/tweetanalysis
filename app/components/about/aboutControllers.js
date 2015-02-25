@@ -1,12 +1,12 @@
 var app = angular.module('twitterapp');
 
-app.controller('aboutCtrl', ['$scope', '$window', function ($scope, $window) {
+app.controller('aboutCtrl', ['$scope', '$rootScope', '$window', function ($scope, $rootScope, $window) {
 
-  $scope.showAbout = false;
+  $rootScope.showAbout = false;
 
-  $scope.toggleAbout = function() {
+  $rootScope.toggleAbout = function() {
     $window.scrollTo(0, 0);
-    $scope.showAbout = !$scope.showAbout;
+    $rootScope.showAbout = !$rootScope.showAbout;
   };
 
 }]);

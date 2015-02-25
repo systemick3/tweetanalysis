@@ -8,6 +8,12 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
 
   $rootScope.bodyClass = 'login';
 
+  $rootScope.menuVisible = false;
+
+  $rootScope.toggleMenu = function () {
+    $rootScope.menuVisible = !$rootScope.menuVisible;
+  }
+
   // If the user refreshes a page retrieve the token from sessionStorage
   if (angular.isDefined($window.sessionStorage.token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised == false)) {
     $rootScope.tweetapp = {};
@@ -37,6 +43,19 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
       $rootScope.user = $scope.user;
       $scope.tweets_for = $scope.user.screen_name;
       $rootScope.bodyClass = 'home';
+
+      $rootScope.menuText = 'Your data';
+      $rootScope.toggleAnalysis = function() {
+        $rootScope.menuVisible = false;
+        $('#page .left').toggleClass('hidden-xs');
+        $('#page .right').toggleClass('hidden-xs');
+
+        if ($('#page .left').hasClass('hidden-xs')) {
+          $rootScope.menuText = 'Your tweets';
+        } else {
+          $rootScope.menuText = 'Your data';
+        }
+      };
 
       // Get the full user data from Twitter
       userFactory.userTwitterData(data.data.user_id)

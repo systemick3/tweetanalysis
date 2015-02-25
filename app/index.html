@@ -52,7 +52,7 @@
           <div class="profile-image hidden-xs" ng-show="tweetapp.authorised">
             <img src="{{ user.profile_image_url_https }}" />
           </div>
-          <div class="hamburger visible-xs-block" ng-show="tweetapp.authorised">
+          <div class="hamburger visible-xs-block" ng-show="tweetapp.authorised" ng-click="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
@@ -70,6 +70,16 @@
           </div> -->
         </div>
 
+      </div>
+
+      <div class="navigation" ng-show="menuVisible">
+        <ul class="nav-items">
+          <li><a href="" ng-click="toggleContact()">{{ user.name }}</a></li>
+          <li><a href="" ng-click="toggleAnalysis()">{{ menuText }}</a></li>
+          <li><a href="" ng-click="toggleContact()">Contact</a></li>
+          <li><a href="" ng-click="toggleAbout()">About</a></li>
+          <li><a href="#/logout">Logout</a></li>
+        </ul>
       </div>
 
       <div class="clearfix"></div>

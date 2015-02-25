@@ -127,6 +127,32 @@ header {
     padding-right: 2%;
   }
 
+  .navigation {
+    background-color: white;
+    border: 2px solid $grey;
+    border-radius: 2px;
+    font-size: 130%;
+    line-height: 2em;
+    padding: 0.5em 0 0.5em 1.5em;
+    position: absolute;
+    right: 0.5em;
+    top: 3em;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      left: -2.5em;
+      position: relative;
+
+      li {
+
+        a {
+          color: $blue;
+        }
+      }
+    }
+  }
+
 }
 
 .column {
@@ -147,6 +173,18 @@ header {
 
     &.left {
       padding: 0 2%;
+    }
+
+    &.right {
+
+      h3 {
+        margin-left: 3%;
+      }
+
+      div.user-info {
+        padding-left: 3%;
+      }
+
     }
 
   }
@@ -250,13 +288,6 @@ header {
   }
 }
 
-.modal-about {
-
-  .dialog {
-    width: 60%;
-  }
-}
-
 footer {
   display: none;
 }
@@ -344,6 +375,10 @@ footer {
       &.right {
         padding-left: 2%;
         width: 25%;
+
+        h3 {
+          margin-left: 0;
+        }
       }
 
       .tweet {
@@ -360,8 +395,29 @@ footer {
     }
   }
 
+  .modal-about {
+
+    .dialog {
+      width: 60%;
+    }
+  }
+
 }
 
-@media all and (min-width: 480px) and (max-width: 959px) {
+@media all and (min-width: 768px) and (max-width: 959px) {
+
+  #page {
+
+    .column {
+
+      &.left {
+        padding-left: 2%;
+      }
+
+      &.right {
+        padding-right: 2%;
+      }
+    }
+  }
 
 }

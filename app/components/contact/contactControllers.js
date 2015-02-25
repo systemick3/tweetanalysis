@@ -1,6 +1,6 @@
 var app = angular.module('twitterapp');
 
-app.controller('contactCtrl', ['$scope', '$window', '$location', '$http', 'contactFactory', function ($scope, $window, $location, $http, contactFactory) {
+app.controller('contactCtrl', ['$scope', '$rootScope', '$window', '$location', '$http', 'contactFactory', function ($scope, $rootScope, $window, $location, $http, contactFactory) {
 
   $scope.formSuccess = false;
   $scope.forSubmitError = false;
@@ -22,11 +22,11 @@ app.controller('contactCtrl', ['$scope', '$window', '$location', '$http', 'conta
     }
   };
 
-  $scope.showContact = false;
+  $rootScope.showContact = false;
 
-  $scope.toggleContact = function() {
+  $rootScope.toggleContact = function() {
     $window.scrollTo(0, 0);
-    $scope.showContact = !$scope.showContact;
+    $rootScope.showContact = !$rootScope.showContact;
   };
 
 }]);

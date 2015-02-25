@@ -54,11 +54,11 @@
 
 		<about-modal></about-modal>
 
+		<chart-modal></chart-modal>
+
 		<div class="error" ng-show="twitterDataError">{{ twitterDataError }}</div>
 
 		<div class="column left" ng-controller="tweetCtrl" infinite-scroll="getMoreTweets()" infinite-scroll-distance="1">
-
-			<chart-modal></chart-modal>
 
 			<div data-tweet-list="usertweets" class="ng-Fade">
 				<p><img src="/assets/images/loading.gif" /></p>
@@ -66,11 +66,19 @@
 
 		</div>
 
-		<div class="column right hidden-xs" ng-controller="userAnalysisCtrl"> 
+		<div class="column right hidden-xs" ng-controller="userAnalysisCtrl">
+
+			<div class="panel visible-xs-block">
+				<h3>{{ user.name }}</h3>
+				<div class="user-info"><img src="{{ user.profile_image_url_https }}" /></div>
+				<div class="user-info">{{ user.screen_name }}</div>
+				<div class="user-info">{{ user.location }}</div>
+				<div class="user-info">Followers: {{ user.followers_count }}</div>
+			</div>
 
 			<analysis-panel></analysis-panel>
 
-			<div class="panel site-info">
+			<div class="panel site-info hidden-xs">
 				<span><a href="http://js.systemick-web-development.co.uk" target="_blank">&copy; Systemick {{ currentYear }}</a></span>
 				<span><a href="" ng-click="toggleContact()">Contact</a></span>
 				<span><a href="" ng-click="toggleAbout()">About</a></span>
