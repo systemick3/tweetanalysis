@@ -8,7 +8,7 @@ app.directive('analysisPanel', [function () {
   };
 }]);
 
-app.directive('analysisItem', ['userFactory', 'analysisFactory', function (userFactory, analysisFactory) {
+app.directive('analysisItem', ['$window', 'analysisFactory', function ($window, analysisFactory) {
   return {
     restrict: 'E',
     link: function (scope, element, attrs) {
@@ -20,8 +20,7 @@ app.directive('analysisItem', ['userFactory', 'analysisFactory', function (userF
         mentionsDiv,
         errorDiv = angular.element('<div>').text('Unable to load user data');
 
-      // Ensure user session data is loaded so we have the userId
-      userFactory.userSessionData().then(function (data) {
+      if ($window.sessionStorage.user_id) {
 
         // Ensure we have userAnalysis data
         analysisFactory.getUserAnalysis(scope.user.user_id).then(function (data) {
@@ -51,10 +50,7 @@ app.directive('analysisItem', ['userFactory', 'analysisFactory', function (userF
           element.append(errorDiv);
         });
 
-      }, function (err) {
-        element.html('');
-        element.append(errorDiv);
-      });
+      }
     }
   };
 }]);
