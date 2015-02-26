@@ -37,8 +37,8 @@ angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ipCookie', 'btford.socke
 
   .constant('tConfig', {
     'apiData': {
-      'server':           'http://localhost:3001',
-      //'server':           'http://api.systemick-web-development.co.uk',
+      //'server':           'http://localhost:3001',
+      'server':           'http://api.systemick-web-development.co.uk',
       'streamServer':     'http://localhost:3002',
       'testUrl':          '/tweetapp/test',
       'loginUrl':         '/tweetapp/login',
