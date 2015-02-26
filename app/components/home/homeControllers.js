@@ -33,41 +33,44 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
   // Fetch the session data from the API
   if (angular.isDefined($rootScope.tweetapp) && $rootScope.tweetapp.authorised) {
 
-    userFactory.userSessionData().then(function (data) {
+    userFactory.userSessionData().then(function (promise) {
 
-      $window.sessionStorage.user_id = data.data.user_id;
-      $window.sessionStorage.screen_name = data.data.screen_name;
-      $scope.user = data.data;
-      $scope.tweetapp.user = data.data;
-      userId = data.data.user_id;
-      $rootScope.user = $scope.user;
-      $scope.tweets_for = $scope.user.screen_name;
-      $rootScope.bodyClass = 'home';
+      if (promise.data.data) {
+        var data = promise.data;
+        $window.sessionStorage.user_id = data.data.user_id;
+        $window.sessionStorage.screen_name = data.data.screen_name;
+        $scope.user = data.data;
+        $scope.tweetapp.user = data.data;
+        userId = data.data.user_id;
+        $rootScope.user = $scope.user;
+        $scope.tweets_for = $scope.user.screen_name;
+        $rootScope.bodyClass = 'home';
 
-      $rootScope.menuText = 'Your data';
-      $rootScope.toggleAnalysis = function() {
-        $rootScope.menuVisible = false;
-        $('#page .left').toggleClass('hidden-xs');
-        $('#page .right').toggleClass('hidden-xs');
+        $rootScope.menuText = 'Your data';
+        $rootScope.toggleAnalysis = function() {
+          $rootScope.menuVisible = false;
+          $('#page .left').toggleClass('hidden-xs');
+          $('#page .right').toggleClass('hidden-xs');
 
-        if ($('#page .left').hasClass('hidden-xs')) {
-          $rootScope.menuText = 'Your tweets';
-        } else {
-          $rootScope.menuText = 'Your data';
-        }
-      };
+          if ($('#page .left').hasClass('hidden-xs')) {
+            $rootScope.menuText = 'Your tweets';
+          } else {
+            $rootScope.menuText = 'Your data';
+          }
+        };
 
-      // Get the full user data from Twitter
-      userFactory.userTwitterData(data.data.user_id)
-        .success(function (data) {
-          var mongo_id = $scope.user._id;
-          $scope.user = data;
-          $rootScope.user = $scope.user;
-          $scope.user._id = mongo_id;
-        })
-        .error(function (err) {
-          $scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
-        });
+        // Get the full user data from Twitter
+        userFactory.userTwitterData(data.data.user_id)
+          .success(function (data) {
+            var mongo_id = $scope.user._id;
+            $scope.user = data;
+            $rootScope.user = $scope.user;
+            $scope.user._id = mongo_id;
+          })
+          .error(function (err) {
+            $scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
+          });
+      }
 
     }, function (err) {
       $scope.loginError = 'Unable to log in. There is possibly a problem with Twitter. Please try again later.';

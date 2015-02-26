@@ -11,31 +11,32 @@ app.directive('chartModal', ['chartFactory', 'userFactory', function (chartFacto
         dimensions,
         close;
 
-      userFactory.userSessionData().then(function (data) {
+      userFactory.userSessionData().then(function (response) {
+        if (response.data.data) {
+          dimensions = chartFactory.getChartDimensions()
 
-        dimensions = chartFactory.getChartDimensions()
+          chartFactory.getUserAnalyses(scope.user.user_id, dimensions.splice)
+            .success(function (data) {
+              var ctx = document.getElementById("myChart").getContext("2d"),
+                chartData = chartFactory.getChartData(data.data),
+                options = chartFactory.getChartOptions(),
+                myLineChart,
+                legend,
+                container = angular.element(document.getElementById("chartContainer")),
+                dialog = angular.element(container.parent()),
+                close = angular.element(dialog.find('.close'));
 
-        chartFactory.getUserAnalyses(scope.user.user_id, dimensions.splice)
-          .success(function (data) {
-            var ctx = document.getElementById("myChart").getContext("2d"),
-              chartData = chartFactory.getChartData(data.data),
-              options = chartFactory.getChartOptions(),
-              myLineChart,
-              legend,
-              container = angular.element(document.getElementById("chartContainer")),
-              dialog = angular.element(container.parent()),
-              close = angular.element(dialog.find('.close'));
-
-            ctx.canvas.width = dimensions.width;
-            ctx.canvas.height = dimensions.height;
-            chartData.labels = chartData.labels.splice(dimensions.splice * -1, dimensions.splice);
-            myLineChart = new Chart(ctx).Line(chartData, options);
-            legend = myLineChart.generateLegend();
-            container.prepend(legend);
-          })
-          .error(function (err) {
-            scope.chartError = 'Unable to load chart data. Please try again later.';
-          });
+              ctx.canvas.width = dimensions.width;
+              ctx.canvas.height = dimensions.height;
+              chartData.labels = chartData.labels.splice(dimensions.splice * -1, dimensions.splice);
+              myLineChart = new Chart(ctx).Line(chartData, options);
+              legend = myLineChart.generateLegend();
+              container.prepend(legend);
+            })
+            .error(function (err) {
+              scope.chartError = 'Unable to load chart data. Please try again later.';
+            });
+        }
 
       }, function (err) {
         scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';

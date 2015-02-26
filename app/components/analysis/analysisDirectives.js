@@ -21,35 +21,37 @@ app.directive('analysisItem', ['userFactory', 'analysisFactory', function (userF
         errorDiv = angular.element('<div>').text('Unable to load user data');
 
       // Ensure user session data is loaded so we have the userId
-      userFactory.userSessionData().then(function (data) {
+      userFactory.userSessionData().then(function (response) {
 
-        // Ensure we have userAnalysis data
-        analysisFactory.getUserAnalysis(scope.user.user_id).then(function (data) {
+        if (response.data.data) {
+          // Ensure we have userAnalysis data
+          analysisFactory.getUserAnalysis(scope.user.user_id).then(function (data) {
 
-          analysisData = scope.userAnalysis.analysis[attrs.analysisLength];
-          tweetsText = analysisData.tweetCount + ' tweets';
+            analysisData = scope.userAnalysis.analysis[attrs.analysisLength];
+            tweetsText = analysisData.tweetCount + ' tweets';
 
-          if (analysisData.tweetsRetweetedCount > 0) {
-            tweetsText += ' (' + analysisData.tweetsRetweetedCount + ' retweets)';
-          }
+            if (analysisData.tweetsRetweetedCount > 0) {
+              tweetsText += ' (' + analysisData.tweetsRetweetedCount + ' retweets)';
+            }
 
-          // Create the divs that will be the content of the panel
-          tweetsDiv = angular.element('<div>').text(tweetsText);
-          favouritesDiv = angular.element('<div>').text(analysisData.favouriteCount + ' favourites');
-          retweetsDiv = angular.element('<div>').text(analysisData.retweetCount + ' retweets');
-          mentionsDiv = angular.element('<div>').text(analysisData.mentionsCount + ' mentions');
+            // Create the divs that will be the content of the panel
+            tweetsDiv = angular.element('<div>').text(tweetsText);
+            favouritesDiv = angular.element('<div>').text(analysisData.favouriteCount + ' favourites');
+            retweetsDiv = angular.element('<div>').text(analysisData.retweetCount + ' retweets');
+            mentionsDiv = angular.element('<div>').text(analysisData.mentionsCount + ' mentions');
 
-          // Clear the loading gif then append the data
-          element.html('');
-          element.append(tweetsDiv);
-          element.append(favouritesDiv);
-          element.append(retweetsDiv);
-          element.append(mentionsDiv);
+            // Clear the loading gif then append the data
+            element.html('');
+            element.append(tweetsDiv);
+            element.append(favouritesDiv);
+            element.append(retweetsDiv);
+            element.append(mentionsDiv);
 
-        }, function (err) {
-          element.html('');
-          element.append(errorDiv);
-        });
+          }, function (err) {
+            element.html('');
+            element.append(errorDiv);
+          });
+        }
 
       }, function (err) {
         element.html('');
