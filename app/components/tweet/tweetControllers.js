@@ -1,10 +1,8 @@
 var app = angular.module('twitterapp');
 
-app.controller('tweetCtrl', ['$scope', 'tweetFactory', 'tConfig', '$window', function ($scope, tweetFactory, tConfig, $window) {
+app.controller('tweetCtrl', ['$scope', 'userFactory', 'tweetFactory', 'tConfig', function ($scope, userFactory, tweetFactory, tConfig) {
   var userId;
-
-  if ($window.sessionStorage.user_id) {
-
+  userFactory.userSessionData().then(function (data) {
     $scope.usertweets = null;
     $scope.tweetsLoaded = false;
     $scope.allTweetsLoaded = false;
@@ -38,6 +36,6 @@ app.controller('tweetCtrl', ['$scope', 'tweetFactory', 'tConfig', '$window', fun
         });
     };
 
-  }
+  });
 
 }]);

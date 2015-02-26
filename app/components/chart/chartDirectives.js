@@ -1,18 +1,19 @@
 var app = angular.module("twitterapp");
 
 // Modal dialog to display chart data
-app.directive('chartModal', ['chartFactory', '$window', function (chartFactory, $window) {
+app.directive('chartModal', ['chartFactory', 'userFactory', function (chartFactory, userFactory) {
   return {
     restrict: 'E',
     replace: true,
     templateUrl: "components/chart/views/chart.html",
     link: function (scope, element, attrs) {
       var i,
-        dimensions;
+        dimensions,
+        close;
 
-      if ($window.sessionStorage.user_id) {
+      userFactory.userSessionData().then(function (data) {
 
-        dimensions = chartFactory.getChartDimensions();
+        dimensions = chartFactory.getChartDimensions()
 
         chartFactory.getUserAnalyses(scope.user.user_id, dimensions.splice)
           .success(function (data) {
@@ -36,7 +37,9 @@ app.directive('chartModal', ['chartFactory', '$window', function (chartFactory, 
             scope.chartError = 'Unable to load chart data. Please try again later.';
           });
 
-      }
+      }, function (err) {
+        scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
+      });
     }
   };
 }]);

@@ -1,12 +1,10 @@
 var app = angular.module('twitterapp');
 
-app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'userFactory', 'tConfig', '$sce', function ($scope, $window, $rootScope, ipCookie, userFactory, tConfig, $sce) {
+app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'userFactory', 'tConfig', function ($scope, $window, $rootScope, ipCookie, userFactory, tConfig) {
 
   var userId;
 
   $scope.currentYear = new Date().getFullYear();
-
-  $rootScope.serverUrl = $sce.trustAsResourceUrl(tConfig.apiData.server + tConfig.apiData.twitterLoginUrl);
 
   $rootScope.bodyClass = 'login';
 

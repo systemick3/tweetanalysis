@@ -1,15 +1,15 @@
 var app = angular.module("twitterapp");
 
-app.controller('userAnalysisCtrl', ['$scope', 'analysisFactory', '$window', function ($scope, analysisFactory, $window) {
+app.controller('userAnalysisCtrl', ['$scope', 'userFactory', 'analysisFactory', function ($scope, userFactory, analysisFactory) {
   var userId;
 
-  if ($window.sessionStorage.user_id) {
+  userFactory.userSessionData().then(function (data) {
     userId = $scope.user.user_id;
 
     analysisFactory.getUserAnalysis(userId).then(function (data) {
       $scope.userAnalysis = data.data;
-    }, function (err) {
-      $scope.analysisError = 'Unable to download analysis data. Please try again later';
     });
-  }
+  }, function (err) {
+    $scope.analysisError = 'Unable to download analysis data. Please try again later';
+  });
 }]);
