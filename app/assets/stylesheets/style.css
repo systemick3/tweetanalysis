@@ -8153,6 +8153,21 @@ button.close {
     display: none !important;
   }
 }
+@font-face {
+  font-family: Quadranta;
+  src: url("/assets/images/Quadranta-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Juice;
+  src: url("/assets/fonts/JUICE_Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Piron;
+  src: url("/assets/fonts/TFPironv2-stencil.otf") format("opentype");
+}
+
 /* line 3, ../sass/_systemick.scss */
 html, body {
   background-color: white;
@@ -8256,9 +8271,11 @@ header a, header a:hover, header a:visited {
 /* line 81, ../sass/_systemick.scss */
 header .logo {
   float: left;
+  font-family: Piron, Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 48px;
   padding-left: 1%;
 }
-/* line 86, ../sass/_systemick.scss */
+/* line 88, ../sass/_systemick.scss */
 header .hamburger {
   background-color: #40bfeb;
   border: solid 2px #2980b9;
@@ -8269,7 +8286,7 @@ header .hamburger {
   margin-top: 1%;
   width: 3em;
 }
-/* line 96, ../sass/_systemick.scss */
+/* line 98, ../sass/_systemick.scss */
 header .hamburger div {
   background-color: white;
   border-radius: 4px;
@@ -8279,30 +8296,30 @@ header .hamburger div {
   margin-top: 5px;
   width: 80%;
 }
-/* line 107, ../sass/_systemick.scss */
+/* line 109, ../sass/_systemick.scss */
 header .profile-image {
   float: right;
   padding-top: 1%;
 }
-/* line 112, ../sass/_systemick.scss */
+/* line 114, ../sass/_systemick.scss */
 header .user-info {
   float: right;
   line-height: 2em;
   margin-left: 3%;
 }
-/* line 117, ../sass/_systemick.scss */
+/* line 119, ../sass/_systemick.scss */
 header .user-info.last {
   margin-left: 3%;
 }
-/* line 121, ../sass/_systemick.scss */
+/* line 123, ../sass/_systemick.scss */
 header .user-info .bottom {
   padding-top: 8.5%;
 }
-/* line 126, ../sass/_systemick.scss */
+/* line 128, ../sass/_systemick.scss */
 header .left {
   padding-right: 2%;
 }
-/* line 130, ../sass/_systemick.scss */
+/* line 132, ../sass/_systemick.scss */
 header .navigation {
   background-color: white;
   border: 2px solid #aaaaaa;
@@ -8314,45 +8331,45 @@ header .navigation {
   right: 0.5em;
   top: 3em;
 }
-/* line 141, ../sass/_systemick.scss */
+/* line 143, ../sass/_systemick.scss */
 header .navigation ul {
   list-style-type: none;
   margin: 0;
   left: -2.5em;
   position: relative;
 }
-/* line 149, ../sass/_systemick.scss */
+/* line 151, ../sass/_systemick.scss */
 header .navigation ul li a {
   color: #3498bb;
 }
 
-/* line 160, ../sass/_systemick.scss */
+/* line 162, ../sass/_systemick.scss */
 .column .left {
   width: 100%;
 }
 
-/* line 165, ../sass/_systemick.scss */
+/* line 167, ../sass/_systemick.scss */
 #page {
   margin-top: 2%;
 }
-/* line 170, ../sass/_systemick.scss */
+/* line 172, ../sass/_systemick.scss */
 #page .column h3 {
   margin-top: 0;
 }
-/* line 174, ../sass/_systemick.scss */
+/* line 176, ../sass/_systemick.scss */
 #page .column.left {
   padding: 0 2%;
 }
-/* line 180, ../sass/_systemick.scss */
+/* line 182, ../sass/_systemick.scss */
 #page .column.right h3 {
   margin-left: 3%;
 }
-/* line 184, ../sass/_systemick.scss */
+/* line 186, ../sass/_systemick.scss */
 #page .column.right div.user-info {
   padding-left: 3%;
 }
 
-/* line 193, ../sass/_systemick.scss */
+/* line 195, ../sass/_systemick.scss */
 .panel {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -8362,47 +8379,47 @@ header .navigation ul li a {
   border: solid 1px #dddddd;
   padding: 1%;
 }
-/* line 200, ../sass/_systemick.scss */
+/* line 202, ../sass/_systemick.scss */
 .panel.analysis {
   padding-left: 3%;
 }
-/* line 203, ../sass/_systemick.scss */
+/* line 205, ../sass/_systemick.scss */
 .panel.analysis h4 {
   margin-bottom: 1%;
 }
 
-/* line 209, ../sass/_systemick.scss */
+/* line 211, ../sass/_systemick.scss */
 .chart-link {
   margin: 5% 0;
 }
 
-/* line 213, ../sass/_systemick.scss */
+/* line 215, ../sass/_systemick.scss */
 .site-info {
   font-size: 70%;
   line-height: 170%;
 }
-/* line 217, ../sass/_systemick.scss */
+/* line 219, ../sass/_systemick.scss */
 .site-info span {
   margin-right: 0.5em;
 }
 
-/* line 222, ../sass/_systemick.scss */
+/* line 224, ../sass/_systemick.scss */
 .ngFade.ng-enter {
   transition: 2s linear all;
   opacity: 0;
 }
 
-/* line 227, ../sass/_systemick.scss */
+/* line 229, ../sass/_systemick.scss */
 .ngFade.ng-enter-active {
   opacity: 1;
 }
 
-/* line 233, ../sass/_systemick.scss */
+/* line 235, ../sass/_systemick.scss */
 .sentiment .fa-times, .replies .fa-times, .retweeters .fa-times {
   float: right;
 }
 
-/* line 238, ../sass/_systemick.scss */
+/* line 240, ../sass/_systemick.scss */
 .modal-chart, .modal-contact, .modal-about {
   position: absolute;
   z-index: 9999;
@@ -8413,7 +8430,7 @@ header .navigation ul li a {
   background-color: #000000;
   opacity: 0.9;
 }
-/* line 248, ../sass/_systemick.scss */
+/* line 250, ../sass/_systemick.scss */
 .modal-chart .dialog, .modal-contact .dialog, .modal-about .dialog {
   background-color: #eee;
   box-shadow: 4px 4px 80px #000;
@@ -8429,17 +8446,17 @@ header .navigation ul li a {
   width: 90%;
   z-index: 10000;
 }
-/* line 265, ../sass/_systemick.scss */
+/* line 267, ../sass/_systemick.scss */
 .modal-chart .dialog #chartContainer ul, .modal-contact .dialog #chartContainer ul, .modal-about .dialog #chartContainer ul {
   list-style-type: none;
 }
-/* line 268, ../sass/_systemick.scss */
+/* line 270, ../sass/_systemick.scss */
 .modal-chart .dialog #chartContainer ul li, .modal-contact .dialog #chartContainer ul li, .modal-about .dialog #chartContainer ul li {
   display: inline;
   float: left;
   margin-right: 2%;
 }
-/* line 273, ../sass/_systemick.scss */
+/* line 275, ../sass/_systemick.scss */
 .modal-chart .dialog #chartContainer ul li span, .modal-contact .dialog #chartContainer ul li span, .modal-about .dialog #chartContainer ul li span {
   display: block;
   float: left;
@@ -8449,12 +8466,12 @@ header .navigation ul li a {
   width: 1em;
 }
 
-/* line 291, ../sass/_systemick.scss */
+/* line 293, ../sass/_systemick.scss */
 footer {
   display: none;
 }
 
-/* line 297, ../sass/_systemick.scss */
+/* line 299, ../sass/_systemick.scss */
 .login footer {
   background-color: whitesmoke;
   border-top: solid 2px #aaaaaa;
@@ -8464,7 +8481,7 @@ footer {
   position: fixed;
   width: 100%;
 }
-/* line 306, ../sass/_systemick.scss */
+/* line 308, ../sass/_systemick.scss */
 .login footer .inner {
   margin-left: auto;
   margin-right: auto;
@@ -8472,18 +8489,18 @@ footer {
 }
 
 @media all and (min-width: 480px) {
-  /* line 317, ../sass/_systemick.scss */
+  /* line 319, ../sass/_systemick.scss */
   header {
     width: 100%;
   }
-  /* line 320, ../sass/_systemick.scss */
+  /* line 322, ../sass/_systemick.scss */
   header .inner {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
   }
 
-  /* line 327, ../sass/_systemick.scss */
+  /* line 329, ../sass/_systemick.scss */
   #page {
     margin-left: auto;
     margin-right: auto;
@@ -8491,67 +8508,67 @@ footer {
     max-width: 900px;
   }
 
-  /* line 336, ../sass/_systemick.scss */
+  /* line 338, ../sass/_systemick.scss */
   .modal-chart .dialog {
     padding: 1% 1%;
   }
 }
 @media all and (min-width: 767px) {
-  /* line 347, ../sass/_systemick.scss */
+  /* line 349, ../sass/_systemick.scss */
   header .inner {
     margin-left: auto;
     margin-right: auto;
     width: 900px;
   }
-  /* line 352, ../sass/_systemick.scss */
+  /* line 354, ../sass/_systemick.scss */
   header .inner .left {
     padding-right: 0;
   }
-  /* line 357, ../sass/_systemick.scss */
+  /* line 359, ../sass/_systemick.scss */
   header .logo {
     padding-left: 0;
   }
 
-  /* line 364, ../sass/_systemick.scss */
+  /* line 366, ../sass/_systemick.scss */
   #page .column {
     float: left;
   }
-  /* line 368, ../sass/_systemick.scss */
+  /* line 370, ../sass/_systemick.scss */
   #page .column.left {
     border-right: solid 2px #dddddd;
     padding-left: 0;
     padding-right: 2%;
     width: 75%;
   }
-  /* line 375, ../sass/_systemick.scss */
+  /* line 377, ../sass/_systemick.scss */
   #page .column.right {
     padding-left: 2%;
     width: 25%;
   }
-  /* line 379, ../sass/_systemick.scss */
+  /* line 381, ../sass/_systemick.scss */
   #page .column.right h3 {
     margin-left: 0;
   }
-  /* line 386, ../sass/_systemick.scss */
+  /* line 388, ../sass/_systemick.scss */
   #page .column .tweet span {
     margin-right: 1%;
   }
-  /* line 389, ../sass/_systemick.scss */
+  /* line 391, ../sass/_systemick.scss */
   #page .column .tweet span.name {
     font-weight: bold;
   }
 
-  /* line 400, ../sass/_systemick.scss */
+  /* line 402, ../sass/_systemick.scss */
   .modal-about .dialog {
     width: 60%;
   }
 }
 @media all and (min-width: 768px) and (max-width: 959px) {
-  /* line 413, ../sass/_systemick.scss */
+  /* line 415, ../sass/_systemick.scss */
   #page .column.left {
     padding-left: 2%;
   }
-  /* line 417, ../sass/_systemick.scss */
+  /* line 419, ../sass/_systemick.scss */
   #page .column.right {
     padding-right: 2%;
   }

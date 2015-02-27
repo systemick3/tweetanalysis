@@ -19,6 +19,24 @@ $h3-font-size: 1.17 * $base-font-size;
 $h4-font-size: 1    * $base-font-size;
 $h5-font-size: 0.83 * $base-font-size;
 $h6-font-size: 0.67 * $base-font-size;
+$logo-font-size: 2 * $base-font-size;
+
+@font-face {
+  font-family: Quadranta;
+  src: url("/assets/images/Quadranta-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Juice;
+  src: url("/assets/fonts/JUICE_Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Piron;
+  src: url("/assets/fonts/TFPironv2-stencil.otf") format("opentype");
+}
+
+$logo-font: Piron, Arial, Helvetica, "Nimbus Sans L", sans-serif;
 
 $page-width: 900px;
 
