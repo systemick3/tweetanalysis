@@ -2,12 +2,13 @@ $magnolia: #ECF0F1;
 $grey: #aaa;
 $light-grey: #ddd;
 $dark-grey: #5E6D70;
-$navy-blue: #224F9B;
+$navy-blue: #0F2D38;
 $blue: #3498BB;
 $dark-blue: #2980B9;
 $purple: #BB3399;
 $black: #1B1D1E;
 $green: #86935B;
+$dark-green: #143c4a;
 $light-blue: #40BFEB;
 
 $base-font-size:   24px; // The font size set on the root html element.
@@ -20,6 +21,7 @@ $h4-font-size: 1    * $base-font-size;
 $h5-font-size: 0.83 * $base-font-size;
 $h6-font-size: 0.67 * $base-font-size;
 $logo-font-size: 2 * $base-font-size;
+$small-logo-font-size: 1.5 * $base-font-size;
 
 @font-face {
   font-family: Quadranta;
@@ -44,7 +46,7 @@ $raleway: Raleway, Arial, Helvetica, "Nimbus Sans L", sans-serif;
 $ubuntu: Ubuntu, Arial, Helvetica, "Nimbus Sans L", sans-serif;
 
 $base-font-family: $raleway; // The font family set on the html element.
-$heading-font-family: $ubuntu;
+$heading-font-family: $raleway;
 
 $border: solid 1px $light-grey;
 

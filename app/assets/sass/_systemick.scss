@@ -73,6 +73,7 @@ header {
   color: white;
   font-size: 80%;
   font-weight: bold;
+  padding-top: 1%;
 
   a, a:hover, a:visited {
     color: white;
@@ -81,8 +82,13 @@ header {
   .logo {
     float: left;
     font-family: $logo-font;
-    font-size: $logo-font-size;
+    font-size: $small-logo-font-size;
     padding-left: 1%;
+  }
+
+  i {
+    bottom: 5px;
+    position: relative;
   }
 
   .hamburger {
@@ -358,6 +364,9 @@ footer {
 
     .logo {
       padding-left: 0;
+      left: -1%;
+      position: relative;
+      font-size: $logo-font-size;
     }
   }
 
