@@ -1,14 +1,14 @@
-<div class="modal-chart" ng-show="showAnalysisChart">
+<div class="modal-chart" ng-show="showFollowersChart">
   <div class="dialog">
-    <div class="close" ng-click="toggleAnalysisChart()">
+    <div class="close" ng-click="toggleFollowersChart()">
       <i class="fa fa-times"></i>
     </div>
     <div class="error" ng-show="chartError">{{ chartError }}</div>
-    <div id="analysisChartContainer">
-      <analysis-chart>
+    <div id="followersChartContainer">
+      <followers-chart>
         Chart data
         <img src="/assets/images/loading.gif" />
-      </analysis-chart>
+      </followers-chart>
     </div>
   </div>
 <div>

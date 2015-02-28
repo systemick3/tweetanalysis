@@ -8453,17 +8453,17 @@ header .navigation ul li a {
   z-index: 10000;
 }
 /* line 273, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul, .modal-contact .dialog #chartContainer ul, .modal-about .dialog #chartContainer ul {
+.modal-chart .dialog #analysisChartContainer ul, .modal-chart .dialog #followersChartContainer ul, .modal-contact .dialog #analysisChartContainer ul, .modal-contact .dialog #followersChartContainer ul, .modal-about .dialog #analysisChartContainer ul, .modal-about .dialog #followersChartContainer ul {
   list-style-type: none;
 }
 /* line 276, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul li, .modal-contact .dialog #chartContainer ul li, .modal-about .dialog #chartContainer ul li {
+.modal-chart .dialog #analysisChartContainer ul li, .modal-chart .dialog #followersChartContainer ul li, .modal-contact .dialog #analysisChartContainer ul li, .modal-contact .dialog #followersChartContainer ul li, .modal-about .dialog #analysisChartContainer ul li, .modal-about .dialog #followersChartContainer ul li {
   display: inline;
   float: left;
   margin-right: 2%;
 }
 /* line 281, ../sass/_systemick.scss */
-.modal-chart .dialog #chartContainer ul li span, .modal-contact .dialog #chartContainer ul li span, .modal-about .dialog #chartContainer ul li span {
+.modal-chart .dialog #analysisChartContainer ul li span, .modal-chart .dialog #followersChartContainer ul li span, .modal-contact .dialog #analysisChartContainer ul li span, .modal-contact .dialog #followersChartContainer ul li span, .modal-about .dialog #analysisChartContainer ul li span, .modal-about .dialog #followersChartContainer ul li span {
   display: block;
   float: left;
   height: 1em;

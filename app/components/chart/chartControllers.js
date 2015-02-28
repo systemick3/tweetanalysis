@@ -2,11 +2,17 @@ var app = angular.module('twitterapp');
 
 app.controller('chartCtrl', ['$scope', '$window', '$rootScope', function ($scope, $window, $rootScope) {
 
-  $rootScope.showChart = false;
+  $rootScope.showAnalysisChart = false;
+  $rootScope.showFollowersChart = false;
 
-  $rootScope.toggleChart = function() {
+  $rootScope.toggleAnalysisChart = function() {
     $window.scrollTo(0, 0);
-    $rootScope.showChart = !$rootScope.showChart;
+    $rootScope.showAnalysisChart = !$rootScope.showAnalysisChart;
+  };
+
+  $rootScope.toggleFollowersChart = function() {
+    $window.scrollTo(0, 0);
+    $rootScope.showFollowersChart = !$rootScope.showFollowersChart;
   };
 
 }]);
