@@ -6,10 +6,10 @@ angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ipCookie', 'btford.socke
       templateUrl: 'components/home/views/home.html',
       controller: 'homeCtrl'
     });
-    $routeProvider.when('/login', {
-      templateUrl: 'components/user/views/login.html',
-      controller: 'loginCtrl'
-    });
+    // $routeProvider.when('/login', {
+    //   templateUrl: 'components/user/views/login.html',
+    //   controller: 'loginCtrl'
+    // });
     $routeProvider.when('/login/callback', {
       templateUrl: 'components/user/views/loginCallback.html',
       controller: 'loginCallbackCtrl'
@@ -37,8 +37,8 @@ angular.module("twitterapp", ['ngRoute', 'ngSanitize', 'ipCookie', 'btford.socke
 
   .constant('tConfig', {
     'apiData': {
-      'server':           'http://localhost:3001',
-      //'server':           'http://api.systemick-web-development.co.uk',
+      //'server':           'http://localhost:3001',
+      'server':           'http://api.systemick-web-development.co.uk',
       'streamServer':     'http://localhost:3002',
       'testUrl':          '/tweetapp/test',
       'loginUrl':         '/tweetapp/login',
