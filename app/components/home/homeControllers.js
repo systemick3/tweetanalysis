@@ -82,42 +82,6 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
 
 }]);
 
-// app.controller('streamCtrl', ['$scope', 'socket', 'homeFactory', function ($scope, socket, homeFactory) {
-//   var oldTweets = [];
-//   $scope.streamtweets = [];
-
-//   socket.on('tweets', function (data) {
-//     // Display a maximum of 12 tweets
-//     if ($scope.streamtweets.length >= 12) {
-//       // If we already have 12 tweets lose the oldest
-//       $scope.streamtweets.pop();
-//       oldTweets = $scope.streamtweets;
-//     }
-//     else {
-//       oldTweets = $scope.streamtweets;
-//     }
-//     // Make the new tweet the 1st item in the array
-//     $scope.streamtweets = homeFactory.processTweets(data.concat(oldTweets));
-//   });
-
-//   $scope.$on('socket:error', function (ev, data) {
-//     $scope.streamError = 'Unable to stream latest tweets from Twitter. Please try again later.'
-//   });
-
-//   homeFactory.getTrends()
-//     .success(function (data) {
-//       $scope.trends = data.data[0].trends;
-//     })
-//     .error(function (err) {
-//       $scope.trendsError = 'Unable to get latest trends from Twitter. Please try again later.';
-//     });
-
-//   $scope.selectTrends = function (trend) {
-//     return trend.name.length <= 30;
-//   };
-
-// }]);
-
 app.controller('headerCtrl', ['$scope', '$window', '$location', function($scope, $window, $location) {
 
 }]);
