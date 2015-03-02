@@ -1,22 +1,20 @@
 var app = angular.module("twitterapp");
 
 // Modal dialog to display analysis chart data
-app.directive('chartModal', ['chartFactory', 'userFactory', '$rootScope', '$window', function (chartFactory, userFactory, $rootScope, $window) {
+app.directive('chartModal', ['chartFactory', 'userFactory', function (chartFactory, userFactory) {
   return {
     restrict: 'E',
     replace: true,
     scope: true,
     templateUrl: "components/chart/views/chart.html",
     link: function (scope, element, attrs) {
-      var i,
-        chartType = attrs['type'],
+      var chartType = attrs.type,
         prop = chartType + 'ChartVisible',
         chartId = chartType + 'Chart',
         containerId = chartType + 'ChartContainer',
         modalId = chartType + 'ChartModal',
         modalShowId = modalId + 'Show',
-        dimensions,
-        close;
+        dimensions;
 
       scope.chartType = chartType;
       scope.chartProp = prop;
@@ -44,13 +42,13 @@ app.directive('chartModal', ['chartFactory', 'userFactory', '$rootScope', '$wind
 
             show.on('click', function () {
               modal.css('display', 'block');
-            })
+            });
 
             close.on('click', function () {
               modal.css('display', 'none');
             });
 
-            var drawChart = function(ctx) {
+            var drawChart = function (ctx) {
               ctx.canvas.width = dimensions.width;
               ctx.canvas.height = dimensions.height;
               chartData.labels = chartData.labels.splice(dimensions.splice * -1, dimensions.splice);

@@ -5,7 +5,7 @@ app.factory('analysisFactory', ['$http', 'tConfig', function ($http, tConfig) {
     apiData = tConfig.apiData;
 
   return {
-    getUserAnalysis: function(userId) {
+    getUserAnalysis: function (userId) {
       var userAnalysisUrl = apiData.server + apiData.userAnalysis.url + '/' + userId;
 
       if (!userAnalysisPromise) {

@@ -2,7 +2,7 @@ var app = angular.module('twitterapp');
 
 app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'userFactory', 'tConfig', '$sce', function ($scope, $window, $rootScope, ipCookie, userFactory, tConfig, $sce) {
 
-  var userId;
+  var token;
 
   $scope.currentYear = new Date().getFullYear();
 
@@ -14,18 +14,17 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
 
   $rootScope.toggleMenu = function () {
     $rootScope.menuVisible = !$rootScope.menuVisible;
-  }
+  };
 
   // If the user refreshes a page retrieve the token from sessionStorage
-  if (angular.isDefined($window.sessionStorage.token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised == false)) {
+  if (angular.isDefined($window.sessionStorage.token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised === false)) {
     $rootScope.tweetapp = {};
     $rootScope.tweetapp.authorised = true;
-    ipCookie(tConfig.sessionCookieName, $window.sessionStorage.token, { expires:365 });
-  }
-  // If sessionStorage isn't available try the cookie
-  else {
+    ipCookie(tConfig.sessionCookieName, $window.sessionStorage.token, { expires: 365 });
+  } else {
+    // If sessionStorage isn't available try the cookie
     token = ipCookie(tConfig.sessionCookieName);
-    if (angular.isDefined(token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised == false)) {
+    if (angular.isDefined(token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised === false)) {
       $window.sessionStorage.token = token;
       $rootScope.tweetapp = {};
       $rootScope.tweetapp.authorised = true;
@@ -49,7 +48,7 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
         $rootScope.bodyClass = 'home';
 
         $rootScope.menuText = 'Your data';
-        $rootScope.toggleAnalysis = function() {
+        $rootScope.toggleAnalysis = function () {
           $rootScope.menuVisible = false;
           $('#page .left').toggleClass('hidden-xs');
           $('#page .right').toggleClass('hidden-xs');
@@ -78,19 +77,19 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
       $scope.loginError = 'Unable to log in. There is possibly a problem with Twitter. Please try again later.';
     });
 
-  };
+  }
 
 }]);
 
-app.controller('headerCtrl', ['$scope', '$window', '$location', function($scope, $window, $location) {
+app.controller('headerCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
 
 }]);
 
-app.controller('errorCtrl', ['$scope', '$window', '$location', function($scope, $window, $location) {
+app.controller('errorCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
 
 }]);
 
 // default - handle any requests not for an authorised URL
-app.controller('defaultCtrl', ['$scope', '$window', '$location', function($scope, $window, $location) {
+app.controller('defaultCtrl', ['$scope', '$window', '$location', function ($scope, $window, $location) {
   $location.path('/home');
 }]);

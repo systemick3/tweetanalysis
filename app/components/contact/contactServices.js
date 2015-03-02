@@ -4,7 +4,7 @@ app.factory('contactFactory', ['$http', 'tConfig', function ($http, tConfig) {
 
   return {
 
-    sendContactData: function(contactData) {
+    sendContactData: function (contactData) {
       var apiData = tConfig.apiData,
         contactUrl = apiData.server + '/systemick/contact';
 

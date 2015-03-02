@@ -1,11 +1,9 @@
-var app = angular.module("twitterapp")
+var app = angular.module("twitterapp");
 
-app.factory('userFactory', ['$http', '$window', 'tConfig', function ($http, $window, tConfig) {
+app.factory('userFactory', ['$http', 'tConfig', function ($http, tConfig) {
   var loginUrl = tConfig.apiData.server + tConfig.apiData.loginUrl,
-    testUrl = tConfig.apiData.server + tConfig.apiData.testUrl,
     sessionUrl = tConfig.apiData.server + tConfig.apiData.userSessionUrl,
     userUrl = tConfig.apiData.server + tConfig.apiData.userDataUrl,
-    userObject = {},
     userSessionPromise;
 
   return {
@@ -24,14 +22,14 @@ app.factory('userFactory', ['$http', '$window', 'tConfig', function ($http, $win
     },
 
     userTwitterData: function (user_id) {
-      return $http.get(userUrl +'/' + user_id);
+      return $http.get(userUrl + '/' + user_id);
     }
 
   };
 
 }]);
 
-app.factory('authInterceptor', ['$rootScope', '$q', '$window', '$location', function ($rootScope, $q, $window, $location) {
+app.factory('authInterceptor', ['$q', '$window', '$location', function ($q, $window, $location) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
@@ -43,7 +41,7 @@ app.factory('authInterceptor', ['$rootScope', '$q', '$window', '$location', func
     response: function (response) {
       if (response.status === 401) {
         // handle the case where the user is not authenticated
-        $location.path('/error')
+        $location.path('/error');
       }
       return response || $q.when(response);
     }

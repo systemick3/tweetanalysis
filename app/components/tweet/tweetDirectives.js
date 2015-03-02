@@ -4,7 +4,7 @@ app.directive('tweetList', function () {
   return {
     templateUrl: 'components/tweet/views/tweet.html',
     link: function (scope, element, attrs) {
-      scope.$watch('usertweets', function (nv) {
+      scope.$watch('usertweets', function () {
         if (scope.usertweets !== null) {
           var data = scope.usertweets;
           scope.data = data;
@@ -26,23 +26,24 @@ app.directive('showRetweetersLink', ['tweetFactory', function (tweetFactory) {
         icon = retweetersElement.find('i'),
         replace,
         i,
-        tweetId = attrs['tweetId'];
+        selectedTweet,
+        tweetId = attrs.tweetId;
 
       linkElement = element.find('a');
 
-      for (i=0; i<scope.usertweets.length; i++) {
-        if (scope.usertweets[i].id_str == tweetId) {
+      for (i = 0; i < scope.usertweets.length; i++) {
+        if (scope.usertweets[i].id_str === tweetId) {
           selectedTweet = scope.usertweets[i];
           break;
         }
       }
 
-      replace = (selectedTweet.retweet_count == 1) ? 'retweet' : 'retweets';
+      replace = (selectedTweet.retweet_count === 1) ? 'retweet' : 'retweets';
       linkElement.text(selectedTweet.retweet_count + ' ' + replace);
 
       element.on('click', function () {
-        for (i=0; i<scope.usertweets.length; i++) {
-          if (scope.usertweets[i].id_str == tweetId) {
+        for (i = 0; i < scope.usertweets.length; i++) {
+          if (scope.usertweets[i].id_str === tweetId) {
             selectedTweet = scope.usertweets[i];
             break;
           }
@@ -63,8 +64,7 @@ app.directive('showRetweetersLink', ['tweetFactory', function (tweetFactory) {
                 icon.toggle();
               });
             });
-        }
-        else {
+        } else {
           icon.hide();
           retweetersElement.slideToggle('slow', function () {
             if (!icon.is(':visible')) {
@@ -90,15 +90,14 @@ app.directive('showRepliesLink', ['tweetFactory', function (tweetFactory) {
     link: function (scope, element, attrs) {
       var parentElement = element.parent(),
         repliesElement = parentElement.siblings('.replies'),
-        tweetId = attrs['tweetId'],
-        replyId,
+        tweetId = attrs.tweetId,
         selectedTweet,
         icon = repliesElement.find('i'),
         i;
 
       element.on('click', function () {
-        for (i=0; i<scope.usertweets.length; i++) {
-          if (scope.usertweets[i].id_str == tweetId) {
+        for (i = 0; i < scope.usertweets.length; i++) {
+          if (scope.usertweets[i].id_str === tweetId) {
             selectedTweet = scope.usertweets[i];
             break;
           }
@@ -118,8 +117,7 @@ app.directive('showRepliesLink', ['tweetFactory', function (tweetFactory) {
                 icon.toggle();
               });
             });
-        }
-        else {
+        } else {
           icon.hide();
           repliesElement.slideToggle('slow', function () {
             if (!icon.is(':visible')) {
@@ -143,17 +141,20 @@ app.directive('showSentimentLink', ['tweetFactory', function (tweetFactory) {
     restrict: 'E',
     template: '<span class="sentiment"><a href="" class="show-link">Sentiment</a></span>',
     link: function (scope, element, attrs) {
-      var parentElement = element.parent(), 
+      var parentElement = element.parent(),
         sentimentElement = parentElement.next(),
         icon = sentimentElement.find('i'),
-        tweetId = attrs['tweetId'],
+        tweetId = attrs.tweetId,
         replyId,
+        i,
+        j,
+        replies,
         selectedTweet;
 
-      element.on('click', function() {
+      element.on('click', function () {
         // Find the tweet that has been selected
-        for (var i=0; i<scope.usertweets.length; i++) {
-          if (scope.usertweets[i].id_str == tweetId) {
+        for (i = 0; i < scope.usertweets.length; i++) {
+          if (scope.usertweets[i].id_str === tweetId) {
             selectedTweet = scope.usertweets[i];
             break;
           }
@@ -161,11 +162,11 @@ app.directive('showSentimentLink', ['tweetFactory', function (tweetFactory) {
 
         // If the tweet is a reply find it in the replies
         // of the selected tweet
-        if (attrs['replyId']) {
-          replyId = attrs['replyId'];
+        if (attrs.replyId) {
+          replyId = attrs.replyId;
           replies = selectedTweet.replies;
-          for (var j=0; j < replies.length; j++) {
-            if (replies[j].id_str == replyId) {
+          for (j = 0; j < replies.length; j++) {
+            if (replies[j].id_str === replyId) {
               selectedTweet = replies[j];
             }
           }
@@ -185,8 +186,7 @@ app.directive('showSentimentLink', ['tweetFactory', function (tweetFactory) {
                 icon.toggle();
               });
             });
-        }
-        else {
+        } else {
           icon.hide();
           sentimentElement.slideToggle('slow', function () {
             if (!icon.is(':visible')) {

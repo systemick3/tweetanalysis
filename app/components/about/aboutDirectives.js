@@ -1,6 +1,6 @@
 var app = angular.module("twitterapp");
 
-app.directive('aboutModal', ['contactFactory', 'userFactory', function (contactFactory, userFactory) {
+app.directive('aboutModal', [function () {
   return {
     restrict: 'E',
     replace: true,

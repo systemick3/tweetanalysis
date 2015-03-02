@@ -17,36 +17,32 @@ app.factory('chartFactory', ['$http', 'tConfig', function ($http, tConfig) {
     // Utility function to determine the height & width
     // of the modal and the number of items to fetch from the API
     // according to the screen size
-    getChartDimensions: function() {
+    getChartDimensions: function () {
       if (screen.width >= 1368) {
         return {
           width: 1000,
           height: 500,
           splice: 30
         };
-      }
-      else if (screen.width >= 1024) {
+      } else if (screen.width >= 1024) {
         return {
           width: 900,
           height: 500,
           splice: 25
         };
-      }
-      else if (screen.width >= 768) {
+      } else if (screen.width >= 768) {
         return {
           width: 600,
           height: 500,
           splice: 15
         };
-      }
-      else if (screen.width >= 667) {
+      } else if (screen.width >= 667) {
         return {
           width: 580,
           height: 500,
           splice: 12
         };
-      }
-      else {
+      } else {
         return {
           width: 320,
           height: 500,
@@ -63,20 +59,20 @@ app.factory('chartFactory', ['$http', 'tConfig', function ($http, tConfig) {
         favourites = [],
         retweets = [],
         followers = [],
-        mentions =[];
+        mentions = [];
 
       data = data.reverse();
 
-      angular.forEach(data, function(element, index){
+      angular.forEach(data, function (element) {
         labels.push(element.date);
         tweets.push(element.seven.tweetCount);
         retweets.push(element.seven.retweetCount);
         favourites.push(element.seven.favouriteCount);
-        followers.push(element.seven.followersCount ? element.seven.followersCount : 0);
+        followers.push(element.seven.followersCount || 0);
         mentions.push(element.seven.mentionsCount);
       });
 
-      if (chartType == 'analysis') {
+      if (chartType === 'analysis') {
 
         return {
           labels: labels,
@@ -153,7 +149,7 @@ app.factory('chartFactory', ['$http', 'tConfig', function ($http, tConfig) {
     },
 
     // Return an object containing options for the chart
-    getChartOptions: function() {
+    getChartOptions: function () {
       return {
         ///Boolean - Whether grid lines are shown across the chart
         scaleShowGridLines : true,

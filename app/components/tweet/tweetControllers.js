@@ -1,7 +1,7 @@
 var app = angular.module('twitterapp');
 
 app.controller('tweetCtrl', ['$scope', 'userFactory', 'tweetFactory', 'tConfig', function ($scope, userFactory, tweetFactory, tConfig) {
-  var userId;
+
   userFactory.userSessionData().then(function (response) {
     if (response.data.data) {
       $scope.usertweets = null;
@@ -37,8 +37,6 @@ app.controller('tweetCtrl', ['$scope', 'userFactory', 'tweetFactory', 'tConfig',
           });
       };
     }
-
-    
 
   });
 

@@ -17,12 +17,12 @@ app.factory("tweetFactory", ['$http', 'tConfig', function ($http, tConfig) {
       return $http.get(userTweetsUrl);
     },
 
-    getTweet: function(id) {
+    getTweet: function (id) {
       var oneTweetUrl = apiData.server + apiData.oneTweet.url + '/' + id;
       return $http.get(oneTweetUrl);
     },
 
-    getRetweeters: function(tweetId) {
+    getRetweeters: function (tweetId) {
       var retweetersUrl = apiData.server + apiData.retweeters.url + '/' + tweetId;
       return $http.get(retweetersUrl);
     },
@@ -59,7 +59,8 @@ app.factory("tweetFactory", ['$http', 'tConfig', function ($http, tConfig) {
     },
 
     processTweets: function (tweets) {
-      for (var i=0; i<tweets.length; i++) {
+      var i;
+      for (i = 0; i < tweets.length; i++) {
         tweets[i].display_text = this.processTweetLinks(tweets[i].text);
         tweets[i].short_date = tweets[i].created_at.substring(0, 16);
       }
