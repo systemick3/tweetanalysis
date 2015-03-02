@@ -27,7 +27,7 @@ module.exports = function(config) {
       'app/components/about/aboutDirectives.js',
       'app/components/analysis/analysisDirectives.js',
       'app/components/analysis/analysisServices.js',
-      'app/components/analysis/analysisServices.js',
+      'app/components/analysis/analysisControllers.js',
       'app/components/chart/chartDirectives.js',
       'app/components/chart/chartServices.js',
       'app/components/chart/chartServices.js',

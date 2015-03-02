@@ -23,6 +23,97 @@ describe('analysisFactory', function () {
   });
 });
 
+describe('userAnalysisCtrl', function () {
+  var $httpBackend, 
+    $rootScope, 
+    createController, 
+    authRequestHandler,
+    user = {user_id: "165697756", screen_name: "systemick", _id: "54d743f9ae838cbd6266cd38"},
+    userAnalysis = {"msg":"success","secs":1494,"analysis":{"seven":{"tweetCount":14,"favouriteCount":7,"retweetCount":29,"tweetsRetweetedCount":5},"thirty":{"tweetCount":42,"favouriteCount":28,"retweetCount":864,"tweetsRetweetedCount":14},"ninety":{"tweetCount":100,"favouriteCount":76,"retweetCount":2277,"tweetsRetweetedCount":32},"user_id":"165697756","created_at":1423412954688,"date":"2015-02-08"}};
+
+  beforeEach(module("twitterapp"));
+
+  beforeEach(inject(function($injector) {
+    // Set up the mock http service responses
+    $httpBackend = $injector.get('$httpBackend');
+    // backend definition common for all tests
+    authRequestHandler = $httpBackend.when('GET', 'http://api.systemick-web-development.co.uk/tweetapp/auth/session')
+                          .respond(user);
+
+    // Get hold of a scope (i.e. the root scope)
+    $rootScope = $injector.get('$rootScope');
+    // The $controller service is used to create instances of controllers
+    var $controller = $injector.get('$controller');
+
+    createController = function() {
+     return $controller('userAnalysisCtrl', {'$scope' : $rootScope });
+    };
+  }));
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  it('should fetch session data', function() {
+    $httpBackend.expectGET('http://api.systemick-web-development.co.uk/tweetapp/auth/session');
+    var controller = createController();
+    $httpBackend.flush();
+  });
+
+  //TODO:
+  // Get the code below to work
+
+  // it('should fetch analysis data', function() {
+  //    var controller = createController();
+  //    $httpBackend.flush();
+
+  //    // now you don’t care about the authentication, but
+  //    // the controller will still send the request and
+  //    // $httpBackend will respond without you having to
+  //    // specify the expectation and response for this request
+
+  //    $httpBackend.expectGET('http://api.systemick-web-development.co.uk/tweetapp/auth/analysis/user/165697756').respond(200, '');
+  //    $httpBackend.flush();
+  //  });
+
+});
+
+describe('analysisDirective', function () {
+  var mockScope,
+    compileService,
+    userAnalysis = {"msg":"success","secs":1494,"analysis":{"seven":{"tweetCount":14,"favouriteCount":7,"retweetCount":29,"tweetsRetweetedCount":5},"thirty":{"tweetCount":42,"favouriteCount":28,"retweetCount":864,"tweetsRetweetedCount":14},"ninety":{"tweetCount":100,"favouriteCount":76,"retweetCount":2277,"tweetsRetweetedCount":32},"user_id":"165697756","created_at":1423412954688,"date":"2015-02-08"}};
+
+  beforeEach(module("twitterapp"));
+
+  // beforeEach(angular.mock.inject(function($rootScope, $compile) {
+  //   mockScope = $rootScope.$new();
+  //   compileService = $compile;
+  //   mockScope.userAnalysis = userAnalysis;
+  // }));
+
+  beforeEach(inject(function(_$compile_, _$rootScope_){
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    compileService = _$compile_;
+    mockScope = _$rootScope_;
+  }));
+
+  //TODO:
+  // Get the code below to work
+
+  // it("Create an analysis item", function () {
+  //   //var compileFn = compileService("<analysis-item></analysis-item>");
+  //   //var elem = compileFn(mockScope);
+
+  //   var element = compileService("<analysis-item></analysis-item>")(mockScope);
+  //   // fire all the watches, so the scope expression {{1 + 1}} will be evaluated
+  //   mockScope.$digest();
+
+  //   expect(elem.children().length).toEqual(1);
+  // });
+
+});
+
 describe('chartFactory', function () {
   var factory,
     httpBackend,
