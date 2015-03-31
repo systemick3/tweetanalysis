@@ -16,6 +16,14 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
     $rootScope.menuVisible = !$rootScope.menuVisible;
   };
 
+  $rootScope.hideAll = function () {
+    $rootScope.showContact = false;
+    $('#page .left').removeClass('hidden-xs');
+    $('#page .right').addClass('hidden-xs');
+    $rootScope.menuText = 'Your data';
+    $rootScope.showAbout = false;
+  };
+
   // If the user refreshes a page retrieve the token from sessionStorage
   if (angular.isDefined($window.sessionStorage.token) && (!angular.isDefined($rootScope.tweetapp) || $rootScope.tweetapp.authorised === false)) {
     $rootScope.tweetapp = {};
