@@ -7,6 +7,7 @@ app.controller('aboutCtrl', ['$rootScope', '$window', function ($rootScope, $win
   $rootScope.toggleAbout = function () {
     $window.scrollTo(0, 0);
     $rootScope.showAbout = !$rootScope.showAbout;
+    $rootScope.menuVisible = false;
   };
 
 }]);

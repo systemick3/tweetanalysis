@@ -22,6 +22,7 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
     $('#page .right').addClass('hidden-xs');
     $rootScope.menuText = 'Your data';
     $rootScope.showAbout = false;
+    $rootScope.menuVisible = false;
   };
 
   // If the user refreshes a page retrieve the token from sessionStorage
@@ -66,6 +67,7 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
           } else {
             $rootScope.menuText = 'Your data';
           }
+          $rootScope.menuVisible = false;
         };
 
         // Get the full user data from Twitter

@@ -27,6 +27,7 @@ app.controller('contactCtrl', ['$scope', '$rootScope', '$window', 'contactFactor
   $rootScope.toggleContact = function () {
     $window.scrollTo(0, 0);
     $rootScope.showContact = !$rootScope.showContact;
+    $rootScope.menuVisible = false;
   };
 
 }]);
