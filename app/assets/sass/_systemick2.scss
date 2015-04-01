@@ -19,7 +19,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: $dark-grey;
+  color: $navy-blue;
   font-family: $heading-font-family;
   font-weight:bold;
 }
@@ -33,13 +33,13 @@ p {
 }
 
 a {
-  color: $green;
+  color: $dark-blue;
   font-weight: bold;
 }
 
 a:hover,
 a:visited {
-  color:$green;
+  color:$dark-blue;
   font-weight: bold;
   text-decoration: none;
 }
@@ -59,26 +59,17 @@ iframe {
 }
 
 button.btn-primary {
-  background-color: $orange;
-  border-color: $dark-grey;
+  background-color: $blue;
+  border-color: $blue;
   font-size: 100%;
   font-weight: bold;
-}
-
-body {
-
-  &.login {
-    //background-color: #ccc;
-    background-image: url("/assets/images/cloud.jpg");
-    background-size: cover;
-  }
 }
 
 header {
   @include header-background();
 
-  background-color: $orange;
-  border-bottom: 3px solid $dark-grey;
+  background-color: $blue;
+  border-bottom: 3px solid $navy-blue;
   color: white;
   font-size: 80%;
   font-weight: bold;
@@ -101,8 +92,8 @@ header {
   }
 
   .hamburger {
-    background-color: $light-grey;
-    border: solid 2px $dark-grey;
+    background-color: $light-blue;
+    border: solid 2px $dark-blue;
     border-radius: 2px;
     float: right;
     height: 3.5em;
@@ -164,18 +155,13 @@ header {
       li {
 
         a {
-          color: $green;
+          color: $blue;
         }
       }
     }
   }
 
 }
-
-// .page-container {
-//   background-color: #ccc;
-//   background-image: url("assets/images/cloud.jpg")
-// }
 
 .column {
 
