@@ -1,0 +1,448 @@
+@import 'init';
+
+html, body {
+  background-color: white;
+  color: $dark-grey;
+  font-family: $base-font-family; /* 1 */
+  font-size: 100% * ($base-font-size / 24px); /* 3 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  width: 100%
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $dark-grey;
+  font-family: $heading-font-family;
+  font-weight:bold;
+}
+
+h4.show-panel {
+  font-size: 1em;
+}
+
+p {
+  margin-bottom: 3%;
+}
+
+a {
+  color: $green;
+  font-weight: bold;
+}
+
+a:hover,
+a:visited {
+  color:$green;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a.show-link, a.show-link:hover, a.show-link:visited {
+  color: $green;
+  text-decoration:none;
+}
+
+input.form-control,
+textarea.form-control {
+  font-size: 80%;
+}
+
+iframe {
+  border: none;
+}
+
+button.btn-primary {
+  background-color: $orange;
+  border-color: $dark-grey;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+body {
+
+  &.login {
+    //background-color: #ccc;
+    background-image: url("/assets/images/cloud.jpg");
+    background-size: cover;
+  }
+}
+
+header {
+  @include header-background();
+
+  background-color: $orange;
+  border-bottom: 3px solid $dark-grey;
+  color: white;
+  font-size: 80%;
+  font-weight: bold;
+  padding-top: 1%;
+
+  a, a:hover, a:visited {
+    color: white;
+  }
+
+  .logo {
+    float: left;
+    font-family: $logo-font;
+    font-size: $small-logo-font-size;
+    padding-left: 1%;
+  }
+
+  i {
+    bottom: 5px;
+    position: relative;
+  }
+
+  .hamburger {
+    background-color: $light-grey;
+    border: solid 2px $dark-grey;
+    border-radius: 2px;
+    float: right;
+    height: 3.5em;
+    margin-left: 3%;
+    margin-top: 1%;
+    width: 3em;
+
+    div {
+      background-color: white;
+      border-radius: 4px;
+      height: 6px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5px;
+      width: 80%;
+    }
+  }
+
+  .profile-image {
+    float: right;
+    padding-top: 1%;
+  }
+
+  .user-info {
+    float: right;
+    line-height: 2em;
+    margin-left: 3%;
+
+    &.last {
+      margin-left: 3%;
+    }
+
+    .bottom {
+      padding-top: 8.5%;
+    }
+  }
+
+  .left {
+    padding-right: 2%;
+  }
+
+  .navigation {
+    background-color: white;
+    border: 2px solid $grey;
+    border-radius: 2px;
+    font-size: 130%;
+    line-height: 2em;
+    padding: 0.5em 0 0.5em 1.5em;
+    position: absolute;
+    right: 0.5em;
+    top: 3em;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      left: -2.5em;
+      position: relative;
+
+      li {
+
+        a {
+          color: $green;
+        }
+      }
+    }
+  }
+
+}
+
+// .page-container {
+//   background-color: #ccc;
+//   background-image: url("assets/images/cloud.jpg")
+// }
+
+.column {
+
+  .left {
+    width: 100%;
+  }
+}
+
+#page {
+  margin-top: 2%;
+
+  .column {
+
+    h3 {
+      margin-top: 0;
+    }
+
+    &.left {
+      padding: 0 2%;
+    }
+
+    &.right {
+
+      h3 {
+        margin-left: 3%;
+      }
+
+      div.user-info {
+        padding-left: 3%;
+      }
+
+    }
+
+  }
+}
+
+.panel {
+  @include panel-border-radius(5px);
+
+  background-color: white;
+  border: solid 1px $light-grey;
+  padding: 1%;
+
+  &.analysis {
+    padding-left: 3%;
+
+    h4 {
+      margin-bottom: 1%;
+    }
+  }
+}
+
+.chart-link {
+  margin: 5% 0;
+}
+
+.site-info {
+  font-size: 70%;
+  line-height: 170%;
+
+  span {
+    margin-right: 0.5em;
+  }
+}
+
+.ngFade.ng-enter { 
+  transition: 2s linear all; 
+  opacity: 0; 
+}
+
+.ngFade.ng-enter-active { 
+  opacity: 1; 
+}
+
+.sentiment, .replies, .retweeters {
+
+  .fa-times {
+    float: right;
+  }
+}
+
+.modal-chart, .modal-contact, .modal-about {
+  position:absolute;
+  z-index:9999;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:#000000;
+  opacity: 0.9;
+
+  .dialog {
+    background-color: #eee;
+    box-shadow: 4px 4px 80px #000;
+    height: 90%;
+    left: 50%;
+    opacity: 1.0;
+    padding: 2% 1%;
+    position: absolute;
+    top: 1%;
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    width: 90%;
+    z-index:10000;
+
+    #analysisChartContainer, #followersChartContainer {
+
+      ul {
+        list-style-type: none;
+
+        li {
+          display: inline;
+          float: left;
+          margin-right: 2%;
+
+          span {
+            display: block;
+            float: left;
+            height: 1em;
+            margin-right: 0.3em;
+            margin-top: 0.2em;
+            width: 1em;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+}
+
+footer {
+  display: none;
+}
+
+.login {
+
+  footer {
+    background-color: whitesmoke;
+    border-top: solid 2px $grey;
+    bottom: 2px;
+    display: block;
+    padding: 1%;
+    position: fixed;
+    width: 100%;
+
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: $page-width;
+    }
+  }
+}
+
+
+@media all and (min-width: 480px) {
+
+  header {
+    width: 100%;
+
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+  }
+
+  #page {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    max-width: $page-width;
+  }
+
+  .modal-chart {
+
+    .dialog {
+      padding: 1% 1%;
+    }
+  }
+
+}
+
+@media all and (min-width: 767px) {
+
+  header {
+
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      width: $page-width;
+
+      .left {
+        padding-right: 0;
+      }
+    }
+
+    .logo {
+      padding-left: 0;
+      left: -1%;
+      position: relative;
+      font-size: $logo-font-size;
+    }
+  }
+
+  #page {
+
+    .column {
+
+      float: left;
+
+      &.left {
+        border-right: solid 2px $light-grey;
+        padding-left: 0;
+        padding-right: 2%;
+        width: 75%;
+      }
+
+      &.right {
+        padding-left: 2%;
+        width: 25%;
+
+        h3 {
+          margin-left: 0;
+        }
+      }
+
+      .tweet {
+
+        span {
+          margin-right: 1%;
+
+          &.name {
+            font-weight: bold;
+          }
+        }
+      }
+
+    }
+  }
+
+  .modal-about {
+
+    .dialog {
+      width: 60%;
+    }
+  }
+
+}
+
+@media all and (min-width: 768px) and (max-width: 959px) {
+
+  #page {
+
+    .column {
+
+      &.left {
+        padding-left: 2%;
+      }
+
+      &.right {
+        padding-right: 2%;
+      }
+    }
+  }
+
+}
