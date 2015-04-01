@@ -75,7 +75,7 @@ body {
 }
 
 header {
-  @include header-background();
+  //@include header-background();
 
   background-color: $orange;
   border-bottom: 3px solid $dark-grey;
