@@ -12,6 +12,8 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
 
   $rootScope.serverUrl = $sce.trustAsResourceUrl(tConfig.apiData.server + tConfig.apiData.twitterLoginUrl);
 
+  $rootScope.siteUrl = $sce.trustAsResourceUrl(tConfig.apiData.siteUrl);
+
   $rootScope.toggleMenu = function () {
     $rootScope.menuVisible = !$rootScope.menuVisible;
   };
