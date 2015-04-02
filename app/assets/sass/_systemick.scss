@@ -65,20 +65,22 @@ button.btn-primary {
   font-weight: bold;
 }
 
-body {
+.login-container {
+  background: url(/assets/images/cloud-grey.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+  padding: 5%;
 
-  &.login {
-    //background-color: #ccc;
-    background-image: url("/assets/images/cloud.jpg");
-    background-size: cover;
+  #page {
+    background-color: white;
+    max-width:760px;
+    padding: 2%;
   }
 }
 
 header {
-  //@include header-background();
-
   background-color: $orange;
-  //border-bottom: 3px solid $dark-grey;
   color: white;
   font-size: 80%;
   font-weight: bold;

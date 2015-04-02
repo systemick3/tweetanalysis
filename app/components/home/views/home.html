@@ -1,42 +1,14 @@
-<div ng-hide="tweetapp.authorised">
+<div class="login-container" ng-hide="tweetapp.authorised">
 
-	<div id="page" class="login" ng-controller="loginCtrl">
+	<div id="page" class="login panel" ng-controller="loginCtrl">
 
-		<div class="about">
-    	<h2>This is Tweet Report.</h3> 
-
-    	<p>Here you can view your tweets, mentions, replies, the number of times your tweets have been favourited and see sentiment analysis to determine how favourably people viewed your tweets.</p>
-
-    	<p>Login with Twitter to view your data</p>
-
-    	<p>Tweet Analysis was created by <a href="http://js.systemick-web-development.co.uk" target="_blank">Systemick</a> using javascript.</p>
-  	</div>
-		<h3>Login</h2>
-	  <div class="error" ng-show="formSubmitError">{{ formSubmitError }}</div>
-	  <div class="error" ng-show="loginError">{{ loginError }}</div>
+		<h2>This is Tweet Report</h2>
 		<div class="form" ng-hide="formSuccess">
-			<!--<form name="loginForm" method="post" novalidate class="form-inline" ng-submit="doLogin(loginDetails)">
-			  <div class="well">
-			    <div class="form-group">
-			      <label>Username</label>
-			      <input type="text" class="form-control" name="username" ng-model="loginDetails.username" required />
-			      <span class="error" ng-show="loginForm.username.$error.required && loginForm.username.$dirty">Please enter your username</span>
-			    </div>
-			    <div class="form-group">
-			      <label>Password</label>
-			      <input type="password" class="form-control" name="password" ng-model="loginDetails.password" required />
-			      <span class="error" ng-show="loginForm.password.$error.required && loginForm.password.$dirty">Please enter your password</span>
-			    </div>
-			    <div class="form-group">
-			      <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-primary">Login</button>
-			    </div>
-			  </div>
-			</form>-->
+			<p>Here you can view your tweets, mentions, replies, the number of times your tweets have been favourited and see sentiment analysis to determine how favourably people viewed your tweets.</p>
 			<form name="twitterLoginForm" method="post" action="{{ serverUrl }}">
 				<div class="well">
-			  	<input type="hidden" value="123456789" />
 			  	<div class="form-group">
-			  		<input type="submit" value="Log in using Twitter" />
+			  		<input type="submit" value="Log in using Twitter to see the most popular tweets" />
 			  	</div>
 			  </div>
 			</form>
