@@ -29,6 +29,8 @@ app.directive('showRetweetersLink', ['tweetFactory', function (tweetFactory) {
         selectedTweet,
         tweetId = attrs.tweetId;
 
+      $('.visible-xs-block').removeClass('hidden');
+
       linkElement = element.find('a');
 
       for (i = 0; i < scope.usertweets.length; i++) {

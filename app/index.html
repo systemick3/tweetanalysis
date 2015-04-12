@@ -62,20 +62,9 @@
           </div>
         </div>
 
-        <div class="column right" ng-show="tweetapp.authorised">
-          <!-- <div class="user-info last">
-            <div class="top">{{ user.screen_name }}</div>
-            <div class="bottom">Followers: {{ user.followers_count }}</div>
-          </div>
-          <div class="user-info">
-            <div class="top">{{ user.name }}</div>
-            <div class="bottom">{{ user.location }}</div>
-          </div> -->
-        </div>
-
       </div>
 
-      <div class="navigation" ng-show="menuVisible">
+      <div class="navigation visible-xs-block hidden" ng-show="menuVisible">
         <ul class="nav-items">
           <li><a href="" ng-click="hideAll()">Tweets</a></li>
           <li><a href="" ng-click="toggleAnalysis()">{{ menuText }}</a></li>
