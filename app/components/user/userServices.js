@@ -4,6 +4,7 @@ app.factory('userFactory', ['$http', 'tConfig', function ($http, tConfig) {
   var loginUrl = tConfig.apiData.server + tConfig.apiData.loginUrl,
     sessionUrl = tConfig.apiData.server + tConfig.apiData.userSessionUrl,
     userUrl = tConfig.apiData.server + tConfig.apiData.userDataUrl,
+    userTwitterPromise,
     userSessionPromise;
 
   return {
@@ -22,7 +23,12 @@ app.factory('userFactory', ['$http', 'tConfig', function ($http, tConfig) {
     },
 
     userTwitterData: function (user_id) {
-      return $http.get(userUrl + '/' + user_id);
+      if (!userTwitterPromise) {
+        userTwitterPromise = $http.get(userUrl +'/' + user_id).then(function (response) {
+          return response;
+        })
+      }
+      return userTwitterPromise;
     }
 
   };

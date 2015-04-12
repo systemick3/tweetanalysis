@@ -1,6 +1,6 @@
 var app = angular.module('twitterapp');
 
-app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'userFactory', 'tConfig', '$sce', function ($scope, $window, $rootScope, ipCookie, userFactory, tConfig, $sce) {
+app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'userFactory', 'tConfig', '$sce', '$location', function ($scope, $window, $rootScope, ipCookie, userFactory, tConfig, $sce, $location) {
 
   var token;
 
@@ -72,21 +72,28 @@ app.controller('homeCtrl', ['$scope', '$window', '$rootScope', 'ipCookie', 'user
           $rootScope.menuVisible = false;
         };
 
-        // Get the full user data from Twitter
-        userFactory.userTwitterData(data.data.user_id)
-          .success(function (data) {
+        userFactory.userTwitterData(data.data.user_id).then(function (response) {
+          if (response.status == '200') {
             var mongo_id = $scope.user._id;
-            $scope.user = data;
+            $scope.user = response.data;
             $rootScope.user = $scope.user;
             $scope.user._id = mongo_id;
-          })
-          .error(function (err) {
-            $scope.twitterDataError = 'Unable to retrieve data from Twitter. Please try again later.';
-          });
+            $rootScope.$broadcast('tweetAppAuthorised');
+          } else {
+            alert('1');
+            $rootScope.logoutMsg = 'You have been logged out due to inactivity. Please login again.';
+            $location.path('/logout');
+          }
+        }, function (err) {
+          $rootScope.logoutMsg = 'You have been logged out due to inactivity. Please login again.';
+          $location.path('/logout');
+        });
+
       }
 
     }, function (err) {
-      $scope.loginError = 'Unable to log in. There is possibly a problem with Twitter. Please try again later.';
+      $rootScope.logoutMsg = 'Unable to retrieve data from Twitter. Please try again later.';
+      $location.path('/logout');
     });
 
   }

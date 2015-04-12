@@ -5,6 +5,7 @@
 		<h2>This is Tweet Report</h2>
 		<div class="form" ng-hide="formSuccess">
 			<p>Here you can view your tweets, mentions, replies, the number of times your tweets have been favourited and see sentiment analysis to determine how favourably people viewed your tweets.</p>
+			<div class="error" bg-show="logoutMsg">{{ logoutMsg }}</div>
 			<form name="twitterLoginForm" method="post" action="{{ serverUrl }}">
 				<div class="well">
 			  	<div class="form-group">
