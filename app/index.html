@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="assets/stylesheets/style.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+
   <!-- Analytics -->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,7 +38,7 @@
 
   <div id="container">
 
-    <header ng-controller="headerCtrl">
+    <header ng-controller="headerCtrl" ng-cloak>
 
       <div class="inner">
 
@@ -111,8 +114,6 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
 
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-cookie/angular-cookie.js"></script>
   <script src="bower_components/socket.io-client/socket.io.js"></script>
